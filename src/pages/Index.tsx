@@ -1,11 +1,15 @@
 
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import TypedText from '@/components/TypedText';
 import SectionHeader from '@/components/SectionHeader';
 import ProjectCard from '@/components/ProjectCard';
 import QuoteCard from '@/components/QuoteCard';
 import SkillBar from '@/components/SkillBar';
+import FuturisticButton from '@/components/FuturisticButton';
+import LiteraryQuote from '@/components/LiteraryQuote';
+import PhilosophicalParadox from '@/components/PhilosophicalParadox';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 const Index = () => {
@@ -95,13 +99,25 @@ const Index = () => {
   ];
 
   const skills = [
-    { name: "AI/ML", percentage: 95, emoji: "🧠" },
-    { name: "Public Speaking", percentage: 93, emoji: "🎤" },
-    { name: "Political Analysis", percentage: 88, emoji: "📊" },
-    { name: "Entrepreneurship", percentage: 90, emoji: "💼" },
-    { name: "Telling uncomfortable truths", percentage: 100, emoji: "💯" },
-    { name: "Problem Solving", percentage: 96, emoji: "🧩" }
+    { name: "AI/ML", percentage: 95, emoji: "🧠", style: "futuristic" },
+    { name: "Public Speaking", percentage: 93, emoji: "🎤", style: "split" },
+    { name: "Political Analysis", percentage: 88, emoji: "📊", style: "default" },
+    { name: "Entrepreneurship", percentage: 90, emoji: "💼", style: "neon" },
+    { name: "Telling uncomfortable truths", percentage: 100, emoji: "💯", style: "futuristic" },
+    { name: "Problem Solving", percentage: 96, emoji: "🧩", style: "split" }
   ];
+
+  const paradox = {
+    thesis: {
+      title: "Technology Liberates",
+      description: "Technology has the potential to free humanity from scarcity, disease, and limitation, creating unprecedented abundance."
+    },
+    antithesis: {
+      title: "Technology Enslaves",
+      description: "Our creations have become our masters, surveilling our lives, manipulating our decisions, and eroding our humanity."
+    },
+    synthesis: "We must create technology with wisdom and boundaries - tools that extend human potential while preserving human dignity and agency."
+  };
 
   return (
     <div className="min-h-screen">
@@ -124,14 +140,15 @@ const Index = () => {
             <div className="text-xl md:text-2xl font-medium mb-8 h-12">
               <TypedText texts={typingRoles} />
             </div>
-            <div>
-              <a 
-                href="#about" 
-                className="inline-flex items-center font-medium bg-neon-purple text-white px-5 py-3 rounded-md hover:bg-purple-700 transition-colors"
-              >
+            <div className="flex flex-wrap gap-4">
+              <FuturisticButton href="#about" size="lg">
                 Scroll if you dare to dream big
                 <ArrowDown className="ml-2 animate-bounce-light" size={18} />
-              </a>
+              </FuturisticButton>
+              
+              <FuturisticButton href="/manifesto" variant="secondary">
+                Read The Rebellion Manifesto
+              </FuturisticButton>
             </div>
           </div>
         </div>
@@ -158,6 +175,7 @@ const Index = () => {
           <SectionHeader 
             title="Ctrl+Alt+Reboot: The Birth of a Creator" 
             subtitle="My journey from curious student to rebellious innovator"
+            style="rebel"
             className="animate-on-scroll"
           />
           
@@ -212,6 +230,14 @@ const Index = () => {
                   <span>Passionate about AI, ML, EVs, philosophy & political systems</span>
                 </li>
               </ul>
+              
+              <div className="mt-8">
+                <LiteraryQuote 
+                  text="Like Gregor Samsa, I awoke one day transformed - no longer a mere student but a creator questioning everything."
+                  author="Personal Journal"
+                  style="kafka"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -226,6 +252,7 @@ const Index = () => {
           <SectionHeader 
             title="What I Believe (and Why It Matters)" 
             subtitle="The principles that guide my work and vision"
+            style="kafka"
             className="animate-on-scroll"
           />
           
@@ -249,6 +276,13 @@ const Index = () => {
                   Most of all, I believe in action. Ideas without implementation are just dreams. I'm here to build what should exist.
                 </p>
               </div>
+              
+              <div className="mt-8">
+                <Link to="/manifesto" className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center font-medium">
+                  Read the full Rebellion Manifesto
+                  <ArrowRight className="ml-2" size={18} />
+                </Link>
+              </div>
             </div>
             
             <div className="space-y-4 animate-on-scroll">
@@ -256,9 +290,19 @@ const Index = () => {
                 <QuoteCard 
                   key={index}
                   quote={quote}
+                  author="Saikoushik Nalubola"
+                  color={index % 2 === 0 ? "border-neon-purple" : "border-neon-cyan"}
                 />
               ))}
             </div>
+          </div>
+          
+          <div className="mt-12 animate-on-scroll">
+            <PhilosophicalParadox 
+              thesis={paradox.thesis}
+              antithesis={paradox.antithesis}
+              synthesis={paradox.synthesis}
+            />
           </div>
         </div>
       </section>
@@ -272,6 +316,7 @@ const Index = () => {
           <SectionHeader 
             title="Projects & Experiments" 
             subtitle="Bold ideas brought to life through code, hardware, and relentless iteration"
+            style="futuristic"
             className="animate-on-scroll"
           />
           
@@ -289,13 +334,10 @@ const Index = () => {
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
-            <a 
-              href="#contact"
-              className="inline-flex items-center font-medium text-neon-purple hover:text-purple-400 transition-colors"
-            >
-              Have a project idea? Let's collaborate
+            <FuturisticButton href="/projects" variant="secondary">
+              Explore The Laboratory
               <ArrowRight className="ml-2" size={18} />
-            </a>
+            </FuturisticButton>
           </div>
         </div>
       </section>
@@ -309,6 +351,8 @@ const Index = () => {
           <SectionHeader 
             title="Writing & Thoughts" 
             subtitle="Exploring ideas at the intersection of technology, philosophy, and social change"
+            highlightText="In the tradition of Dostoevsky and Kafka"
+            style="dostoevsky"
             className="animate-on-scroll"
           />
           
@@ -320,15 +364,22 @@ const Index = () => {
               >
                 <h3 className="text-2xl font-bold mb-2">{thought.title}</h3>
                 <p className="text-muted-foreground mb-4">{thought.excerpt}</p>
-                <a 
-                  href="#"
+                <Link 
+                  to="/soul"
                   className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center"
                 >
                   Read more
                   <ArrowRight className="ml-2" size={16} />
-                </a>
+                </Link>
               </div>
             ))}
+          </div>
+          
+          <div className="mt-12 text-center animate-on-scroll">
+            <FuturisticButton href="/soul" variant="ghost">
+              Explore The Soul of Creation
+              <ArrowRight className="ml-2" size={18} />
+            </FuturisticButton>
           </div>
         </div>
       </section>
@@ -342,6 +393,7 @@ const Index = () => {
           <SectionHeader 
             title="Chaos Wall" 
             subtitle="Visual snapshots from my journey as a creator, rebel, and builder"
+            style="rebel"
             className="animate-on-scroll"
           />
           
@@ -367,6 +419,7 @@ const Index = () => {
           <SectionHeader 
             title="Skills & Expertise" 
             subtitle="What I bring to the table as an entrepreneur, technologist, and changemaker"
+            style="futuristic"
             className="animate-on-scroll"
           />
           
@@ -378,6 +431,7 @@ const Index = () => {
                   name={skill.name}
                   percentage={skill.percentage}
                   emoji={skill.emoji}
+                  style={skill.style}
                 />
               ))}
             </div>
@@ -388,6 +442,7 @@ const Index = () => {
                   name={skill.name}
                   percentage={skill.percentage}
                   emoji={skill.emoji}
+                  style={skill.style}
                 />
               ))}
             </div>
@@ -413,13 +468,14 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col space-y-4">
-              <a 
-                href="mailto:contact@saikoushik.com"
-                className="flex items-center justify-center bg-neon-purple text-white py-3 px-6 rounded-md hover:bg-purple-700 transition-colors"
+              <FuturisticButton 
+                href="mailto:saikoushiknalubola@yahoo.com"
+                size="lg"
+                className="w-full justify-center"
               >
                 <Mail className="mr-2" size={20} />
                 Email Me
-              </a>
+              </FuturisticButton>
               
               <div className="flex justify-center space-x-4 mt-6">
                 <a href="#" className="text-muted-foreground hover:text-white transition-colors">
