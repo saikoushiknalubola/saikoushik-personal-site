@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import RebellionManifesto from "./pages/RebellionManifesto";
 import DeepDiveProjects from "./pages/DeepDiveProjects";
 import SoulOfCreation from "./pages/SoulOfCreation";
+import ExperienceJourney from "./pages/ExperienceJourney";
+import FutureVision from "./pages/FutureVision";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/manifesto" element={<RebellionManifesto />} />
           <Route path="/projects" element={<DeepDiveProjects />} />
           <Route path="/soul" element={<SoulOfCreation />} />
+          <Route path="/journey" element={<ExperienceJourney />} />
+          <Route path="/future" element={<FutureVision />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

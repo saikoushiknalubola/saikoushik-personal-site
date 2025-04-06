@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -11,9 +10,12 @@ import SkillBar from '@/components/SkillBar';
 import FuturisticButton from '@/components/FuturisticButton';
 import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
-import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -137,7 +139,7 @@ const Index = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              NALUBOLA SAIKOUSHIK • 2050
+              SAIKOUSHIK NALUBOLA • 2050
             </motion.span>
             <motion.h1 
               className="text-4xl md:text-6xl font-bold mb-6"
@@ -182,16 +184,16 @@ const Index = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.8 }}
         >
-          <a href="https://github.com/saikoushik10" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+          <a href="https://github.com/saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
             <Github size={22} />
           </a>
-          <a href="https://www.linkedin.com/in/nalubola-saikoushik" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+          <a href="https://www.linkedin.com/in/saikoushiknalubola/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
             <Linkedin size={22} />
           </a>
-          <a href="https://twitter.com/saikoushik_31" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+          <a href="https://x.com/saikoushik_42" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
             <Twitter size={22} />
           </a>
-          <a href="mailto:saikoushiknalubola@yahoo.com" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+          <a href="mailto:saikoushik42@gmail.com" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
             <Mail size={22} />
           </a>
         </motion.div>
@@ -235,7 +237,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll space-y-4">
               <p>
-                I'm a B.Tech student in Computer Science and Engineering with specialization in AI & Robotics — but that's just the formal part of my story.
+                I'm Saikoushik Nalubola, a B.Tech student in Computer Science and Engineering with specialization in AI & Robotics — but that's just the formal part of my story.
               </p>
               <p>
                 What drives me is a relentless need to challenge the status quo. From a young age, I've been the person who asks "Why?" and then follows with "Why not differently?"
@@ -290,6 +292,21 @@ const Index = () => {
                   author="Personal Journal"
                   style="kafka"
                 />
+              </div>
+              
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link to="/journey">
+                  <FuturisticButton variant="ghost" size="sm">
+                    <Clock className="mr-2" size={16} />
+                    View Experience Timeline
+                  </FuturisticButton>
+                </Link>
+                <Link to="/future">
+                  <FuturisticButton variant="ghost" size="sm">
+                    Future Vision
+                    <ArrowRight className="ml-2" size={16} />
+                  </FuturisticButton>
+                </Link>
               </div>
             </div>
           </div>
@@ -556,6 +573,34 @@ const Index = () => {
         </div>
         
         <div className="container mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+            <div className="mb-6 md:mb-0">
+              <Link to="/" className="font-space text-xl font-bold">
+                <span className="text-white">Saikoushik</span>
+                <span className="text-neon-purple">Nalubola</span>
+              </Link>
+              <p className="text-white/60 mt-2">Quantum Visionary • 2050</p>
+            </div>
+            
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href="https://github.com/saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Github size={20} className="text-white/80" />
+              </a>
+              <a href="https://www.linkedin.com/in/saikoushiknalubola/" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Linkedin size={20} className="text-white/80" />
+              </a>
+              <a href="https://x.com/saikoushik_42" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Twitter size={20} className="text-white/80" />
+              </a>
+              <a href="https://medium.com/@saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <span className="text-white/80 font-bold">M</span>
+              </a>
+              <a href="mailto:saikoushik42@gmail.com" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Mail size={20} className="text-white/80" />
+              </a>
+            </div>
+          </div>
+          
           <p className="text-center text-lg font-medium mb-4 text-gradient from-blue-400 to-purple-400">
             "The distinction between past, present, and future is only a stubbornly persistent illusion."
           </p>
@@ -563,7 +608,7 @@ const Index = () => {
             — Albert Einstein
           </p>
           <p className="text-center text-white/60 mt-6">
-            © {new Date().getFullYear()} Nalubola Saikoushik. All rights reserved in this timeline.
+            © {new Date().getFullYear()} Saikoushik Nalubola. All rights reserved in this timeline.
           </p>
         </div>
       </footer>
