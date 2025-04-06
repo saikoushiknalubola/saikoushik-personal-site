@@ -72,6 +72,14 @@ export default {
 					blue: '#147EFB',
 					gray: '#8A8A8A',
 					light: '#F5F5F7'
+				},
+				// 2050 futuristic colors
+				future: {
+					primary: '#00F0FF',
+					secondary: '#7B42F6',
+					accent: '#FF3864',
+					dark: '#0A0A1A',
+					light: '#E0F7FF'
 				}
 			},
 			borderRadius: {
@@ -167,6 +175,35 @@ export default {
 				'shimmer': {
 					'0%': { backgroundPosition: '-200% 0' },
 					'100%': { backgroundPosition: '200% 0' }
+				},
+				'matrix-fall': {
+					'0%': { transform: 'translateY(-100%)', opacity: '1' },
+					'90%': { opacity: '1' },
+					'100%': { transform: 'translateY(1000%)', opacity: '0' }
+				},
+				'rotate-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+					'50%': { opacity: '1', transform: 'scale(1.05)' }
+				},
+				'apple-bounce': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-15px)' }
+				},
+				'newton-fall': {
+					'0%': { transform: 'translateY(-100%)', opacity: '0' },
+					'70%': { transform: 'translateY(5%)', opacity: '1' },
+					'85%': { transform: 'translateY(-2%)', opacity: '1' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'einstein-warp': {
+					'0%': { transform: 'skew(0deg, 0deg)' },
+					'30%': { transform: 'skew(2deg, 1deg)' },
+					'70%': { transform: 'skew(-2deg, -1deg)' },
+					'100%': { transform: 'skew(0deg, 0deg)' }
 				}
 			},
 			animation: {
@@ -178,7 +215,13 @@ export default {
 				'bounce-light': 'bounce-light 1.5s infinite',
 				'glitch': 'glitch 0.3s ease-in-out infinite',
 				'float': 'float 3s ease-in-out infinite',
-				'shimmer': 'shimmer 2s infinite'
+				'shimmer': 'shimmer 2s infinite',
+				'matrix-fall': 'matrix-fall 4s linear infinite',
+				'rotate-slow': 'rotate-slow 20s linear infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'apple-bounce': 'apple-bounce 2s cubic-bezier(0.28, 0.84, 0.42, 1) infinite',
+				'newton-fall': 'newton-fall 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+				'einstein-warp': 'einstein-warp 3s ease-in-out infinite'
 			},
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
@@ -187,7 +230,19 @@ export default {
 				sf: ['"SF Pro Display"', 'Inter', 'sans-serif']
 			},
 			textShadow: {
-				'glow': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)'
+				'glow': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
+				'future': '0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.5)',
+				'neon': '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff'
+			},
+			backdropFilter: {
+				'none': 'none',
+				'blur': 'blur(20px)'
+			},
+			boxShadow: {
+				'neon-purple': '0 0 5px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
+				'neon-cyan': '0 0 5px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
+				'futuristic': '0 0 10px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.3)',
+				'apple': '0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)'
 			}
 		}
 	},

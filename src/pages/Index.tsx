@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
@@ -13,7 +12,6 @@ import PhilosophicalParadox from '@/components/PhilosophicalParadox';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 const Index = () => {
-  // Detect when elements should animate on scroll
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -58,28 +56,28 @@ const Index = () => {
 
   const projects = [
     {
-      title: "Garuda OS",
-      description: "An Android-based privacy-focused operating system designed to give users complete control over their data.",
+      title: "Quantum Garuda OS",
+      description: "An Android-based privacy-focused operating system with quantum encryption designed to give users complete control over their data.",
       emoji: "🦅",
-      tags: ["Privacy", "Android", "OS Development"]
+      tags: ["Quantum Privacy", "Android", "OS Development"]
     },
     {
-      title: "Solar-Powered Water Purification Drone",
-      description: "Autonomous drone technology that purifies water in remote areas using solar energy.",
+      title: "Newton's Gravity Purification Drone",
+      description: "Autonomous drone technology inspired by gravitational principles that purifies water in remote areas using solar energy.",
       emoji: "🌞",
       tags: ["Renewable Energy", "Autonomous Systems", "Water Purification"]
     },
     {
-      title: "Electric Bike Conversion",
-      description: "Project to convert traditional bikes to electric vehicles, making sustainable transport accessible.",
+      title: "E = mc² Electric Conversion",
+      description: "Revolutionary project to convert traditional vehicles to electric, applying Einstein's energy principles to efficient power systems.",
       emoji: "⚡",
-      tags: ["Electric Vehicles", "Sustainable Transport", "DIY"]
+      tags: ["Electric Vehicles", "Sustainable Transport", "Energy Conversion"]
     },
     {
-      title: "Revitalize Innovations",
-      description: "Founder of a startup focused on building impactful, unexpected solutions to real-world problems.",
+      title: "Spacetime Revitalize Innovations",
+      description: "Founder of a startup focused on building impactful solutions that bend the fabric of business reality as we know it.",
       emoji: "🚀",
-      tags: ["Startup", "Innovation", "Social Impact"]
+      tags: ["Reality Distortion", "Innovation", "Social Impact"]
     }
   ];
 
@@ -99,83 +97,136 @@ const Index = () => {
   ];
 
   const skills = [
-    { name: "AI/ML", percentage: 95, emoji: "🧠", style: "futuristic" as const },
-    { name: "Public Speaking", percentage: 93, emoji: "🎤", style: "split" as const },
-    { name: "Political Analysis", percentage: 88, emoji: "📊", style: "default" as const },
-    { name: "Entrepreneurship", percentage: 90, emoji: "💼", style: "neon" as const },
-    { name: "Telling uncomfortable truths", percentage: 100, emoji: "💯", style: "futuristic" as const },
-    { name: "Problem Solving", percentage: 96, emoji: "🧩", style: "split" as const }
+    { name: "Quantum Computing & AI", percentage: 95, emoji: "🧠", style: "futuristic" as const },
+    { name: "Spacetime Communication", percentage: 93, emoji: "🌌", style: "split" as const },
+    { name: "Gravitational Analysis", percentage: 88, emoji: "🍎", style: "default" as const },
+    { name: "Future Entrepreneurship", percentage: 90, emoji: "💼", style: "neon" as const },
+    { name: "Temporal Truth Telling", percentage: 100, emoji: "⏱️", style: "futuristic" as const },
+    { name: "Relativity Problem Solving", percentage: 96, emoji: "🧩", style: "split" as const }
   ];
 
   const paradox = {
     thesis: {
-      title: "Technology Liberates",
-      description: "Technology has the potential to free humanity from scarcity, disease, and limitation, creating unprecedented abundance."
+      title: "Time is Malleable",
+      description: "According to Einstein's relativity, time is not constant but bends and stretches depending on gravity and velocity."
     },
     antithesis: {
-      title: "Technology Enslaves",
-      description: "Our creations have become our masters, surveilling our lives, manipulating our decisions, and eroding our humanity."
+      title: "Causality is Preserved",
+      description: "Newton's laws suggest a world of perfect causality, where every action has an equal and opposite reaction."
     },
-    synthesis: "We must create technology with wisdom and boundaries - tools that extend human potential while preserving human dignity and agency."
+    synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
 
   return (
     <div className="min-h-screen">
       <Navigation />
 
-      {/* Hero Section */}
       <section 
         id="home" 
-        className="min-h-screen flex flex-col justify-center pt-20 px-4 md:px-8"
+        className="min-h-screen flex flex-col justify-center pt-20 px-4 md:px-8 relative overflow-hidden"
       >
-        <div className="container mx-auto">
+        <div className="absolute inset-0 pointer-events-none retro-future-grid"></div>
+        
+        <div className="container mx-auto relative z-10">
           <div className="max-w-3xl">
-            <span className="text-neon-purple font-space text-sm tracking-wider mb-2 block">
-              NALUBOLA SAIKOUSHIK
-            </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Building What Should Exist,<br /> 
-              <span className="text-neon-purple">Not What's Expected</span>
-            </h1>
-            <div className="text-xl md:text-2xl font-medium mb-8 h-12">
+            <motion.span 
+              className="text-future-primary font-space text-sm tracking-wider mb-2 block"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              NALUBOLA SAIKOUSHIK • 2050
+            </motion.span>
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold mb-6"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              If <span className="text-neon-purple animate-pulse-glow">Einstein</span> Were a Developer,<br /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                Time Would Be Relative to Your Vision
+              </span>
+            </motion.h1>
+            <motion.div 
+              className="text-xl md:text-2xl font-medium mb-8 h-12"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+            >
               <TypedText texts={typingRoles} />
-            </div>
-            <div className="flex flex-wrap gap-4">
+            </motion.div>
+            <motion.div 
+              className="flex flex-wrap gap-4"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+            >
               <FuturisticButton href="#about" size="lg">
-                Scroll if you dare to dream big
+                Bend spacetime, scroll down
                 <ArrowDown className="ml-2 animate-bounce-light" size={18} />
               </FuturisticButton>
               
               <FuturisticButton href="/manifesto" variant="secondary">
-                Read The Rebellion Manifesto
+                Read The Quantum Manifesto
               </FuturisticButton>
-            </div>
+            </motion.div>
           </div>
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-          <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-            <Github size={20} />
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-6"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.8 }}
+        >
+          <a href="https://github.com/saikoushik10" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+            <Github size={22} />
           </a>
-          <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-            <Linkedin size={20} />
+          <a href="https://www.linkedin.com/in/nalubola-saikoushik" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+            <Linkedin size={22} />
           </a>
-          <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-            <Twitter size={20} />
+          <a href="https://twitter.com/saikoushik_31" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+            <Twitter size={22} />
           </a>
+          <a href="mailto:saikoushiknalubola@yahoo.com" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
+            <Mail size={22} />
+          </a>
+        </motion.div>
+        
+        <div className="absolute bottom-20 right-10 hidden lg:block">
+          <motion.div 
+            className="text-5xl"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                repeatType: "reverse",
+                ease: "easeInOut" 
+              }}
+            >
+              🍎
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* About Section */}
       <section 
         id="about" 
-        className="py-20 px-4 md:px-8 bg-secondary/30"
+        className="py-20 px-4 md:px-8 bg-black/30 relative overflow-hidden"
       >
-        <div className="container mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 mix-blend-overlay"></div>
+        <div className="container mx-auto relative z-10">
           <SectionHeader 
-            title="Ctrl+Alt+Reboot: The Birth of a Creator" 
-            subtitle="My journey from curious student to rebellious innovator"
+            title="Breaking the Time Barrier" 
+            subtitle="My journey from curious student to quantum innovator"
             style="rebel"
+            theoryReference="einstein"
             className="animate-on-scroll"
           />
           
@@ -243,7 +294,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Manifesto Section */}
       <section 
         id="manifesto" 
         className="py-20 px-4 md:px-8"
@@ -279,7 +329,7 @@ const Index = () => {
               
               <div className="mt-8">
                 <Link to="/manifesto" className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center font-medium">
-                  Read the full Rebellion Manifesto
+                  Read the full Quantum Manifesto
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
               </div>
@@ -307,16 +357,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
       <section 
         id="projects" 
-        className="py-20 px-4 md:px-8 bg-secondary/30"
+        className="py-20 px-4 md:px-8 bg-secondary/30 relative"
       >
         <div className="container mx-auto">
           <SectionHeader 
-            title="Projects & Experiments" 
-            subtitle="Bold ideas brought to life through code, hardware, and relentless iteration"
+            title="Quantum Projects & Experiments" 
+            subtitle="Bold ideas that bend reality through code, hardware, and relentless iteration"
             style="futuristic"
+            theoryReference="newton"
             className="animate-on-scroll"
           />
           
@@ -335,14 +385,13 @@ const Index = () => {
           
           <div className="mt-12 text-center animate-on-scroll">
             <FuturisticButton href="/projects" variant="secondary">
-              Explore The Laboratory
+              Enter The Quantum Laboratory
               <ArrowRight className="ml-2" size={18} />
             </FuturisticButton>
           </div>
         </div>
       </section>
 
-      {/* Thoughts Section */}
       <section 
         id="thoughts" 
         className="py-20 px-4 md:px-8"
@@ -384,7 +433,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
       <section 
         id="gallery" 
         className="py-20 px-4 md:px-8 bg-secondary/30"
@@ -410,16 +458,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
       <section 
         id="skills" 
-        className="py-20 px-4 md:px-8"
+        className="py-20 px-4 md:px-8 relative overflow-hidden"
       >
-        <div className="container mx-auto">
+        <div className="absolute inset-0 neural-bg opacity-20"></div>
+        <div className="container mx-auto relative z-10">
           <SectionHeader 
-            title="Skills & Expertise" 
-            subtitle="What I bring to the table as an entrepreneur, technologist, and changemaker"
-            style="futuristic"
+            title="Relativistic Skills & Expertise" 
+            subtitle="Capabilities that transcend conventional space and time"
+            style="apple"
+            theoryReference="einstein"
             className="animate-on-scroll"
           />
           
@@ -450,7 +499,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section 
         id="contact" 
         className="py-20 px-4 md:px-8 bg-secondary/30"
@@ -493,14 +541,27 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-4 md:px-8 border-t border-muted">
-        <div className="container mx-auto">
-          <p className="text-center text-lg font-medium mb-4">
-            "Most people accept the world as it is. I'm here to rebuild it."
+      <footer className="py-12 px-4 md:px-8 border-t border-white/10 relative overflow-hidden bg-black/50">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid-pattern" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M10 0H0V10" stroke="rgba(255,255,255,0.1)" fill="none" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#grid-pattern)" />
+          </svg>
+        </div>
+        
+        <div className="container mx-auto relative z-10">
+          <p className="text-center text-lg font-medium mb-4 text-gradient from-blue-400 to-purple-400">
+            "The distinction between past, present, and future is only a stubbornly persistent illusion."
           </p>
-          <p className="text-center text-muted-foreground">
-            © {new Date().getFullYear()} Nalubola Saikoushik. All rights reserved.
+          <p className="text-center text-white/60 text-sm">
+            — Albert Einstein
+          </p>
+          <p className="text-center text-white/60 mt-6">
+            © {new Date().getFullYear()} Nalubola Saikoushik. All rights reserved in this timeline.
           </p>
         </div>
       </footer>
