@@ -1,5 +1,7 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import TypedText from '@/components/TypedText';
 import SectionHeader from '@/components/SectionHeader';
