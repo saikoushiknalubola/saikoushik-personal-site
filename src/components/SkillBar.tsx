@@ -8,7 +8,7 @@ interface SkillBarProps {
   color?: string;
   emoji?: string;
   className?: string;
-  style?: 'default' | 'neon' | 'split' | 'futuristic';
+  style?: 'default' | 'neon' | 'split' | 'futuristic' | 'dostoevsky';
 }
 
 const SkillBar: React.FC<SkillBarProps> = ({ 
@@ -27,6 +27,8 @@ const SkillBar: React.FC<SkillBarProps> = ({
         return "bg-gradient-to-r from-neon-purple to-neon-cyan";
       case 'futuristic':
         return "bg-gradient-to-r from-purple-500 via-cyan-400 to-purple-500 relative after:content-[''] after:absolute after:inset-0 after:bg-white after:opacity-20 after:animate-pulse";
+      case 'dostoevsky':
+        return "bg-gradient-to-r from-red-700 to-red-900";
       default:
         return color;
     }

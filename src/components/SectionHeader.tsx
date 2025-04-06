@@ -7,7 +7,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: 'left' | 'center' | 'right';
   className?: string;
-  style?: 'default' | 'kafka' | 'rebel' | 'futuristic';
+  style?: 'default' | 'kafka' | 'rebel' | 'futuristic' | 'dostoevsky';
   highlightText?: string;
 }
 
@@ -27,6 +27,8 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         return "border-l-4 border-neon-purple pl-4";
       case 'futuristic':
         return "text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400";
+      case 'dostoevsky':
+        return "border-b-2 border-red-700 pb-2";
       default:
         return "relative inline-block";
     }

@@ -44,7 +44,7 @@ const DeepDiveProjects = () => {
         "Implemented a knowledge base covering multiple areas of law",
         "Designed for accessibility across different devices and connectivity"
       ],
-      type: 'work'
+      type: 'work' as const
     },
     {
       title: "Movie Recommendation System",
@@ -56,7 +56,7 @@ const DeepDiveProjects = () => {
         "Used content-based analysis for more accurate recommendations",
         "Built a user-friendly interface for testing and feedback"
       ],
-      type: 'work'
+      type: 'work' as const
     },
     {
       title: "Face Recognition Security System",
@@ -68,7 +68,7 @@ const DeepDiveProjects = () => {
         "Implemented anti-spoofing measures for enhanced security",
         "Created a rapid response notification system"
       ],
-      type: 'work'
+      type: 'work' as const
     },
     {
       title: "Revithalize: EV Retrofitting",
@@ -80,7 +80,7 @@ const DeepDiveProjects = () => {
         "Designed modular conversion kits for existing vehicles",
         "Secured selection in the Climate Tech Incubator"
       ],
-      type: 'achievement'
+      type: 'achievement' as const
     },
     {
       title: "AI-Powered Crop Health Monitoring",
@@ -92,7 +92,7 @@ const DeepDiveProjects = () => {
         "Created a classification system for different crop ailments",
         "Built a reporting system for early intervention"
       ],
-      type: 'work'
+      type: 'work' as const
     },
     {
       title: "Carbon Neutral Mining Framework",
@@ -104,7 +104,7 @@ const DeepDiveProjects = () => {
         "Developed optimization algorithms for mining procedures",
         "Built visualization tools for environmental impact assessment"
       ],
-      type: 'work'
+      type: 'work' as const
     },
     {
       title: "Vitalia: Digital Health Companion",
@@ -116,7 +116,7 @@ const DeepDiveProjects = () => {
         "Implemented AI-driven personalization for recommendations",
         "Created data visualization for health trends analysis"
       ],
-      type: 'work'
+      type: 'work' as const
     }
   ];
 
