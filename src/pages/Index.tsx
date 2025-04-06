@@ -99,12 +99,12 @@ const Index = () => {
   ];
 
   const skills = [
-    { name: "AI/ML", percentage: 95, emoji: "🧠", style: "futuristic" },
-    { name: "Public Speaking", percentage: 93, emoji: "🎤", style: "split" },
-    { name: "Political Analysis", percentage: 88, emoji: "📊", style: "default" },
-    { name: "Entrepreneurship", percentage: 90, emoji: "💼", style: "neon" },
-    { name: "Telling uncomfortable truths", percentage: 100, emoji: "💯", style: "futuristic" },
-    { name: "Problem Solving", percentage: 96, emoji: "🧩", style: "split" }
+    { name: "AI/ML", percentage: 95, emoji: "🧠", style: "futuristic" as const },
+    { name: "Public Speaking", percentage: 93, emoji: "🎤", style: "split" as const },
+    { name: "Political Analysis", percentage: 88, emoji: "📊", style: "default" as const },
+    { name: "Entrepreneurship", percentage: 90, emoji: "💼", style: "neon" as const },
+    { name: "Telling uncomfortable truths", percentage: 100, emoji: "💯", style: "futuristic" as const },
+    { name: "Problem Solving", percentage: 96, emoji: "🧩", style: "split" as const }
   ];
 
   const paradox = {
