@@ -7,7 +7,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: 'left' | 'center' | 'right';
   className?: string;
-  style?: 'default' | 'kafka' | 'rebel' | 'futuristic' | 'dostoevsky';
+  style?: 'default' | 'kafka' | 'rebel' | 'futuristic' | 'dostoevsky' | 'apple';
   highlightText?: string;
 }
 
@@ -29,6 +29,8 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         return "text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400";
       case 'dostoevsky':
         return "border-b-2 border-red-700 pb-2";
+      case 'apple':
+        return "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-montserrat font-bold tracking-tight";
       default:
         return "relative inline-block";
     }
@@ -43,9 +45,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         className
       )}
     >
-      <h2 className={cn("text-3xl md:text-4xl font-bold mb-4", getStyleClasses())}>
+      <h2 className={cn("text-3xl md:text-5xl font-bold mb-4", getStyleClasses())}>
         {title}
         {style === 'default' && <span className="block h-1 w-1/2 bg-neon-purple mt-2"></span>}
+        {style === 'apple' && <span className="block h-1 w-12 bg-gradient-to-r from-blue-400 to-blue-600 mt-4 rounded-full"></span>}
         {highlightText && (
           <span className="block text-neon-purple italic text-xl mt-2 font-normal">{highlightText}</span>
         )}

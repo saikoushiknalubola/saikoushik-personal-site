@@ -8,7 +8,7 @@ interface SkillBarProps {
   color?: string;
   emoji?: string;
   className?: string;
-  style?: 'default' | 'neon' | 'split' | 'futuristic' | 'dostoevsky';
+  style?: 'default' | 'neon' | 'split' | 'futuristic' | 'dostoevsky' | 'apple';
 }
 
 const SkillBar: React.FC<SkillBarProps> = ({ 
@@ -29,6 +29,8 @@ const SkillBar: React.FC<SkillBarProps> = ({
         return "bg-gradient-to-r from-purple-500 via-cyan-400 to-purple-500 relative after:content-[''] after:absolute after:inset-0 after:bg-white after:opacity-20 after:animate-pulse";
       case 'dostoevsky':
         return "bg-gradient-to-r from-red-700 to-red-900";
+      case 'apple':
+        return "bg-gradient-to-r from-blue-400 to-blue-600 rounded-full backdrop-blur-sm";
       default:
         return color;
     }
@@ -43,11 +45,13 @@ const SkillBar: React.FC<SkillBarProps> = ({
         </span>
         <span className="text-muted-foreground">{percentage}%</span>
       </div>
-      <div className="h-2 bg-secondary rounded-full overflow-hidden">
+      <div className="h-3 bg-secondary/50 rounded-full overflow-hidden backdrop-blur-sm">
         <div 
-          className={cn("h-full rounded-full transition-all duration-1000", getStyleClasses())}
+          className={cn("h-full rounded-full transition-all duration-1000 relative", getStyleClasses())}
           style={{ width: `${percentage}%` }}
-        />
+        >
+          <div className="absolute inset-0 bg-white/10"></div>
+        </div>
       </div>
     </div>
   );

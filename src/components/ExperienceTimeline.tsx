@@ -52,7 +52,7 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
           
           {/* Content */}
           <div className={cn(
-            "ml-12 md:ml-0 md:w-[calc(50%-2rem)] glass-card p-6",
+            "ml-12 md:ml-0 md:w-[calc(50%-2rem)] glass-card p-6 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:-translate-y-1",
             index % 2 === 0 ? "md:mr-8" : "md:ml-8"
           )}>
             <div className="mb-2">

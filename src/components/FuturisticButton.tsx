@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 interface FuturisticButtonProps {
   children: React.ReactNode;
@@ -9,6 +10,7 @@ interface FuturisticButtonProps {
   variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
+  to?: string;
 }
 
 const FuturisticButton: React.FC<FuturisticButtonProps> = ({
@@ -17,7 +19,8 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
   className,
   variant = 'primary',
   size = 'md',
-  href
+  href,
+  to
 }) => {
   const baseClasses = "relative overflow-hidden font-medium transition-all duration-300 flex items-center justify-center";
   
@@ -53,6 +56,24 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
     </>
   );
   
+  // Internal router navigation
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className={cn(
+          baseClasses,
+          variantClasses[variant],
+          sizeClasses[size],
+          className
+        )}
+      >
+        <ButtonContent />
+      </Link>
+    );
+  }
+  
+  // External link
   if (href) {
     return (
       <a
@@ -63,12 +84,15 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
           sizeClasses[size],
           className
         )}
+        target={href.startsWith('http') ? "_blank" : undefined}
+        rel={href.startsWith('http') ? "noopener noreferrer" : undefined}
       >
         <ButtonContent />
       </a>
     );
   }
   
+  // Regular button
   return (
     <button
       onClick={onClick}
