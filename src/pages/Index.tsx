@@ -11,13 +11,14 @@ import SkillBar from '@/components/SkillBar';
 import FuturisticButton from '@/components/FuturisticButton';
 import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
-import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ExternalLink } from 'lucide-react';
+import EnhancedGallery from '@/components/EnhancedGallery';
+import ImmersiveImageCard from '@/components/ImmersiveImageCard';
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, ExternalLink, Clock, ZapIcon, Sparkles, Rocket, Brain, Network, Lightbulb } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const Index = () => {
   const isMobile = useIsMobile();
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState('home');
   
   useEffect(() => {
     const observerOptions = {
@@ -31,6 +32,12 @@ const Index = () => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
           observer.unobserve(entry.target);
+          
+          // Update active section for nav highlight
+          const id = entry.target.id;
+          if (id) {
+            setActiveSection(id);
+          }
         }
       });
     }, observerOptions);
@@ -124,58 +131,68 @@ const Index = () => {
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
 
-  const galleryImages = [
-    "/lovable-uploads/d00b1c86-928d-4dfb-9985-e352dcc01e95.png",
-    "/lovable-uploads/333c6b72-4298-49dc-acb9-f578b4b06784.png",
-    "/lovable-uploads/ca3e6d73-40c3-4c1d-b6b9-d23896c17c29.png",
-    "/lovable-uploads/da853ef4-3ec6-4609-a838-faa972d455e7.png",
-    "/lovable-uploads/fe1bcb19-a6fc-49ad-94ac-da69273261a7.png",
-    "/lovable-uploads/54de61e9-b777-47cb-bb61-8a3ce48c4045.png",
-    "/lovable-uploads/931d5d56-b50c-44d2-b01e-6416eeb2bb98.png",
-    "/lovable-uploads/20bf0f10-2783-44da-8f19-f2f365af1cb7.png",
-    "/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png",
-    "/lovable-uploads/5b6abb0a-b304-45e9-bb26-436dcdb02785.png",
-    "/lovable-uploads/9a6e6906-e56d-43ed-86e1-598f0bbeef3d.png"
+  const highlightedImages = [
+    { 
+      src: "/lovable-uploads/43580418-0baf-4983-b05b-1337d21b60cd.png", 
+      description: "Taj Mahal Hotel Mumbai - Architectural Marvel" 
+    },
+    { 
+      src: "/lovable-uploads/e6ce2159-d844-4def-b3c7-39aa47e8de0b.png", 
+      description: "AIC-IIITH Accelerator Program at NITI Aayog" 
+    },
+    { 
+      src: "/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png", 
+      description: "Google Cloud Developer Summit 2024" 
+    },
+    { 
+      src: "/lovable-uploads/5693851a-14d4-45f8-9922-94d7790dd370.png", 
+      description: "T-Hub Innovation Center Experience" 
+    },
+    { 
+      src: "/lovable-uploads/f0143cf4-be0c-4ab7-a1f4-5d1dc1f2a130.png", 
+      description: "Be The Change You Want To See - Inspiration Wall" 
+    }
   ];
 
-  const galleryDescriptions = [
-    "Innovators at University",
-    "AIDEATHON 2025",
-    "EV Market Presentation",
-    "Future Leadership Summit",
-    "Team Innovation Award - Idea Pitching Competition",
-    "Campus Innovation Team at IIT Bombay",
-    "Tech Showcase at Innovation Hall",
-    "Certificate Ceremony - Revitalize Innovations",
-    "Panel Presentation on Future Tech",
-    "EUREKA 2024 - Road to Enterprise",
-    "IIT Bombay Startup Incubator Program"
+  const featuredImages = [
+    { 
+      src: "/lovable-uploads/7ea5b8d5-7a81-44f2-8b07-12e54b50a705.png", 
+      description: "Collaborative Ideation Session with Fellow Innovator" 
+    },
+    { 
+      src: "/lovable-uploads/859aa36d-8920-44fe-a461-d2d9a0d48568.png", 
+      description: "Quantum Reality Distortion Field - Tech Summit" 
+    },
+    { 
+      src: "/lovable-uploads/c82f9bea-ce9a-44ad-b971-f2d53ffc72f7.png", 
+      description: "Minimalist Portrait - Quantum Thinker" 
+    }
   ];
 
-  const achievements = [
+  const journeyHighlights = [
     {
-      title: "First Place - National AI Innovation Challenge",
-      description: "Developed a novel quantum-inspired algorithm for optimizing renewable energy distribution networks.",
-      date: "March 2025",
-      image: "/lovable-uploads/fe1bcb19-a6fc-49ad-94ac-da69273261a7.png"
+      title: "Google Cloud Innovation",
+      description: "Selected for Google Cloud's exclusive innovation program, developing quantum-powered solutions.",
+      icon: <Rocket className="text-neon-purple" size={24} />,
+      image: "/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png"
     },
     {
-      title: "IIT Bombay Entrepreneurship Summit",
-      description: "Selected among top 5 startups for revolutionary EV battery technology.",
-      date: "November 2024",
-      image: "/lovable-uploads/9a6e6906-e56d-43ed-86e1-598f0bbeef3d.png"
+      title: "T-Hub Mentorship",
+      description: "Part of T-Hub's prestigious mentorship program, connecting with industry leaders and visionaries.",
+      icon: <Brain className="text-neon-purple" size={24} />,
+      image: "/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png"
     },
     {
-      title: "Emerging Technologist Award",
-      description: "Recognized for contributions to sustainable technology development and ethical AI.",
-      date: "January 2025",
-      image: "/lovable-uploads/5b6abb0a-b304-45e9-bb26-436dcdb02785.png"
+      title: "Microsoft Innovation Workshop",
+      description: "Led a breakthrough session at Microsoft's innovation workshop, exploring the frontiers of quantum computing.",
+      icon: <Network className="text-neon-purple" size={24} />,
+      image: "/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png"
     }
   ];
 
   return (
     <div className="min-h-screen">
-      <Navigation />
+      <Navigation activeSection={activeSection} />
 
       <section 
         id="home" 
@@ -309,31 +326,31 @@ const Index = () => {
               <h3 className="text-2xl font-bold mb-4">The Quick Files</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>B.Tech student in CSE (AI & Robotics)</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>Founder of Revitalize Innovations</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>Hackathon enthusiast & pitch competition veteran</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>Whistleblower & social reformer</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>Youth leader working for real-world change</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>Writer of blogs, philosophies & motivational content</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-2">⚡</span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
                   <span>Passionate about AI, ML, EVs, philosophy & political systems</span>
                 </li>
               </ul>
@@ -348,19 +365,53 @@ const Index = () => {
               
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link to="/journey">
-                  <FuturisticButton variant="ghost" size="sm">
+                  <FuturisticButton variant="secondary" size="sm">
                     <Clock className="mr-2" size={16} />
                     View Experience Timeline
                   </FuturisticButton>
                 </Link>
                 <Link to="/future">
-                  <FuturisticButton variant="ghost" size="sm">
+                  <FuturisticButton variant="secondary" size="sm">
                     Future Vision
                     <ArrowRight className="ml-2" size={16} />
                   </FuturisticButton>
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Journey Highlights Section */}
+      <section id="journey-highlights" className="py-20 px-4 md:px-8 relative">
+        <div className="container mx-auto">
+          <SectionHeader 
+            title="Epic Quantum Adventures" 
+            subtitle="Key moments from my multidimensional journey"
+            style="futuristic"
+            className="animate-on-scroll"
+          />
+          
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
+            {journeyHighlights.map((highlight, index) => (
+              <div key={index} className="animate-on-scroll" style={{ animationDelay: `${index * 200}ms` }}>
+                <ImmersiveImageCard 
+                  src={highlight.image}
+                  alt={highlight.title}
+                  description={highlight.description}
+                  className="h-full"
+                />
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link to="/journey">
+              <FuturisticButton variant="secondary">
+                <Sparkles className="mr-2" size={16} />
+                Explore My Complete Timeline
+              </FuturisticButton>
+            </Link>
           </div>
         </div>
       </section>
@@ -463,62 +514,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* New Achievements Carousel Section */}
-      <section id="achievements" className="py-20 px-4 md:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-purple-900/20 mix-blend-overlay"></div>
-        <div className="container mx-auto relative z-10">
-          <SectionHeader 
-            title="Achievement Timeline" 
-            subtitle="Milestones along the quantum journey"
-            style="rebel"
-            theoryReference="einstein"
-            className="animate-on-scroll"
-          />
-          
-          <div className="mt-12 animate-on-scroll">
-            <Carousel className="w-full">
-              <CarouselContent>
-                {achievements.map((achievement, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="glass-card h-full p-6 flex flex-col">
-                      <div className="aspect-video rounded-md overflow-hidden mb-4">
-                        <img 
-                          src={achievement.image} 
-                          alt={achievement.title} 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="text-neon-purple text-sm font-medium mb-2">
-                        {achievement.date}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2">{achievement.title}</h3>
-                      <p className="text-white/80 mb-4 flex-grow">{achievement.description}</p>
-                      <Link to="/awards" className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center text-sm font-medium mt-auto">
-                        View Certificate
-                        <ArrowRight className="ml-1" size={14} />
-                      </Link>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="hidden md:block">
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
-              </div>
-            </Carousel>
-            
-            <div className="mt-8 text-center">
-              <Link to="/awards">
-                <FuturisticButton variant="ghost" size="sm">
-                  View All Achievements & Awards
-                  <ArrowRight className="ml-2" size={16} />
-                </FuturisticButton>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section 
         id="thoughts" 
         className="py-20 px-4 md:px-8"
@@ -552,7 +547,7 @@ const Index = () => {
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
-            <FuturisticButton href="/soul" variant="ghost">
+            <FuturisticButton href="/soul" variant="secondary">
               Explore The Soul of Creation
               <ArrowRight className="ml-2" size={18} />
             </FuturisticButton>
@@ -562,74 +557,40 @@ const Index = () => {
 
       <section 
         id="gallery" 
-        className="py-20 px-4 md:px-8 bg-secondary/30"
+        className="py-20 px-4 md:px-8 bg-secondary/30 relative overflow-hidden"
       >
-        <div className="container mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-purple-900/20 mix-blend-overlay"></div>
+        <div className="container mx-auto relative z-10">
           <SectionHeader 
-            title="Chaos Wall" 
-            subtitle="Visual snapshots from my journey as a creator, rebel, and builder"
+            title="Quantum Dimensional Gallery" 
+            subtitle="Visual fragments from my journey across space and time"
             style="rebel"
             className="animate-on-scroll"
           />
           
-          <div className="mt-6 mb-8 animate-on-scroll">
-            <div className="flex justify-center mb-4">
-              <div className="w-full max-w-3xl aspect-video relative overflow-hidden rounded-lg glass-card p-2">
-                <img 
-                  src={galleryImages[activeImageIndex]} 
-                  alt={galleryDescriptions[activeImageIndex]} 
-                  className="w-full h-full object-cover rounded-lg transition-all duration-500 ease-in-out"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm p-4">
-                  <p className="text-white text-center font-medium">{galleryDescriptions[activeImageIndex]}</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex flex-wrap gap-2 justify-center">
-              {galleryImages.map((src, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveImageIndex(index)}
-                  className={`w-14 h-14 rounded-md overflow-hidden transition-all duration-300 ${
-                    activeImageIndex === index ? 'ring-2 ring-neon-purple scale-110' : 'opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <img 
-                    src={src} 
-                    alt={`Thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+          <div className="mt-12 animate-on-scroll">
+            <EnhancedGallery images={highlightedImages} />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-on-scroll">
-            {galleryImages.slice(0, 8).map((src, index) => (
-              <div 
-                key={index} 
-                className="aspect-square bg-muted rounded-md overflow-hidden relative group hover:shadow-lg transition-all duration-300"
-              >
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll">
+            {featuredImages.map((image, idx) => (
+              <div key={idx} className="overflow-hidden rounded-xl aspect-[4/5]">
                 <img 
-                  src={src} 
-                  alt={`Gallery image ${index + 1}`} 
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  src={image.src} 
+                  alt={image.description} 
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white font-medium text-center px-2">
-                    {galleryDescriptions[index]}
-                  </span>
-                </div>
               </div>
             ))}
           </div>
           
-          <div className="mt-8 text-center">
-            <FuturisticButton href="/projects" variant="secondary" size="sm">
-              More achievements in the Quantum Lab
-              <ArrowRight className="ml-2" size={16} />
-            </FuturisticButton>
+          <div className="mt-12 text-center">
+            <Link to="/gallery">
+              <FuturisticButton variant="secondary">
+                <Sparkles className="mr-2" size={16} />
+                Enter The Quantum Gallery
+              </FuturisticButton>
+            </Link>
           </div>
         </div>
       </section>
@@ -702,13 +663,28 @@ const Index = () => {
               </FuturisticButton>
               
               <div className="flex justify-center space-x-4 mt-6">
-                <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+                <a 
+                  href="https://github.com/saikoushiknalubola" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-white transition-colors transform hover:scale-110"
+                >
                   <Github size={24} />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+                <a 
+                  href="https://www.linkedin.com/in/saikoushiknalubola/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-white transition-colors transform hover:scale-110"
+                >
                   <Linkedin size={24} />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+                <a 
+                  href="https://x.com/saikoushik_42" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-white transition-colors transform hover:scale-110"
+                >
                   <Twitter size={24} />
                 </a>
               </div>

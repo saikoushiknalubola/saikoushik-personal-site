@@ -69,14 +69,14 @@ const HolographicCard: React.FC<HolographicCardProps> = ({
         
         {/* Content */}
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-4">
-            {icon && <div className="text-neon-purple">{icon}</div>}
+          <div className="flex items-center gap-4 mb-4">
+            {icon && <div className="text-neon-purple text-2xl flex items-center justify-center">{icon}</div>}
             <h3 className="text-xl font-bold">{title}</h3>
           </div>
           
           {image && (
             <div className="mb-4 rounded-md overflow-hidden">
-              <img src={image} alt={title} className="w-full object-cover" />
+              <img src={image} alt={title} className="w-full h-full object-cover" />
             </div>
           )}
           
