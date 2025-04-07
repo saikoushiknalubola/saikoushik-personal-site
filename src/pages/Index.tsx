@@ -495,7 +495,7 @@ const Index = () => {
           </div>
           
           <div className="mt-8 text-center">
-            <FuturisticButton href="/projects" variant="outline" size="sm">
+            <FuturisticButton href="/projects" variant="secondary" size="sm">
               More achievements in the Quantum Lab
               <ArrowRight className="ml-2" size={16} />
             </FuturisticButton>
