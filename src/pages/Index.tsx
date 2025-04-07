@@ -121,6 +121,13 @@ const Index = () => {
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
 
+  const galleryImages = [
+    "/lovable-uploads/d00b1c86-928d-4dfb-9985-e352dcc01e95.png",
+    "/lovable-uploads/333c6b72-4298-49dc-acb9-f578b4b06784.png",
+    "/lovable-uploads/ca3e6d73-40c3-4c1d-b6b9-d23896c17c29.png",
+    "/lovable-uploads/da853ef4-3ec6-4609-a838-faa972d455e7.png"
+  ];
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -465,14 +472,33 @@ const Index = () => {
           />
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-on-scroll">
-            {Array.from({ length: 8 }).map((_, index) => (
+            {galleryImages.map((src, index) => (
               <div 
                 key={index} 
-                className="aspect-square bg-muted rounded-md overflow-hidden flex items-center justify-center"
+                className="aspect-square bg-muted rounded-md overflow-hidden relative group hover:shadow-lg transition-all duration-300"
               >
-                <span className="text-4xl">📷</span>
+                <img 
+                  src={src} 
+                  alt={`Gallery image ${index + 1}`} 
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="text-white font-medium text-center px-2">
+                    {index === 0 && "Innovators at University"}
+                    {index === 1 && "AIDEATHON 2025"}
+                    {index === 2 && "EV Market Presentation"}
+                    {index === 3 && "Future Leadership Summit"}
+                  </span>
+                </div>
               </div>
             ))}
+          </div>
+          
+          <div className="mt-8 text-center">
+            <FuturisticButton href="/projects" variant="outline" size="sm">
+              More achievements in the Quantum Lab
+              <ArrowRight className="ml-2" size={16} />
+            </FuturisticButton>
           </div>
         </div>
       </section>
