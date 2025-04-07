@@ -37,7 +37,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             <span className="text-neon-purple">Nalubola</span>
           </Link>
           
-          <div className="hidden md:flex space-x-6 items-center">
+          <div className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -63,7 +63,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
           <div className="md:hidden">
             <button 
               onClick={toggleMenu}
-              className="text-white hover:text-neon-purple transition-colors"
+              className="text-white hover:text-neon-purple transition-colors p-2"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -78,14 +79,14 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden absolute left-0 right-0 mt-2 bg-black/90 backdrop-blur-md p-4 border-t border-white/10"
+          className="md:hidden absolute left-0 right-0 mt-2 bg-black/95 backdrop-blur-md p-6 border-t border-white/10"
         >
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-5">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
-                className={`font-medium hover:text-neon-purple transition-colors ${
+                className={`font-medium text-lg hover:text-neon-purple transition-colors ${
                   isActive(item.id) ? 'text-neon-purple' : 'text-white'
                 }`}
                 onClick={() => setIsOpen(false)}

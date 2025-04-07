@@ -69,16 +69,18 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
             className="w-full h-full object-cover transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full bg-gray-800 animate-pulse"></div>
+          <div className="w-full h-full aspect-square bg-gray-800 animate-pulse flex items-center justify-center">
+            <div className="w-8 h-8 border-t-2 border-neon-purple rounded-full animate-spin"></div>
+          </div>
         )}
         
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-4 flex flex-col justify-end transition-opacity duration-300"
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end transition-opacity duration-300"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0.7 }}
         >
           <motion.h3 
-            className="text-xl font-bold text-white"
+            className="text-xl font-bold text-white mb-2"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0.8 }}
             transition={{ duration: 0.3 }}
@@ -86,7 +88,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
             {alt}
           </motion.h3>
           <motion.p 
-            className="text-white/90 mt-2 line-clamp-2"
+            className="text-white/90 line-clamp-3"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0.8 }}
             transition={{ duration: 0.3, delay: 0.1 }}

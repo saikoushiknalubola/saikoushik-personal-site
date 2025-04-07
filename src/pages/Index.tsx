@@ -11,8 +11,6 @@ import SkillBar from '@/components/SkillBar';
 import FuturisticButton from '@/components/FuturisticButton';
 import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
-import EnhancedGallery from '@/components/EnhancedGallery';
-import ImmersiveImageCard from '@/components/ImmersiveImageCard';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, ExternalLink, Clock, ZapIcon, Sparkles, Rocket, Brain, Network, Lightbulb } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -130,44 +128,6 @@ const Index = () => {
     },
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
-
-  const highlightedImages = [
-    { 
-      src: "/lovable-uploads/43580418-0baf-4983-b05b-1337d21b60cd.png", 
-      description: "Taj Mahal Hotel Mumbai - Architectural Marvel" 
-    },
-    { 
-      src: "/lovable-uploads/e6ce2159-d844-4def-b3c7-39aa47e8de0b.png", 
-      description: "AIC-IIITH Accelerator Program at NITI Aayog" 
-    },
-    { 
-      src: "/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png", 
-      description: "Google Cloud Developer Summit 2024" 
-    },
-    { 
-      src: "/lovable-uploads/5693851a-14d4-45f8-9922-94d7790dd370.png", 
-      description: "T-Hub Innovation Center Experience" 
-    },
-    { 
-      src: "/lovable-uploads/f0143cf4-be0c-4ab7-a1f4-5d1dc1f2a130.png", 
-      description: "Be The Change You Want To See - Inspiration Wall" 
-    }
-  ];
-
-  const featuredImages = [
-    { 
-      src: "/lovable-uploads/7ea5b8d5-7a81-44f2-8b07-12e54b50a705.png", 
-      description: "Collaborative Ideation Session with Fellow Innovator" 
-    },
-    { 
-      src: "/lovable-uploads/859aa36d-8920-44fe-a461-d2d9a0d48568.png", 
-      description: "Quantum Reality Distortion Field - Tech Summit" 
-    },
-    { 
-      src: "/lovable-uploads/c82f9bea-ce9a-44ad-b971-f2d53ffc72f7.png", 
-      description: "Minimalist Portrait - Quantum Thinker" 
-    }
-  ];
 
   const journeyHighlights = [
     {
@@ -326,31 +286,31 @@ const Index = () => {
               <h3 className="text-2xl font-bold mb-4">The Quick Files</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>B.Tech student in CSE (AI & Robotics)</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>Founder of Revitalize Innovations</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>Hackathon enthusiast & pitch competition veteran</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>Whistleblower & social reformer</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>Youth leader working for real-world change</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>Writer of blogs, philosophies & motivational content</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} /></span>
+                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>Passionate about AI, ML, EVs, philosophy & political systems</span>
                 </li>
               </ul>
@@ -392,20 +352,7 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            {journeyHighlights.map((highlight, index) => (
-              <div key={index} className="animate-on-scroll" style={{ animationDelay: `${index * 200}ms` }}>
-                <ImmersiveImageCard 
-                  src={highlight.image}
-                  alt={highlight.title}
-                  description={highlight.description}
-                  className="h-full"
-                />
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center animate-on-scroll">
             <Link to="/journey">
               <FuturisticButton variant="secondary">
                 <Sparkles className="mr-2" size={16} />
@@ -568,26 +515,10 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="mt-12 animate-on-scroll">
-            <EnhancedGallery images={highlightedImages} />
-          </div>
-
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll">
-            {featuredImages.map((image, idx) => (
-              <div key={idx} className="overflow-hidden rounded-xl aspect-[4/5]">
-                <img 
-                  src={image.src} 
-                  alt={image.description} 
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center animate-on-scroll">
             <Link to="/gallery">
-              <FuturisticButton variant="secondary">
-                <Sparkles className="mr-2" size={16} />
+              <FuturisticButton variant="primary" size="lg">
+                <Sparkles className="mr-2" size={18} />
                 Enter The Quantum Gallery
               </FuturisticButton>
             </Link>
