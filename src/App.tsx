@@ -11,6 +11,7 @@ import DeepDiveProjects from "./pages/DeepDiveProjects";
 import SoulOfCreation from "./pages/SoulOfCreation";
 import ExperienceJourney from "./pages/ExperienceJourney";
 import FutureVision from "./pages/FutureVision";
+import AwardsPage from "./pages/AwardsPage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/soul" element={<SoulOfCreation />} />
           <Route path="/journey" element={<ExperienceJourney />} />
           <Route path="/future" element={<FutureVision />} />
+          <Route path="/awards" element={<AwardsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

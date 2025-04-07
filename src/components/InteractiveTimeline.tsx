@@ -1,0 +1,123 @@
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+
+type TimelineEvent = {
+  date: string;
+  title: string;
+  description: string;
+  icon?: string;
+  image?: string;
+  tags?: string[];
+};
+
+type InteractiveTimelineProps = {
+  events: TimelineEvent[];
+  title?: string;
+  subtitle?: string;
+};
+
+const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({ 
+  events, 
+  title = "Timeline", 
+  subtitle = "A journey through time and innovation" 
+}) => {
+  return (
+    <div className="w-full">
+      {(title || subtitle) && (
+        <div className="text-center mb-12">
+          {title && <h2 className="text-3xl font-bold mb-2">{title}</h2>}
+          {subtitle && <p className="text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
+        </div>
+      )}
+      
+      <div className="relative">
+        {/* Vertical Line */}
+        <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-px bg-gradient-to-b from-neon-purple via-white/20 to-transparent"></div>
+        
+        {/* Timeline Events */}
+        <div className="space-y-16">
+          {events.map((event, index) => (
+            <TimelineItem 
+              key={index} 
+              event={event} 
+              index={index}
+              isLeft={index % 2 === 0}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TimelineItem: React.FC<{ 
+  event: TimelineEvent; 
+  index: number;
+  isLeft: boolean;
+}> = ({ event, index, isLeft }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  
+  // On mobile, everything is on the right
+  const mobileClassName = "ml-8 md:ml-0";
+  
+  // On desktop, alternate left and right
+  const desktopClassName = isLeft 
+    ? "md:text-right md:mr-[calc(50%+2rem)] md:ml-0" 
+    : "md:ml-[calc(50%+2rem)]";
+  
+  return (
+    <motion.div 
+      ref={ref}
+      className={`relative ${mobileClassName} ${desktopClassName}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+    >
+      {/* Dot */}
+      <div 
+        className={`absolute top-0 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-4 h-4 rounded-full bg-neon-purple`}
+      ></div>
+      
+      {/* Dot Pulse Animation */}
+      <div 
+        className={`absolute top-0 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-4 h-4 rounded-full bg-neon-purple/50 animate-ping`}
+      ></div>
+      
+      {/* Content Card */}
+      <div className="glass-card p-6 max-w-md">
+        <div className="text-neon-purple text-sm font-space mb-2">{event.date}</div>
+        <h3 className="text-xl font-bold mb-3">{event.title}</h3>
+        
+        {event.image && (
+          <div className="mb-4 rounded-md overflow-hidden">
+            <img 
+              src={event.image} 
+              alt={event.title} 
+              className="w-full h-48 object-cover"
+            />
+          </div>
+        )}
+        
+        <p className="text-white/80">{event.description}</p>
+        
+        {event.tags && event.tags.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {event.tags.map((tag, i) => (
+              <span 
+                key={i} 
+                className="bg-white/10 text-white/70 px-2 py-1 rounded text-xs"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+export default InteractiveTimeline;

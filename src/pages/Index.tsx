@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
@@ -10,11 +11,13 @@ import SkillBar from '@/components/SkillBar';
 import FuturisticButton from '@/components/FuturisticButton';
 import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
-import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock } from 'lucide-react';
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ExternalLink } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const Index = () => {
   const isMobile = useIsMobile();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   
   useEffect(() => {
     const observerOptions = {
@@ -125,7 +128,49 @@ const Index = () => {
     "/lovable-uploads/d00b1c86-928d-4dfb-9985-e352dcc01e95.png",
     "/lovable-uploads/333c6b72-4298-49dc-acb9-f578b4b06784.png",
     "/lovable-uploads/ca3e6d73-40c3-4c1d-b6b9-d23896c17c29.png",
-    "/lovable-uploads/da853ef4-3ec6-4609-a838-faa972d455e7.png"
+    "/lovable-uploads/da853ef4-3ec6-4609-a838-faa972d455e7.png",
+    "/lovable-uploads/fe1bcb19-a6fc-49ad-94ac-da69273261a7.png",
+    "/lovable-uploads/54de61e9-b777-47cb-bb61-8a3ce48c4045.png",
+    "/lovable-uploads/931d5d56-b50c-44d2-b01e-6416eeb2bb98.png",
+    "/lovable-uploads/20bf0f10-2783-44da-8f19-f2f365af1cb7.png",
+    "/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png",
+    "/lovable-uploads/5b6abb0a-b304-45e9-bb26-436dcdb02785.png",
+    "/lovable-uploads/9a6e6906-e56d-43ed-86e1-598f0bbeef3d.png"
+  ];
+
+  const galleryDescriptions = [
+    "Innovators at University",
+    "AIDEATHON 2025",
+    "EV Market Presentation",
+    "Future Leadership Summit",
+    "Team Innovation Award - Idea Pitching Competition",
+    "Campus Innovation Team at IIT Bombay",
+    "Tech Showcase at Innovation Hall",
+    "Certificate Ceremony - Revitalize Innovations",
+    "Panel Presentation on Future Tech",
+    "EUREKA 2024 - Road to Enterprise",
+    "IIT Bombay Startup Incubator Program"
+  ];
+
+  const achievements = [
+    {
+      title: "First Place - National AI Innovation Challenge",
+      description: "Developed a novel quantum-inspired algorithm for optimizing renewable energy distribution networks.",
+      date: "March 2025",
+      image: "/lovable-uploads/fe1bcb19-a6fc-49ad-94ac-da69273261a7.png"
+    },
+    {
+      title: "IIT Bombay Entrepreneurship Summit",
+      description: "Selected among top 5 startups for revolutionary EV battery technology.",
+      date: "November 2024",
+      image: "/lovable-uploads/9a6e6906-e56d-43ed-86e1-598f0bbeef3d.png"
+    },
+    {
+      title: "Emerging Technologist Award",
+      description: "Recognized for contributions to sustainable technology development and ethical AI.",
+      date: "January 2025",
+      image: "/lovable-uploads/5b6abb0a-b304-45e9-bb26-436dcdb02785.png"
+    }
   ];
 
   return (
@@ -418,6 +463,62 @@ const Index = () => {
         </div>
       </section>
 
+      {/* New Achievements Carousel Section */}
+      <section id="achievements" className="py-20 px-4 md:px-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-purple-900/20 mix-blend-overlay"></div>
+        <div className="container mx-auto relative z-10">
+          <SectionHeader 
+            title="Achievement Timeline" 
+            subtitle="Milestones along the quantum journey"
+            style="rebel"
+            theoryReference="einstein"
+            className="animate-on-scroll"
+          />
+          
+          <div className="mt-12 animate-on-scroll">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {achievements.map((achievement, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="glass-card h-full p-6 flex flex-col">
+                      <div className="aspect-video rounded-md overflow-hidden mb-4">
+                        <img 
+                          src={achievement.image} 
+                          alt={achievement.title} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="text-neon-purple text-sm font-medium mb-2">
+                        {achievement.date}
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">{achievement.title}</h3>
+                      <p className="text-white/80 mb-4 flex-grow">{achievement.description}</p>
+                      <Link to="/awards" className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center text-sm font-medium mt-auto">
+                        View Certificate
+                        <ArrowRight className="ml-1" size={14} />
+                      </Link>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="hidden md:block">
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
+              </div>
+            </Carousel>
+            
+            <div className="mt-8 text-center">
+              <Link to="/awards">
+                <FuturisticButton variant="ghost" size="sm">
+                  View All Achievements & Awards
+                  <ArrowRight className="ml-2" size={16} />
+                </FuturisticButton>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section 
         id="thoughts" 
         className="py-20 px-4 md:px-8"
@@ -471,8 +572,41 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
+          <div className="mt-6 mb-8 animate-on-scroll">
+            <div className="flex justify-center mb-4">
+              <div className="w-full max-w-3xl aspect-video relative overflow-hidden rounded-lg glass-card p-2">
+                <img 
+                  src={galleryImages[activeImageIndex]} 
+                  alt={galleryDescriptions[activeImageIndex]} 
+                  className="w-full h-full object-cover rounded-lg transition-all duration-500 ease-in-out"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm p-4">
+                  <p className="text-white text-center font-medium">{galleryDescriptions[activeImageIndex]}</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 justify-center">
+              {galleryImages.map((src, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveImageIndex(index)}
+                  className={`w-14 h-14 rounded-md overflow-hidden transition-all duration-300 ${
+                    activeImageIndex === index ? 'ring-2 ring-neon-purple scale-110' : 'opacity-70 hover:opacity-100'
+                  }`}
+                >
+                  <img 
+                    src={src} 
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-on-scroll">
-            {galleryImages.map((src, index) => (
+            {galleryImages.slice(0, 8).map((src, index) => (
               <div 
                 key={index} 
                 className="aspect-square bg-muted rounded-md overflow-hidden relative group hover:shadow-lg transition-all duration-300"
@@ -484,10 +618,7 @@ const Index = () => {
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <span className="text-white font-medium text-center px-2">
-                    {index === 0 && "Innovators at University"}
-                    {index === 1 && "AIDEATHON 2025"}
-                    {index === 2 && "EV Market Presentation"}
-                    {index === 3 && "Future Leadership Summit"}
+                    {galleryDescriptions[index]}
                   </span>
                 </div>
               </div>
