@@ -54,7 +54,8 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         rotateX,
         rotateY,
         transformStyle: "preserve-3d",
-        transition: "transform 0.3s ease-out"
+        transition: "transform 0.3s ease-out",
+        perspective: 1000
       }}
     >
       <motion.div 
@@ -75,7 +76,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         )}
         
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end transition-opacity duration-300"
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end transition-opacity duration-300"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0.7 }}
         >
@@ -102,6 +103,17 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -inset-[2px] bg-gradient-to-r from-neon-purple/30 to-cyan-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
       </div>
+
+      {/* Holographic glow effect */}
+      <motion.div
+        className="absolute inset-0 opacity-0 bg-gradient-to-r from-purple-500/10 via-cyan-400/10 to-purple-500/10 pointer-events-none rounded-xl"
+        animate={{ opacity: isHovered ? 0.6 : 0 }}
+        transition={{ duration: 0.3 }}
+        style={{
+          filter: "blur(8px)",
+          transform: "translateZ(-10px)"
+        }}
+      />
     </motion.div>
   );
 };

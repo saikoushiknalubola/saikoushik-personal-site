@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 type NavigationProps = {
-  activeSection?: string;  // Make activeSection an optional prop
+  activeSection?: string;  // Keep this as an optional prop
 };
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {

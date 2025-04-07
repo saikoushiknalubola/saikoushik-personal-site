@@ -12,6 +12,7 @@ import SoulOfCreation from "./pages/SoulOfCreation";
 import ExperienceJourney from "./pages/ExperienceJourney";
 import FutureVision from "./pages/FutureVision";
 import ExploreGallery from "./pages/ExploreGallery";
+import QuantumExperiments from "./pages/QuantumExperiments";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/journey" element={<ExperienceJourney />} />
           <Route path="/future" element={<FutureVision />} />
           <Route path="/gallery" element={<ExploreGallery />} />
+          <Route path="/experiments" element={<QuantumExperiments />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
