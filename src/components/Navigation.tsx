@@ -1,123 +1,102 @@
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { 
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { Menu, X } from 'lucide-react';
 
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const isMobile = useIsMobile();
+type NavigationProps = {
+  activeSection?: string;  // Make activeSection an optional prop
+};
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu when switching to desktop view
-  useEffect(() => {
-    if (!isMobile && isOpen) {
-      setIsOpen(false);
-    }
-  }, [isMobile, isOpen]);
-
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Origin Story', href: '/#about' },
-    { name: 'Manifesto', href: '/manifesto' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Writings', href: '/soul' },
-    { name: 'Gallery', href: '/#gallery' },
-    { name: 'Skills', href: '/#skills' },
-    { name: 'Contact', href: '/#contact' },
-  ];
-
-  const handleNavClick = () => {
-    if (isMobile) {
-      setIsOpen(false);
-    }
+const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
-
+  
+  const navItems = [
+    { id: 'home', label: 'Home', href: '#home' },
+    { id: 'about', label: 'About', href: '#about' },
+    { id: 'manifesto', label: 'Manifesto', href: '#manifesto' },
+    { id: 'projects', label: 'Projects', href: '#projects' },
+    { id: 'thoughts', label: 'Thoughts', href: '#thoughts' },
+    { id: 'gallery', label: 'Gallery', href: '#gallery' },
+    { id: 'skills', label: 'Skills', href: '#skills' },
+    { id: 'contact', label: 'Contact', href: '#contact' },
+  ];
+  
+  const isActive = (id: string) => activeSection === id;
+  
   return (
-    <nav 
-      className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        scrolled ? "bg-background/80 backdrop-blur-xl py-2 shadow-lg" : "py-4"
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="font-space text-xl md:text-2xl font-bold relative group">
-          <span className="text-white group-hover:text-neon-purple transition-colors duration-300">Saikoushik</span>
-          <span className="text-neon-purple">Nalubola</span>
-          <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-purple group-hover:w-full transition-all duration-300"></div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {navLinks.map((link) => (
-                <NavigationMenuItem key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-white transition-colors px-3 py-2 rounded-md hover:bg-white/5"
-                    onClick={handleNavClick}
-                  >
-                    {link.name}
-                  </Link>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
-
-        {/* Mobile Navigation Toggle */}
-        <button
-          className="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      <div
-        className={cn(
-          "fixed inset-0 bg-black/95 backdrop-blur-xl z-40 transform transition-transform duration-300 ease-in-out",
-          isOpen ? "translate-x-0" : "translate-x-full",
-          "md:hidden pt-20"
-        )}
-      >
-        <div className="flex flex-col items-center space-y-6 py-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className="text-xl font-medium text-white hover:text-neon-purple transition-colors relative group"
-              onClick={handleNavClick}
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md py-4 px-6">
+      <div className="container mx-auto">
+        <div className="flex justify-between items-center">
+          <Link to="/" className="font-space text-xl font-bold">
+            <span className="text-white">Saikoushik</span>
+            <span className="text-neon-purple">Nalubola</span>
+          </Link>
+          
+          <div className="hidden md:flex space-x-6 items-center">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`relative font-medium hover:text-neon-purple transition-colors ${
+                  isActive(item.id) ? 'text-neon-purple' : 'text-white'
+                }`}
+              >
+                {item.label}
+                {isActive(item.id) && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </a>
+            ))}
+          </div>
+          
+          <div className="md:hidden">
+            <button 
+              onClick={toggleMenu}
+              className="text-white hover:text-neon-purple transition-colors"
             >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-purple group-hover:w-full transition-all duration-300"></span>
-            </Link>
-          ))}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
-    </nav>
+      
+      {/* Mobile menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden absolute left-0 right-0 mt-2 bg-black/90 backdrop-blur-md p-4 border-t border-white/10"
+        >
+          <div className="flex flex-col space-y-4">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`font-medium hover:text-neon-purple transition-colors ${
+                  isActive(item.id) ? 'text-neon-purple' : 'text-white'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </header>
   );
 };
 
