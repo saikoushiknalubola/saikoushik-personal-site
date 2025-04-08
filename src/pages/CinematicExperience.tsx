@@ -25,7 +25,7 @@ const CinematicExperience = () => {
         "Time as a physical dimension rather than a linear concept",
         "Quantum reality as a mirror to human consciousness"
       ],
-      type: "achievement"
+      type: "achievement" as const
     },
     {
       title: "The Relentless Pursuit",
@@ -36,7 +36,7 @@ const CinematicExperience = () => {
         "Trauma as a black hole warping reality around its event horizon",
         "The subjective experience of time under psychological stress"
       ],
-      type: "work"
+      type: "work" as const
     },
     {
       title: "The Satya Experiment",
@@ -47,7 +47,7 @@ const CinematicExperience = () => {
         "The illusion of societal structures when faced with primal fear",
         "Beauty in the breakdown of conventional narrative structures"
       ],
-      type: "education"
+      type: "education" as const
     }
   ];
 
