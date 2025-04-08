@@ -24,14 +24,17 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
   const rotateX = useTransform(y, [-100, 100], [15, -15]); // Enhanced rotation
   const rotateY = useTransform(x, [-100, 100], [-15, 15]);
   
-  // Fix: Create a derived motion value from x and y instead of passing an array
-  const xAbs = useTransform(x, value => Math.abs(value));
-  const yAbs = useTransform(y, value => Math.abs(value));
+  // Get absolute values for calculations
+  const xAbs = useTransform(x, Math.abs);
+  const yAbs = useTransform(y, Math.abs);
   
-  // Then calculate z using the individual absolute values
+  // Calculate z from the sum of absolute values
   const z = useTransform(
-    [xAbs, yAbs], 
-    ([latestXAbs, latestYAbs]) => latestXAbs + latestYAbs,
+    // Instead of passing an array directly, we use a single motion value that combines them
+    useMotionValue(0), 
+    () => {
+      return xAbs.get() + yAbs.get();
+    },
     [0, 50]
   );
 
