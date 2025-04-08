@@ -1,15 +1,16 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ZoomIn, MoveHorizontal, Sparkles } from 'lucide-react';
+import { ArrowLeft, ZoomIn, MoveHorizontal, Sparkles, Grid, X } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import SectionHeader from '@/components/SectionHeader';
 import FuturisticButton from '@/components/FuturisticButton';
+import ImmersiveImageCard from '@/components/ImmersiveImageCard';
 import { Link } from 'react-router-dom';
 
 const ExploreGallery = () => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'grid' | 'masonry' | 'immersive'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'masonry' | 'immersive' | 'vortex'>('grid');
 
   const allImages = [
     { src: "/lovable-uploads/43580418-0baf-4983-b05b-1337d21b60cd.png" },
@@ -51,6 +52,8 @@ const ExploreGallery = () => {
     setActiveImage(null);
   };
 
+  const getRandomDelay = () => Math.random() * 0.5;
+
   return (
     <div className="min-h-screen bg-black">
       <Navigation />
@@ -67,9 +70,9 @@ const ExploreGallery = () => {
         
         <SectionHeader 
           title="Quantum Dimensions Gallery" 
-          subtitle="Visual fragments across space and time - moments captured in the continuum"
+          subtitle="Visual fragments across space and time"
           style="futuristic"
-          highlightText="As Einstein would see it"
+          highlightText="Transcending visual boundaries"
         />
         
         <div className="flex flex-wrap gap-4 justify-center mb-12">
@@ -77,12 +80,7 @@ const ExploreGallery = () => {
             onClick={() => setViewMode('grid')}
             className={`px-4 py-2 flex items-center gap-2 rounded-full transition-all ${viewMode === 'grid' ? 'bg-neon-purple text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
           >
-            <div className="grid grid-cols-2 gap-0.5">
-              <div className="w-2 h-2 bg-current rounded-sm"></div>
-              <div className="w-2 h-2 bg-current rounded-sm"></div>
-              <div className="w-2 h-2 bg-current rounded-sm"></div>
-              <div className="w-2 h-2 bg-current rounded-sm"></div>
-            </div>
+            <Grid size={16} />
             Grid View
           </button>
           
@@ -101,6 +99,14 @@ const ExploreGallery = () => {
             <Sparkles size={16} />
             Immersive View
           </button>
+          
+          <button 
+            onClick={() => setViewMode('vortex')}
+            className={`px-4 py-2 flex items-center gap-2 rounded-full transition-all ${viewMode === 'vortex' ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m12 12 4 4"/><path d="M12 12v8"/></svg>
+            Quantum Vortex
+          </button>
         </div>
 
         {viewMode === 'grid' && (
@@ -111,19 +117,13 @@ const ExploreGallery = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer"
-                onClick={() => openFullscreen(img.src)}
+                className="aspect-square"
               >
-                <img 
+                <ImmersiveImageCard 
                   src={img.src} 
-                  alt={`Gallery image ${index + 1}`} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt={`Quantum dimension ${index + 1}`}
+                  onClick={() => openFullscreen(img.src)}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 rounded-full p-2 backdrop-blur-sm transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                    <ZoomIn size={20} className="text-white" />
-                  </div>
-                </div>
               </motion.div>
             ))}
           </div>
@@ -137,19 +137,13 @@ const ExploreGallery = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="relative break-inside-avoid overflow-hidden rounded-lg group cursor-pointer mb-4"
-                onClick={() => openFullscreen(img.src)}
+                className="relative break-inside-avoid overflow-hidden rounded-lg mb-4"
               >
-                <img 
+                <ImmersiveImageCard 
                   src={img.src} 
-                  alt={`Gallery image ${index + 1}`} 
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  alt={`Quantum dimension ${index + 1}`}
+                  onClick={() => openFullscreen(img.src)}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 rounded-full p-2 backdrop-blur-sm transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                    <ZoomIn size={20} className="text-white" />
-                  </div>
-                </div>
               </motion.div>
             ))}
           </div>
@@ -162,29 +156,85 @@ const ExploreGallery = () => {
                 key={index}
                 initial={{ opacity: 0, rotateY: -20, z: -100 }}
                 animate={{ opacity: 1, rotateY: 0, z: 0 }}
-                transition={{ duration: 0.7, delay: index * 0.08, type: "spring" }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: index * 0.08, 
+                  type: "spring" 
+                }}
                 className="relative overflow-hidden will-change-transform"
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <div 
-                  onClick={() => openFullscreen(img.src)}
-                  className="aspect-[3/4] w-full cursor-pointer rounded-xl"
-                >
-                  <img 
+                <div className="aspect-[3/4] w-full">
+                  <ImmersiveImageCard 
                     src={img.src} 
-                    alt={`Gallery image ${index + 1}`} 
-                    className="w-full h-full object-cover rounded-xl shadow-lg shadow-purple-900/20"
+                    alt={`Quantum dimension ${index + 1}`}
+                    onClick={() => openFullscreen(img.src)}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <div className="bg-white/20 rounded-full p-2 backdrop-blur-sm">
-                        <ZoomIn size={24} className="text-white" />
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </motion.div>
             ))}
+          </div>
+        )}
+
+        {viewMode === 'vortex' && (
+          <div className="relative h-[800px] overflow-hidden">
+            <div className="absolute w-full h-full flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 blur-xl animate-pulse"></div>
+            </div>
+            
+            {allImages.map((img, index) => {
+              const radius = 250 + (index % 3) * 50;
+              const angle = (index * (2 * Math.PI) / (allImages.length / 3)) + (index * 0.1);
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius;
+              const z = -300 + (index % 7) * 100;
+              
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute left-1/2 top-1/2 w-32 h-32 rounded-lg overflow-hidden shadow-lg"
+                  initial={{ 
+                    x: 0,
+                    y: 0,
+                    z: -1000,
+                    opacity: 0,
+                    rotateX: 0,
+                    rotateY: 0,
+                    rotateZ: 0
+                  }}
+                  animate={{ 
+                    x: x,
+                    y: y,
+                    z: z,
+                    opacity: 1,
+                    rotateX: index % 2 === 0 ? 10 : -10,
+                    rotateY: index % 3 === 0 ? 15 : -15,
+                    rotateZ: index % 4 === 0 ? 5 : -5
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: index * 0.05,
+                    ease: "easeOut"
+                  }}
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transform: `translate(-50%, -50%) translateZ(${z}px)`
+                  }}
+                  whileHover={{
+                    scale: 1.2,
+                    z: z + 100,
+                    transition: { duration: 0.3 }
+                  }}
+                  onClick={() => openFullscreen(img.src)}
+                >
+                  <img 
+                    src={img.src} 
+                    alt={`Quantum dimension ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              );
+            })}
           </div>
         )}
       </div>
@@ -194,7 +244,7 @@ const ExploreGallery = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-10"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
           onClick={closeFullscreen}
         >
           <motion.div 
@@ -213,10 +263,7 @@ const ExploreGallery = () => {
               onClick={closeFullscreen}
               className="absolute -top-4 -right-4 bg-white/10 backdrop-blur-md p-2 rounded-full hover:bg-white/20 transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-                <path d="M18 6 6 18"></path>
-                <path d="m6 6 12 12"></path>
-              </svg>
+              <X className="text-white" size={24} />
             </button>
           </motion.div>
         </motion.div>

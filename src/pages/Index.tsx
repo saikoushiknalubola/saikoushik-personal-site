@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -507,41 +506,35 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 animate-on-scroll">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 animate-on-scroll">
             <ImmersiveImageCard 
               src="/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png"
               alt="Quantum Computing Initiative"
-              description="Exploring the quantum realm of computation"
               className="aspect-square"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png"
               alt="Innovation Workshop"
-              description="Leading breakthroughs at Microsoft's innovation hub"
               className="aspect-square"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png"
               alt="Google Cloud Platform"
-              description="Selected for Google's exclusive cloud innovation program"
               className="aspect-square"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/0a34d2bf-6f36-42f9-8f1f-99d687f9fe35.png"
               alt="Quantum Visualization"
-              description="Visual representation of quantum principles in action"
               className="aspect-square"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png"
               alt="Future Tech Concepts"
-              description="Envisioning tomorrow's technological landscape"
               className="aspect-square"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/49cc4f99-9030-4bef-8ac0-00597408b6d2.png"
               alt="Spacetime Dynamics"
-              description="Visualizing the fabric of reality through code"
               className="aspect-square"
             />
           </div>
