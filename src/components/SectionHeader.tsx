@@ -46,13 +46,13 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       case 'rebel':
         return "border-l-4 border-neon-purple pl-4";
       case 'futuristic':
-        return "text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400";
+        return "headline-gradient"; // Using our new gradient class
       case 'dostoevsky':
         return "border-b-2 border-red-700 pb-2";
       case 'apple':
         return "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-sf tracking-tight";
       default:
-        return "relative inline-block";
+        return "relative inline-block font-raleway";
     }
   };
   
@@ -83,7 +83,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         
         {style === 'default' && (
           <motion.span 
-            className="block h-1 w-1/2 bg-neon-purple mt-2"
+            className="block h-1 w-1/2 bg-gradient-to-r from-neon-purple to-future-primary mt-2"
             initial={{ width: 0 }}
             whileInView={{ width: '50%' }}
             viewport={{ once: true }}
@@ -103,7 +103,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         
         {highlightText && (
           <motion.span 
-            className="block text-neon-purple italic text-xl mt-2 font-normal"
+            className="block subheading-gradient italic text-xl mt-2 font-normal"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -115,7 +115,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         
         {theoryReference && (
           <motion.span 
-            className="block text-sm font-mono mt-3 text-white/60 italic"
+            className="block text-sm font-space mt-3 text-white/60 italic"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -128,7 +128,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       
       {subtitle && (
         <motion.p 
-          className="text-white/70 text-lg max-w-2xl leading-relaxed"
+          className="text-white/70 text-lg max-w-2xl leading-relaxed font-outfit"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

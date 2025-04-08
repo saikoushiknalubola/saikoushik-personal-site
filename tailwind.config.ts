@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -73,7 +72,6 @@ export default {
 					gray: '#8A8A8A',
 					light: '#F5F5F7'
 				},
-				// 2050 futuristic colors
 				future: {
 					primary: '#00F0FF',
 					secondary: '#7B42F6',
@@ -227,7 +225,10 @@ export default {
 				inter: ['Inter', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				space: ['Space Mono', 'monospace'],
-				sf: ['"SF Pro Display"', 'Inter', 'sans-serif']
+				sf: ['"SF Pro Display"', 'Inter', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif'],
+				outfit: ['Outfit', 'sans-serif'],
+				raleway: ['Raleway', 'sans-serif']
 			},
 			textShadow: {
 				'glow': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
