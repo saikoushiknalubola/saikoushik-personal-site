@@ -21,8 +21,8 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [15, -15]); // Enhanced rotation
-  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
+  const rotateX = useTransform(y, [-100, 100], [10, -10]); // Reduced rotation for better visibility
+  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
   
   // Get absolute values for calculations
   const xAbs = useTransform(x, Math.abs);
@@ -47,7 +47,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
   }, [x, y, xAbs, yAbs, combinedValue]);
   
   // Now transform the combined value to create z
-  const z = useTransform(combinedValue, [0, 200], [0, 50]);
+  const z = useTransform(combinedValue, [0, 200], [0, 30]); // Reduced z-offset for better visibility
 
   useEffect(() => {
     const img = new Image();
@@ -93,7 +93,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
     >
       <motion.div 
         className="group relative w-full h-full flex items-center justify-center"
-        animate={{ scale: isHovered ? 1.05 : 1, z: isHovered ? 20 : 0 }}
+        animate={{ scale: isHovered ? 1.03 : 1, z: isHovered ? 10 : 0 }} // Reduced scale for better fit
         transition={{ duration: 0.4 }}
       >
         {isLoaded ? (
@@ -103,21 +103,21 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
             className="w-full h-full object-cover transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full aspect-square bg-gray-800 animate-pulse flex items-center justify-center">
+          <div className="w-full h-full aspect-video bg-gray-800 animate-pulse flex items-center justify-center">
             <div className="w-10 h-10 border-t-2 border-neon-purple rounded-full animate-spin"></div>
           </div>
         )}
         
         {description && (
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-6 flex flex-col justify-end transition-opacity duration-300"
+            className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 flex flex-col justify-end transition-opacity duration-300"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
+            animate={{ opacity: isHovered ? 1 : 0.7 }} // Slightly visible by default for better context
           >
             <motion.h3 
               className="text-xl font-bold text-white mb-2"
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0 }}
+              animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0.8 }}
               transition={{ duration: 0.3 }}
             >
               {alt}
@@ -125,7 +125,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
             <motion.p 
               className="text-white/90 line-clamp-3"
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0 }}
+              animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0.8 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
               {description}
@@ -134,51 +134,51 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         )}
       </motion.div>
       
-      {/* Enhanced 3D effect elements */}
+      {/* Subtle holographic effect that doesn't overwhelm the image */}
       <motion.div 
         className="absolute inset-0 pointer-events-none"
         style={{ z: -5 }}
       >
         <motion.div 
-          className="absolute -inset-[2px] bg-gradient-to-r from-neon-purple/50 to-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
-          animate={{ opacity: isHovered ? 1 : 0 }}
+          className="absolute -inset-[1px] bg-gradient-to-r from-neon-purple/30 to-cyan-400/30 opacity-0 group-hover:opacity-60 transition-opacity duration-300 rounded-xl"
+          animate={{ opacity: isHovered ? 0.6 : 0 }}
           transition={{ duration: 0.3 }}
         />
       </motion.div>
 
       {/* Enhanced holographic glow effect */}
       <motion.div
-        className="absolute inset-0 opacity-0 bg-gradient-to-r from-purple-500/30 via-cyan-400/30 to-purple-500/30 pointer-events-none rounded-xl"
+        className="absolute inset-0 opacity-0 bg-gradient-to-r from-purple-500/20 via-cyan-400/20 to-purple-500/20 pointer-events-none rounded-xl"
         animate={{ 
-          opacity: isHovered ? 1 : 0,
-          filter: isHovered ? "blur(15px)" : "blur(8px)"
+          opacity: isHovered ? 0.7 : 0,
+          filter: isHovered ? "blur(8px)" : "blur(4px)"
         }}
         transition={{ duration: 0.3 }}
         style={{
-          transform: "translateZ(-20px)"
+          transform: "translateZ(-10px)"
         }}
       />
       
-      {/* Dramatic light reflection effect */}
+      {/* Subtle light reflection effect */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 rounded-xl pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 rounded-xl pointer-events-none"
         style={{
           transform: "translateZ(2px) rotateX(var(--rx)) rotateY(var(--ry))",
         }}
         animate={{
-          opacity: isHovered ? 0.25 : 0,
+          opacity: isHovered ? 0.15 : 0,
           "--rx": `${rotateX.get() * 0.5}deg`,
           "--ry": `${rotateY.get() * 0.5}deg`,
         } as any}
         transition={{ duration: 0.2 }}
       />
       
-      {/* Cinematic vignette effect */}
+      {/* Subtle vignette effect */}
       <motion.div
-        className="absolute inset-0 bg-radial-gradient pointer-events-none rounded-xl"
+        className="absolute inset-0 pointer-events-none rounded-xl"
         style={{
           background: "radial-gradient(circle at center, transparent 30%, black 150%)",
-          opacity: 0.5,
+          opacity: 0.3,
           mixBlendMode: "multiply"
         }}
       />
