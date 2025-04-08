@@ -28,15 +28,26 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
   const xAbs = useTransform(x, Math.abs);
   const yAbs = useTransform(y, Math.abs);
   
-  // Calculate z from the sum of absolute values
-  const z = useTransform(
-    // Instead of passing an array directly, we use a single motion value that combines them
-    useMotionValue(0), 
-    () => {
-      return xAbs.get() + yAbs.get();
-    },
-    [0, 50]
-  );
+  // Create a combined motion value for z calculation
+  const combinedValue = useMotionValue(0);
+  
+  // Update the combined value whenever x or y changes
+  useEffect(() => {
+    const updateCombined = () => {
+      combinedValue.set(xAbs.get() + yAbs.get());
+    };
+    
+    const unsubscribeX = x.onChange(updateCombined);
+    const unsubscribeY = y.onChange(updateCombined);
+    
+    return () => {
+      unsubscribeX();
+      unsubscribeY();
+    };
+  }, [x, y, xAbs, yAbs, combinedValue]);
+  
+  // Now transform the combined value to create z
+  const z = useTransform(combinedValue, [0, 200], [0, 50]);
 
   useEffect(() => {
     const img = new Image();
