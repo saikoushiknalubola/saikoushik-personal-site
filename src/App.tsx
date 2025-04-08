@@ -13,6 +13,7 @@ import ExperienceJourney from "./pages/ExperienceJourney";
 import FutureVision from "./pages/FutureVision";
 import ExploreGallery from "./pages/ExploreGallery";
 import QuantumExperiments from "./pages/QuantumExperiments";
+import CinematicExperience from "./pages/CinematicExperience";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/future" element={<FutureVision />} />
           <Route path="/gallery" element={<ExploreGallery />} />
           <Route path="/experiments" element={<QuantumExperiments />} />
+          <Route path="/cinema" element={<CinematicExperience />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -22,6 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     { id: 'projects', label: 'Projects', href: '#projects' },
     { id: 'thoughts', label: 'Thoughts', href: '#thoughts' },
     { id: 'gallery', label: 'Gallery', href: '#gallery' },
+    { id: 'cinema', label: 'Cinema', href: '/cinema' },
     { id: 'skills', label: 'Skills', href: '#skills' },
     { id: 'contact', label: 'Contact', href: '#contact' },
   ];
@@ -39,24 +40,45 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
           
           <div className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                className={`relative font-medium hover:text-neon-purple transition-colors ${
-                  isActive(item.id) ? 'text-neon-purple' : 'text-white'
-                }`}
-              >
-                {item.label}
-                {isActive(item.id) && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </a>
+              item.href.startsWith('#') ? (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`relative font-medium hover:text-neon-purple transition-colors ${
+                    isActive(item.id) ? 'text-neon-purple' : 'text-white'
+                  }`}
+                >
+                  {item.label}
+                  {isActive(item.id) && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </a>
+              ) : (
+                <Link
+                  key={item.id}
+                  to={item.href}
+                  className={`relative font-medium hover:text-neon-purple transition-colors ${
+                    isActive(item.id) ? 'text-neon-purple' : 'text-white'
+                  }`}
+                >
+                  {item.label}
+                  {isActive(item.id) && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </Link>
+              )
             ))}
           </div>
           
@@ -83,16 +105,29 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
         >
           <div className="flex flex-col space-y-5">
             {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                className={`font-medium text-lg hover:text-neon-purple transition-colors ${
-                  isActive(item.id) ? 'text-neon-purple' : 'text-white'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </a>
+              item.href.startsWith('#') ? (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`font-medium text-lg hover:text-neon-purple transition-colors ${
+                    isActive(item.id) ? 'text-neon-purple' : 'text-white'
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.id}
+                  to={item.href}
+                  className={`font-medium text-lg hover:text-neon-purple transition-colors ${
+                    isActive(item.id) ? 'text-neon-purple' : 'text-white'
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </div>
         </motion.div>

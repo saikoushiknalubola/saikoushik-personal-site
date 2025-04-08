@@ -55,18 +55,20 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
             "ml-12 md:ml-0 md:w-[calc(50%-2rem)] glass-card p-6 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:-translate-y-1",
             index % 2 === 0 ? "md:mr-8" : "md:ml-8"
           )}>
-            {item.period && (
-              <div className="mb-2">
-                <span className={cn(
-                  "text-xs font-medium py-1 px-2 rounded-full",
-                  item.type === 'education' ? "bg-blue-500/20 text-blue-400" : 
-                  item.type === 'achievement' ? "bg-green-500/20 text-green-400" : 
-                  "bg-neon-purple/20 text-neon-purple"
-                )}>
-                  {item.period}
-                </span>
-              </div>
-            )}
+            <div className="mb-2">
+              <span className={cn(
+                "text-xs font-medium py-1 px-2 rounded-full",
+                item.type === 'education' ? "bg-blue-500/20 text-blue-400" : 
+                item.type === 'achievement' ? "bg-green-500/20 text-green-400" : 
+                "bg-neon-purple/20 text-neon-purple"
+              )}>
+                {item.period || (
+                  item.type === 'education' ? "Knowledge Loop" : 
+                  item.type === 'achievement' ? "Quantum Milestone" : 
+                  "Temporal Sequence"
+                )}
+              </span>
+            </div>
             <h3 className="text-xl font-bold mb-1">{item.title}</h3>
             <p className="text-muted-foreground font-medium mb-4">{item.organization}</p>
             <p className="mb-4">{item.description}</p>
