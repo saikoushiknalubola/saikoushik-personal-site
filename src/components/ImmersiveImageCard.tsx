@@ -110,7 +110,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         
         {description && (
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end transition-opacity duration-300"
+            className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-6 flex flex-col justify-end transition-opacity duration-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
           >
@@ -140,7 +140,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         style={{ z: -5 }}
       >
         <motion.div 
-          className="absolute -inset-[2px] bg-gradient-to-r from-neon-purple/40 to-cyan-400/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
+          className="absolute -inset-[2px] bg-gradient-to-r from-neon-purple/50 to-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         />
@@ -148,10 +148,10 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
 
       {/* Enhanced holographic glow effect */}
       <motion.div
-        className="absolute inset-0 opacity-0 bg-gradient-to-r from-purple-500/20 via-cyan-400/20 to-purple-500/20 pointer-events-none rounded-xl"
+        className="absolute inset-0 opacity-0 bg-gradient-to-r from-purple-500/30 via-cyan-400/30 to-purple-500/30 pointer-events-none rounded-xl"
         animate={{ 
           opacity: isHovered ? 1 : 0,
-          filter: isHovered ? "blur(12px)" : "blur(8px)"
+          filter: isHovered ? "blur(15px)" : "blur(8px)"
         }}
         transition={{ duration: 0.3 }}
         style={{
@@ -159,18 +159,28 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         }}
       />
       
-      {/* Light reflection effect */}
+      {/* Dramatic light reflection effect */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 rounded-xl pointer-events-none"
         style={{
           transform: "translateZ(2px) rotateX(var(--rx)) rotateY(var(--ry))",
         }}
         animate={{
-          opacity: isHovered ? 0.15 : 0,
+          opacity: isHovered ? 0.25 : 0,
           "--rx": `${rotateX.get() * 0.5}deg`,
           "--ry": `${rotateY.get() * 0.5}deg`,
         } as any}
         transition={{ duration: 0.2 }}
+      />
+      
+      {/* Cinematic vignette effect */}
+      <motion.div
+        className="absolute inset-0 bg-radial-gradient pointer-events-none rounded-xl"
+        style={{
+          background: "radial-gradient(circle at center, transparent 30%, black 150%)",
+          opacity: 0.5,
+          mixBlendMode: "multiply"
+        }}
       />
     </motion.div>
   );

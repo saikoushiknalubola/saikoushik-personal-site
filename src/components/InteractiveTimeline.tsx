@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 
 type TimelineEvent = {
-  date: string;
+  date?: string; // Make date optional
   title: string;
   description: string;
   icon?: string;
@@ -21,7 +21,7 @@ type InteractiveTimelineProps = {
 const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({ 
   events, 
   title = "Timeline", 
-  subtitle = "A journey through time and innovation" 
+  subtitle = "A journey through the fabric of space and innovation" 
 }) => {
   return (
     <div className="w-full">
@@ -87,8 +87,10 @@ const TimelineItem: React.FC<{
       ></div>
       
       {/* Content Card */}
-      <div className="glass-card p-6 max-w-md">
-        <div className="text-neon-purple text-sm font-space mb-2">{event.date}</div>
+      <div className="glass-card p-6 max-w-md backdrop-blur-xl bg-black/30 border border-white/10">
+        {event.date && (
+          <div className="text-neon-purple text-sm font-space mb-2">{event.date}</div>
+        )}
         <h3 className="text-xl font-bold mb-3">{event.title}</h3>
         
         {event.image && (
@@ -115,6 +117,16 @@ const TimelineItem: React.FC<{
             ))}
           </div>
         )}
+        
+        {/* Cinematic corner elements */}
+        <div className="absolute top-0 right-0 w-10 h-10 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 right-0 w-[1px] h-5 bg-gradient-to-b from-transparent to-neon-purple/30"></div>
+          <div className="absolute top-0 right-0 h-[1px] w-5 bg-gradient-to-l from-transparent to-neon-purple/30"></div>
+        </div>
+        <div className="absolute bottom-0 left-0 w-10 h-10 pointer-events-none overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-[1px] h-5 bg-gradient-to-t from-transparent to-neon-purple/30"></div>
+          <div className="absolute bottom-0 left-0 h-[1px] w-5 bg-gradient-to-r from-transparent to-neon-purple/30"></div>
+        </div>
       </div>
     </motion.div>
   );

@@ -604,54 +604,50 @@ const Index = () => {
           
           <div className="max-w-2xl mx-auto glass-card p-8 animate-on-scroll">
             <p className="text-xl mb-8 text-center">
-              If you have a crazy idea, a world-changing dream, or a rebellion to start — let's talk.
+              "In the vastness of the digital cosmos, like ships passing in the night, we seek connections that transcend the ordinary." If you have a vision that defies convention, let's manifest it together.
             </p>
             
-            <div className="flex flex-col space-y-4">
-              <FuturisticButton 
-                href="mailto:saikoushiknalubola@yahoo.com"
-                size="lg"
-                className="w-full justify-center"
+            <div className="flex justify-center space-x-8 mt-6">
+              <a 
+                href="https://github.com/saikoushiknalubola" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex flex-col items-center group"
               >
-                <Mail className="mr-2" size={20} />
-                Email Me
-              </FuturisticButton>
-              
-              <div className="flex justify-center space-x-8 mt-6">
-                <a 
-                  href="https://github.com/saikoushiknalubola" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-white/5 hover:bg-white/10 p-4 rounded-full transition-colors transform group-hover:scale-110 duration-300">
-                    <Github size={24} className="text-white/80 group-hover:text-white" />
-                  </div>
-                  <span className="mt-2 text-white/70 group-hover:text-white text-sm transition-colors">GitHub</span>
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/saikoushiknalubola/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-white/5 hover:bg-white/10 p-4 rounded-full transition-colors transform group-hover:scale-110 duration-300">
-                    <Linkedin size={24} className="text-white/80 group-hover:text-white" />
-                  </div>
-                  <span className="mt-2 text-white/70 group-hover:text-white text-sm transition-colors">LinkedIn</span>
-                </a>
-                <a 
-                  href="https://x.com/saikoushik_42" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-white/5 hover:bg-white/10 p-4 rounded-full transition-colors transform group-hover:scale-110 duration-300">
-                    <Twitter size={24} className="text-white/80 group-hover:text-white" />
-                  </div>
-                  <span className="mt-2 text-white/70 group-hover:text-white text-sm transition-colors">Twitter</span>
-                </a>
-              </div>
+                <div className="bg-white/5 hover:bg-white/10 p-4 rounded-full transition-colors transform group-hover:scale-110 duration-300">
+                  <Github size={24} className="text-white/80 group-hover:text-white" />
+                </div>
+                <span className="mt-2 text-white/70 group-hover:text-white text-sm transition-colors">GitHub</span>
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/saikoushiknalubola/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex flex-col items-center group"
+              >
+                <div className="bg-white/5 hover:bg-white/10 p-4 rounded-full transition-colors transform group-hover:scale-110 duration-300">
+                  <Linkedin size={24} className="text-white/80 group-hover:text-white" />
+                </div>
+                <span className="mt-2 text-white/70 group-hover:text-white text-sm transition-colors">LinkedIn</span>
+              </a>
+              <a 
+                href="https://x.com/saikoushik_42" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex flex-col items-center group"
+              >
+                <div className="bg-white/5 hover:bg-white/10 p-4 rounded-full transition-colors transform group-hover:scale-110 duration-300">
+                  <Twitter size={24} className="text-white/80 group-hover:text-white" />
+                </div>
+                <span className="mt-2 text-white/70 group-hover:text-white text-sm transition-colors">Twitter</span>
+              </a>
+            </div>
+            
+            <div className="mt-12 text-center">
+              <p className="text-lg font-medium italic">
+                "Do not go gentle into that good night. Rage, rage against the dying of the light."
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">- Dylan Thomas</p>
             </div>
           </div>
         </div>
