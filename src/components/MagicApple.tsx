@@ -100,8 +100,10 @@ const MagicApple: React.FC = () => {
         const randomY = Math.random() * 20 - 10;
         const randomRotate = Math.random() * 5 - 2.5;
         
-        element.style.transition = 'transform 3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        element.style.transform = `translateY(${randomY}px) rotate(${randomRotate}deg)`;
+        // Cast to HTMLElement to access style property
+        const htmlElement = element as HTMLElement;
+        htmlElement.style.transition = 'transform 3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        htmlElement.style.transform = `translateY(${randomY}px) rotate(${randomRotate}deg)`;
       });
       
       // Reset elements after gravity effect ends
@@ -110,8 +112,10 @@ const MagicApple: React.FC = () => {
           const originalStyle = element.getAttribute('data-original-style') || '';
           const originalTransition = element.getAttribute('data-original-transition') || '';
           
-          element.style.transition = originalTransition;
-          element.style.transform = '';
+          // Cast to HTMLElement to access style property
+          const htmlElement = element as HTMLElement;
+          htmlElement.style.transition = originalTransition;
+          htmlElement.style.transform = '';
           
           if (originalStyle) {
             element.setAttribute('style', originalStyle);
