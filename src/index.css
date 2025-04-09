@@ -76,12 +76,11 @@
   @apply bg-clip-text text-transparent;
 }
 
-.from-blue-400 {
-  @apply bg-gradient-to-r from-blue-400;
-}
-
-.to-purple-400 {
-  @apply to-purple-400;
+/* Fix for circular dependency - define the gradient classes directly */
+.gradient-blue-purple {
+  background-image: linear-gradient(to right, #60a5fa, #a78bfa);
+  background-clip: text;
+  color: transparent;
 }
 
 .text-neon-purple {
