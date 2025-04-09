@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Sparkles, Music, BookOpen, Flask, Braces } from 'lucide-react';
+import { useDeviceSize } from '@/hooks/use-mobile';
 
 type NavigationProps = {
   activeSection?: string;  // Keep this as an optional prop
@@ -10,24 +11,53 @@ type NavigationProps = {
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { pathname } = useLocation();
+  const { isTabletOrSmaller } = useDeviceSize();
   
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   
+  // The dropdown will close if user scrolls while it's open
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
+  
+  // Auto-close the mobile menu when changing routes
+  React.useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+  
   const navItems = [
-    { id: 'home', label: 'Home', href: '#home' },
-    { id: 'about', label: 'About', href: '#about' },
-    { id: 'manifesto', label: 'Manifesto', href: '#manifesto' },
-    { id: 'projects', label: 'Projects', href: '#projects' },
-    { id: 'thoughts', label: 'Thoughts', href: '#thoughts' },
-    { id: 'gallery', label: 'Gallery', href: '#gallery' },
-    { id: 'cinema', label: 'Cinema', href: '/cinema' },
-    { id: 'skills', label: 'Skills', href: '#skills' },
-    { id: 'contact', label: 'Contact', href: '#contact' },
+    { id: 'home', label: 'Home', href: '/', icon: <Sparkles size={18} className="mr-2" /> },
+    { id: 'about', label: 'About', href: '#about', icon: <Sparkles size={18} className="mr-2" />  },
+    { id: 'manifesto', label: 'Manifesto', href: '/manifesto', icon: <Sparkles size={18} className="mr-2" />  },
+    { id: 'projects', label: 'Projects', href: '/projects', icon: <Sparkles size={18} className="mr-2" />  },
+    { id: 'thoughts', label: 'Thoughts', href: '#thoughts', icon: <Sparkles size={18} className="mr-2" />  },
+    { id: 'gallery', label: 'Gallery', href: '/gallery', icon: <Sparkles size={18} className="mr-2" />  },
+    { id: 'cinema', label: 'Cinema', href: '/cinema', icon: <Sparkles size={18} className="mr-2" />  },
+    { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Flask size={18} className="mr-2" />  },
+    { id: 'philosophy', label: 'Philosophy', href: '/philosophy', icon: <BookOpen size={18} className="mr-2" />  },
+    { id: 'music', label: 'Music', href: '/music', icon: <Music size={18} className="mr-2" />  },
+    { id: 'experiments', label: 'Experiments', href: '/experiments', icon: <Braces size={18} className="mr-2" />  },
+    { id: 'contact', label: 'Contact', href: '#contact', icon: <Sparkles size={18} className="mr-2" />  },
   ];
   
-  const isActive = (id: string) => activeSection === id;
+  const isActive = (id: string) => {
+    if (activeSection === id) return true;
+    
+    // Check if the current path matches the href for router links
+    if (id !== 'home' && pathname === navItems.find(item => item.id === id)?.href) return true;
+    
+    return false;
+  };
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md py-4 px-6">
@@ -59,13 +89,13 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             />
           </Link>
           
-          <div className="hidden md:flex space-x-8 items-center">
-            {navItems.map((item) => (
+          <div className="hidden md:flex space-x-4 items-center overflow-x-auto thin-scrollbar">
+            {navItems.slice(0, isTabletOrSmaller ? 5 : 8).map((item) => (
               item.href.startsWith('#') ? (
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-3 py-2 ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
@@ -84,7 +114,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <Link
                   key={item.id}
                   to={item.href}
-                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-3 py-2 ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
@@ -101,6 +131,40 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 </Link>
               )
             ))}
+            
+            {/* Add a "More" dropdown for desktop if needed */}
+            {navItems.length > 8 && !isTabletOrSmaller && (
+              <div className="relative group">
+                <button className="relative font-raleway font-medium text-white hover:text-neon-purple transition-colors px-3 py-2">
+                  More
+                </button>
+                <div className="absolute top-full right-0 mt-1 w-48 hidden group-hover:block">
+                  <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg shadow-xl py-2">
+                    {navItems.slice(8).map((item) => (
+                      item.href.startsWith('#') ? (
+                        <a
+                          key={item.id}
+                          href={item.href}
+                          className="flex items-center px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                        >
+                          {item.icon}
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={item.id}
+                          to={item.href}
+                          className="flex items-center px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                        >
+                          {item.icon}
+                          {item.label}
+                        </Link>
+                      )
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="md:hidden">
@@ -115,37 +179,43 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
         </div>
       </div>
       
-      {/* Mobile menu */}
+      {/* Mobile menu with improved animation and styling */}
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden absolute left-0 right-0 mt-2 bg-black/95 backdrop-blur-md p-6 border-t border-white/10"
+          className="md:hidden absolute left-0 right-0 mt-2 bg-black/95 backdrop-blur-md border-t border-white/10 z-50 max-h-[calc(100vh-80px)] overflow-y-auto"
         >
-          <div className="flex flex-col space-y-5">
+          <div className="flex flex-col p-4">
             {navItems.map((item) => (
               item.href.startsWith('#') ? (
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`font-raleway font-medium text-lg hover:text-neon-purple transition-colors ${
-                    isActive(item.id) ? 'text-neon-purple' : 'text-white'
-                  }`}
+                  className={`font-raleway font-medium text-lg flex items-center py-3 px-4 rounded-lg mb-1 ${
+                    isActive(item.id) 
+                      ? 'text-neon-purple bg-white/5' 
+                      : 'text-white hover:bg-white/5'
+                  } transition-colors`}
                   onClick={() => setIsOpen(false)}
                 >
+                  {item.icon}
                   {item.label}
                 </a>
               ) : (
                 <Link
                   key={item.id}
                   to={item.href}
-                  className={`font-raleway font-medium text-lg hover:text-neon-purple transition-colors ${
-                    isActive(item.id) ? 'text-neon-purple' : 'text-white'
-                  }`}
+                  className={`font-raleway font-medium text-lg flex items-center py-3 px-4 rounded-lg mb-1 ${
+                    isActive(item.id) 
+                      ? 'text-neon-purple bg-white/5' 
+                      : 'text-white hover:bg-white/5'
+                  } transition-colors`}
                   onClick={() => setIsOpen(false)}
                 >
+                  {item.icon}
                   {item.label}
                 </Link>
               )

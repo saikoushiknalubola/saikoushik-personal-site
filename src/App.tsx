@@ -14,6 +14,9 @@ import FutureVision from "./pages/FutureVision";
 import ExploreGallery from "./pages/ExploreGallery";
 import QuantumExperiments from "./pages/QuantumExperiments";
 import CinematicExperience from "./pages/CinematicExperience";
+import DigitalLab from "./pages/DigitalLab";
+import Philosophy from "./pages/Philosophy";
+import Music from "./pages/Music";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +36,9 @@ const App = () => (
           <Route path="/gallery" element={<ExploreGallery />} />
           <Route path="/experiments" element={<QuantumExperiments />} />
           <Route path="/cinema" element={<CinematicExperience />} />
+          <Route path="/lab" element={<DigitalLab />} />
+          <Route path="/philosophy" element={<Philosophy />} />
+          <Route path="/music" element={<Music />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

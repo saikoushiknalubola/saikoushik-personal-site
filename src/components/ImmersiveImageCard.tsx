@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useDeviceSize } from '@/hooks/use-mobile';
 
 type ImmersiveImageCardProps = {
   src: string;
@@ -19,6 +20,8 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { isTabletOrSmaller } = useDeviceSize();
+  
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-100, 100], [8, -8]); // Slightly reduced rotation for better visibility
@@ -57,6 +60,8 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
   }, [src]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTabletOrSmaller) return; // Disable 3D effect on mobile/tablet
+    
     const rect = e.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -66,6 +71,16 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
     const yPct = mouseY / height - 0.5;
     x.set(xPct * 100);
     y.set(yPct * 100);
+  };
+
+  // Handle touch for mobile devices
+  const handleTouch = () => {
+    setIsHovered(true);
+    
+    // Auto-reset hover state after a delay
+    setTimeout(() => {
+      setIsHovered(false);
+    }, 2000);
   };
 
   const handleClick = () => {
@@ -82,10 +97,11 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         x.set(0);
         y.set(0);
       }}
+      onTouchStart={handleTouch}
       onClick={handleClick}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: isTabletOrSmaller ? 0 : rotateX,
+        rotateY: isTabletOrSmaller ? 0 : rotateY,
         transformStyle: "preserve-3d",
         transition: "transform 0.3s ease-out",
         perspective: 1200,
@@ -135,7 +151,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         )}
       </motion.div>
       
-      {/* Enhanced holographic effect */}
+      {/* Enhanced holographic effect - simplified for mobile */}
       <motion.div 
         className="absolute inset-0 pointer-events-none rounded-xl"
         style={{ z: -5 }}
@@ -147,7 +163,7 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         />
       </motion.div>
 
-      {/* Enhanced holographic glow effect */}
+      {/* Enhanced holographic glow effect - simplified for mobile */}
       <motion.div
         className="absolute inset-0 opacity-0 bg-gradient-to-r from-purple-500/20 via-cyan-400/20 to-purple-500/20 pointer-events-none rounded-xl"
         animate={{ 
@@ -158,20 +174,6 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
         style={{
           transform: "translateZ(-10px)"
         }}
-      />
-      
-      {/* Enhanced reflection effect */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-white/15 to-transparent opacity-0 rounded-xl pointer-events-none"
-        style={{
-          transform: "translateZ(2px) rotateX(var(--rx)) rotateY(var(--ry))",
-        }}
-        animate={{
-          opacity: isHovered ? 0.2 : 0,
-          "--rx": `${rotateX.get() * 0.5}deg`,
-          "--ry": `${rotateY.get() * 0.5}deg`,
-        } as any}
-        transition={{ duration: 0.2 }}
       />
       
       {/* Subtle vignette effect */}
