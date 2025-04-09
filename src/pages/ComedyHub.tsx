@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 import SectionHeader from '@/components/SectionHeader';
 import LiteraryQuote from '@/components/LiteraryQuote';
 import FuturisticButton from '@/components/FuturisticButton';
-import { Laugh, ArrowDown, Clock, Zap, Lightbulb, Rocket } from 'lucide-react';
+import { Laugh, ArrowDown, Clock, Zap, Lightbulb, Rocket, Brain } from 'lucide-react';
 
 const ComedyHub = () => {
   useEffect(() => {
@@ -14,6 +14,14 @@ const ComedyHub = () => {
     
     // Scroll to top when page loads
     window.scrollTo(0, 0);
+    
+    // Add page transition class to body
+    document.body.classList.add('page-transition-top');
+    
+    return () => {
+      // Remove class when component unmounts
+      document.body.classList.remove('page-transition-top');
+    };
   }, []);
 
   const comedyJokes = [
@@ -26,17 +34,28 @@ const ComedyHub = () => {
       punchline: "Relatively hot."
     },
     {
-      setup: "What did Einstein say when he was late to a meeting?",
-      punchline: "It's all relative anyway!"
+      setup: "What did the quantum physicist say when he wanted to fight someone?",
+      punchline: "Let me atom!"
     },
     {
       setup: "Why couldn't Einstein play hide and seek?",
       punchline: "Because he kept shouting 'E=MC²' when they found him!"
+    },
+    {
+      setup: "Why was Schrödinger's cat such a terrible musician?",
+      punchline: "Because it couldn't decide whether the note was dead or alive!"
     }
   ];
 
+  const einsteinQuotes = [
+    "Time is an illusion. Lunchtime doubly so!",
+    "If E=MC², then comedy must equal tragedy plus timing!",
+    "The most incomprehensible thing about the world is that it is at all comprehensible... and also memes.",
+    "Two things are infinite: the universe and human comedy; and I'm not sure about the universe!"
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900">
       <Navigation activeSection="comedy" />
       
       <motion.div 
@@ -82,17 +101,20 @@ const ComedyHub = () => {
                 </div>
               </motion.div>
               
-              <motion.div 
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                className="absolute top-4 right-4 bg-white/90 dark:bg-black/80 p-4 rounded-lg shadow-lg transform rotate-6"
-              >
-                <p className="font-handwriting text-lg">
-                  "Time is an illusion. Lunchtime doubly so!"
-                </p>
-                <p className="text-right text-sm">- Einstein (probably)</p>
-              </motion.div>
+              {einsteinQuotes.map((quote, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.8 + (index * 0.2), duration: 0.5 }}
+                  className={`absolute ${getQuotePosition(index)} bg-white/90 dark:bg-black/80 p-3 rounded-lg shadow-lg transform ${getQuoteRotation(index)}`}
+                >
+                  <p className="font-handwriting text-sm">
+                    "{quote}"
+                  </p>
+                  <p className="text-right text-xs">- Einstein (probably)</p>
+                </motion.div>
+              ))}
             </div>
             
             <div className="flex flex-col justify-center">
@@ -101,7 +123,7 @@ const ComedyHub = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
               >
-                <h3 className="text-2xl font-bold mb-4">Einstein's Comedy Theory</h3>
+                <h3 className="text-2xl font-bold mb-4 gradient-blue-purple">Einstein's Comedy Theory</h3>
                 <p className="mb-4">
                   Welcome to the quantum realm of comedy, where jokes travel faster than light and laughter bends the fabric of spacetime!
                 </p>
@@ -132,7 +154,7 @@ const ComedyHub = () => {
           >
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Zap className="mr-2 text-yellow-400" size={24} />
-              Einstein's Quantum Jokes
+              Quantum Jokes
             </h2>
             
             <div className="space-y-8">
@@ -164,13 +186,22 @@ const ComedyHub = () => {
               Comedy Time Dilation Experiment
             </h2>
             
-            <div className="max-w-2xl mx-auto bg-gradient-to-r from-purple-900/30 to-blue-900/30 p-8 rounded-xl border border-white/10">
+            <div className="max-w-2xl mx-auto glass-card p-8 rounded-xl">
               <p className="mb-6">
                 According to Einstein's theory, time moves slower when you're having fun. Test it yourself with this interactive experiment!
               </p>
               
               <div className="mb-8">
-                <div className="relative h-6 bg-white/10 rounded-full overflow-hidden">
+                <motion.div 
+                  className="flex justify-center mb-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2, duration: 0.5 }}
+                >
+                  <Brain size={48} className="text-purple-400 animate-pulse-glow" />
+                </motion.div>
+                
+                <div className="relative h-8 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
                     className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-500 to-blue-500"
                     initial={{ width: "0%" }}
@@ -181,17 +212,36 @@ const ComedyHub = () => {
                       ease: "linear"
                     }}
                   />
+                  <motion.div
+                    className="absolute top-0 left-0 right-0 h-full flex items-center justify-center text-white font-bold"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                  >
+                    Your brain is perceiving time differently!
+                  </motion.div>
                 </div>
                 <div className="flex justify-between mt-2 text-sm text-white/60">
-                  <span>Now</span>
-                  <span>Time is dilating...</span>
-                  <span>Later</span>
+                  <span>Reality: 10 sec</span>
+                  <span>Your perception: 5 sec</span>
                 </div>
               </div>
               
               <p className="text-lg font-medium">
-                Did it feel like 10 seconds? According to comedy physics, it was actually 5 seconds of fun time!
+                This illusion demonstrates how your perception of time changes when engaged with something interesting - just like Einstein predicted!
               </p>
+              
+              <motion.div
+                className="mt-6 p-4 bg-white/5 border border-white/10 rounded-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+              >
+                <p className="text-sm italic">
+                  "The distinction between the past, present and future is only a stubbornly persistent illusion... especially when watching TikTok videos."
+                </p>
+                <p className="text-right text-xs mt-2">- Albert Einstein (with modern update)</p>
+              </motion.div>
             </div>
           </motion.div>
           
@@ -201,6 +251,7 @@ const ComedyHub = () => {
               author="Mark Twain & Albert Einstein"
               source="The Theory of Comedic Relativity"
               style="jobs"
+              className="max-w-2xl mx-auto"
             />
             
             <motion.div 
@@ -221,6 +272,28 @@ const ComedyHub = () => {
       </motion.div>
     </div>
   );
+};
+
+// Helper function to position quotes around the Einstein image
+const getQuotePosition = (index: number) => {
+  const positions = [
+    "top-4 right-4",
+    "top-20 -left-10 max-w-[140px]",
+    "bottom-10 -left-4 max-w-[160px]",
+    "bottom-24 right-4 max-w-[150px]"
+  ];
+  return positions[index % positions.length];
+};
+
+// Helper function to rotate quotes slightly for a more dynamic feel
+const getQuoteRotation = (index: number) => {
+  const rotations = [
+    "rotate-6",
+    "rotate-negative-4",
+    "rotate-2",
+    "rotate-negative-6"
+  ];
+  return rotations[index % rotations.length];
 };
 
 export default ComedyHub;

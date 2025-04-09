@@ -138,6 +138,15 @@
   text-shadow: 0 0 10px rgba(var(--future-primary), 0.7);
 }
 
+/* Rotation utilities */
+.rotate-negative-4 {
+  transform: rotate(-4deg);
+}
+
+.rotate-negative-6 {
+  transform: rotate(-6deg);
+}
+
 /* Mobile responsive utilities */
 .mobile-padding {
   @apply px-4 sm:px-6 md:px-8;

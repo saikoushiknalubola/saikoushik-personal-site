@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
@@ -133,10 +134,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             
             <div className="relative group">
               <button className={`relative font-raleway font-medium transition-colors px-3 py-2 ${
-                isActive('comedy') ? 'text-neon-purple' : 'text-white hover:text-neon-purple'
+                isActive('comedy') || isActive('music') || isActive('philosophy') || isActive('lab') 
+                  ? 'text-neon-purple' : 'text-white hover:text-neon-purple'
               }`}>
                 More
-                {isActive('comedy') && (
+                {(isActive('comedy') || isActive('music') || isActive('philosophy') || isActive('lab')) && (
                   <motion.div
                     layoutId="activeSection"
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
@@ -205,7 +207,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden absolute left-0 right-0 mt-2 bg-black/95 backdrop-blur-md border-t border-white/10 z-50 max-h-[calc(100vh-80px)] overflow-y-auto"
+          className="md:hidden fixed left-0 right-0 top-[76px] bg-black/95 backdrop-blur-md border-t border-white/10 z-50 max-h-[calc(100vh-76px)] overflow-y-auto"
         >
           <div className="flex flex-col p-4">
             {navItems.map((item) => (
