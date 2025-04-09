@@ -22,33 +22,20 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
   quote,
   source
 }) => {
-  const getQuoteStyle = () => {
-    switch(style) {
-      case 'kafka':
-        return "bg-gradient-to-r from-slate-800 to-slate-900 border-l-4 border-amber-400";
-      case 'dostoevsky':
-        return "bg-gradient-to-r from-slate-900 to-indigo-950 border-l-4 border-red-700";
-      case 'kalam':
-        return "bg-gradient-to-r from-slate-800 to-blue-900 border-l-4 border-orange-500";
-      case 'jobs':
-        return "bg-gradient-to-r from-zinc-900 to-zinc-800 border-l-4 border-zinc-400";
-      case 'guevara':
-        return "bg-gradient-to-r from-slate-900 to-red-950 border-l-4 border-red-600";
-    }
-  };
-
+  // Use either quote or text, and either source or work
   const quoteText = quote || text;
+  const sourceText = source || work;
 
   return (
     <div className={cn(
       "p-6 rounded-md my-8 shadow-lg", 
-      getStyleClasses(),
+      getStyleClasses(style),
       className
     )}>
       <p className="text-lg font-serif italic mb-4">{quoteText}</p>
       <div className="flex flex-col">
         <span className="font-medium">{author}</span>
-        {(work || source) && <span className="text-sm text-muted-foreground">{source || work}</span>}
+        {sourceText && <span className="text-sm text-muted-foreground">{sourceText}</span>}
       </div>
     </div>
   );

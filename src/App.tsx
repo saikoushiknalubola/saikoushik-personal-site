@@ -17,6 +17,7 @@ import CinematicExperience from "./pages/CinematicExperience";
 import DigitalLab from "./pages/DigitalLab";
 import Philosophy from "./pages/Philosophy";
 import Music from "./pages/Music";
+import ComedyHub from "./pages/ComedyHub";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/lab" element={<DigitalLab />} />
           <Route path="/philosophy" element={<Philosophy />} />
           <Route path="/music" element={<Music />} />
+          <Route path="/comedy" element={<ComedyHub />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

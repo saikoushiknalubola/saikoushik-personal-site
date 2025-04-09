@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Music, BookOpen, Braces, Beaker } from 'lucide-react';
+import { Menu, X, Sparkles, Music, BookOpen, Beaker, Laugh } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
 
 type NavigationProps = {
@@ -45,7 +45,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Beaker size={18} className="mr-2" />  },
     { id: 'philosophy', label: 'Philosophy', href: '/philosophy', icon: <BookOpen size={18} className="mr-2" />  },
     { id: 'music', label: 'Music', href: '/music', icon: <Music size={18} className="mr-2" />  },
-    { id: 'experiments', label: 'Experiments', href: '/experiments', icon: <Braces size={18} className="mr-2" />  },
+    { id: 'comedy', label: 'Comedy', href: '/comedy', icon: <Laugh size={18} className="mr-2" />  },
     { id: 'contact', label: 'Contact', href: '#contact', icon: <Sparkles size={18} className="mr-2" />  },
   ];
   
@@ -89,7 +89,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
           </Link>
           
           <div className="hidden md:flex space-x-4 items-center overflow-x-auto thin-scrollbar">
-            {navItems.slice(0, isTabletOrSmaller ? 5 : 8).map((item) => (
+            {navItems.slice(0, isTabletOrSmaller ? 5 : 7).map((item) => (
               item.href.startsWith('#') ? (
                 <a
                   key={item.id}
@@ -131,39 +131,60 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
               )
             ))}
             
-            {/* Add a "More" dropdown for desktop if needed */}
-            {navItems.length > 8 && !isTabletOrSmaller && (
-              <div className="relative group">
-                <button className="relative font-raleway font-medium text-white hover:text-neon-purple transition-colors px-3 py-2">
-                  More
-                </button>
-                <div className="absolute top-full right-0 mt-1 w-48 hidden group-hover:block">
-                  <div className="bg-black/80 backdrop-blur-md border border-white/10 rounded-lg shadow-xl py-2">
-                    {navItems.slice(8).map((item) => (
-                      item.href.startsWith('#') ? (
-                        <a
-                          key={item.id}
-                          href={item.href}
-                          className="flex items-center px-4 py-2 text-white hover:bg-white/10 transition-colors"
-                        >
-                          {item.icon}
-                          {item.label}
-                        </a>
-                      ) : (
+            <div className="relative group">
+              <button className={`relative font-raleway font-medium transition-colors px-3 py-2 ${
+                isActive('comedy') ? 'text-neon-purple' : 'text-white hover:text-neon-purple'
+              }`}>
+                More
+                {isActive('comedy') && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </button>
+              <motion.div 
+                className="absolute top-full right-0 mt-1 w-48 hidden group-hover:block"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="bg-black/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl py-2 overflow-hidden">
+                  {navItems.slice(7).map((item) => (
+                    item.href.startsWith('#') ? (
+                      <motion.a
+                        key={item.id}
+                        href={item.href}
+                        className="flex items-center px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        {item.icon}
+                        {item.label}
+                      </motion.a>
+                    ) : (
+                      <motion.div key={item.id}>
                         <Link
-                          key={item.id}
                           to={item.href}
-                          className="flex items-center px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                          className={`flex items-center px-4 py-2 transition-colors ${
+                            isActive(item.id) ? 'bg-white/10 text-neon-purple' : 'text-white hover:bg-white/10'
+                          }`}
                         >
                           {item.icon}
                           {item.label}
+                          {item.id === 'comedy' && (
+                            <span className="ml-auto text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                          )}
                         </Link>
-                      )
-                    ))}
-                  </div>
+                      </motion.div>
+                    )
+                  ))}
                 </div>
-              </div>
-            )}
+              </motion.div>
+            </div>
           </div>
           
           <div className="md:hidden">
@@ -178,7 +199,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
         </div>
       </div>
       
-      {/* Mobile menu with improved animation and styling */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
@@ -202,6 +222,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 >
                   {item.icon}
                   {item.label}
+                  {item.id === 'comedy' && (
+                    <span className="ml-auto text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                  )}
                 </a>
               ) : (
                 <Link
@@ -216,6 +239,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 >
                   {item.icon}
                   {item.label}
+                  {item.id === 'comedy' && (
+                    <span className="ml-auto text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                  )}
                 </Link>
               )
             ))}
