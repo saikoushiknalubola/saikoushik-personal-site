@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 
 type NavigationProps = {
   activeSection?: string;  // Keep this as an optional prop
@@ -33,9 +33,30 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md py-4 px-6">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Link to="/" className="font-space text-xl font-bold">
-            <span className="text-white">Saikoushik</span>
-            <span className="text-neon-purple">Nalubola</span>
+          <Link to="/" className="font-raleway text-xl font-bold group relative">
+            <motion.span 
+              className="text-white inline-flex items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Sparkles size={18} className="text-neon-purple mr-2 animate-pulse-glow" />
+              Saikoushik
+            </motion.span>
+            <motion.span 
+              className="text-neon-purple ml-1"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Nalubola
+            </motion.span>
+            <motion.span 
+              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-purple to-future-primary"
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            />
           </Link>
           
           <div className="hidden md:flex space-x-8 items-center">
@@ -44,7 +65,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`relative font-medium hover:text-neon-purple transition-colors ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
@@ -63,7 +84,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <Link
                   key={item.id}
                   to={item.href}
-                  className={`relative font-medium hover:text-neon-purple transition-colors ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
@@ -109,7 +130,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`font-medium text-lg hover:text-neon-purple transition-colors ${
+                  className={`font-raleway font-medium text-lg hover:text-neon-purple transition-colors ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                   onClick={() => setIsOpen(false)}
@@ -120,7 +141,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <Link
                   key={item.id}
                   to={item.href}
-                  className={`font-medium text-lg hover:text-neon-purple transition-colors ${
+                  className={`font-raleway font-medium text-lg hover:text-neon-purple transition-colors ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                   onClick={() => setIsOpen(false)}
