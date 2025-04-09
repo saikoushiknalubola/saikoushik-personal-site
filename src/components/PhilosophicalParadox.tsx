@@ -8,19 +8,35 @@ interface ParadoxSide {
 }
 
 interface PhilosophicalParadoxProps {
-  thesis: ParadoxSide;
-  antithesis: ParadoxSide;
-  synthesis: string;
+  thesis?: ParadoxSide;
+  antithesis?: ParadoxSide;
+  synthesis?: string;
   className?: string;
+  title?: string;
+  description?: string;
 }
 
 const PhilosophicalParadox: React.FC<PhilosophicalParadoxProps> = ({
   thesis,
   antithesis,
   synthesis,
-  className
+  className,
+  title,
+  description
 }) => {
-  const [activeTab, setActiveTab] = useState<'thesis' | 'antithesis' | 'synthesis'>('thesis');
+  const [activeTab, setActiveTab] = useState<'thesis' | 'antithesis' | 'synthesis'>(thesis ? 'thesis' : 'synthesis');
+
+  if (title && description) {
+    // Simple mode with just title and description
+    return (
+      <div className={cn("glass-card overflow-hidden", className)}>
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-3">{title}</h3>
+          <p>{description}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("glass-card overflow-hidden", className)}>
@@ -55,21 +71,21 @@ const PhilosophicalParadox: React.FC<PhilosophicalParadoxProps> = ({
       </div>
       
       <div className="p-6">
-        {activeTab === 'thesis' && (
+        {activeTab === 'thesis' && thesis && (
           <div>
             <h3 className="text-xl font-bold mb-3">{thesis.title}</h3>
             <p>{thesis.description}</p>
           </div>
         )}
         
-        {activeTab === 'antithesis' && (
+        {activeTab === 'antithesis' && antithesis && (
           <div>
             <h3 className="text-xl font-bold mb-3">{antithesis.title}</h3>
             <p>{antithesis.description}</p>
           </div>
         )}
         
-        {activeTab === 'synthesis' && (
+        {activeTab === 'synthesis' && synthesis && (
           <div>
             <h3 className="text-xl font-bold mb-3">The Reconciliation</h3>
             <p className="italic">{synthesis}</p>

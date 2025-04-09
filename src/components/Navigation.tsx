@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Music, BookOpen, Flask, Braces } from 'lucide-react';
+import { Menu, X, Sparkles, Music, BookOpen, Braces, Beaker } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
 
 type NavigationProps = {
@@ -43,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     { id: 'thoughts', label: 'Thoughts', href: '#thoughts', icon: <Sparkles size={18} className="mr-2" />  },
     { id: 'gallery', label: 'Gallery', href: '/gallery', icon: <Sparkles size={18} className="mr-2" />  },
     { id: 'cinema', label: 'Cinema', href: '/cinema', icon: <Sparkles size={18} className="mr-2" />  },
-    { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Flask size={18} className="mr-2" />  },
+    { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Beaker size={18} className="mr-2" />  },
     { id: 'philosophy', label: 'Philosophy', href: '/philosophy', icon: <BookOpen size={18} className="mr-2" />  },
     { id: 'music', label: 'Music', href: '/music', icon: <Music size={18} className="mr-2" />  },
     { id: 'experiments', label: 'Experiments', href: '/experiments', icon: <Braces size={18} className="mr-2" />  },

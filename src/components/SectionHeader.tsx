@@ -14,6 +14,7 @@ interface SectionHeaderProps {
   theoryReference?: 'einstein' | 'newton' | 'hawking';
   showSparkles?: boolean;
   authorName?: boolean;
+  glowColor?: string;
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ 
