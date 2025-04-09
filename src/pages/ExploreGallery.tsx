@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ZoomIn, MoveHorizontal, Sparkles, Grid, X, Atom, Zap, Wand2 } from 'lucide-react';
@@ -10,14 +9,18 @@ import { Link } from 'react-router-dom';
 import EnhancedGallery from '@/components/EnhancedGallery';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
+interface GalleryImage {
+  src: string;
+  title: string;
+}
+
 const ExploreGallery = () => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'masonry' | 'immersive' | 'vortex' | 'carousel'>('grid');
   const [rotationFactor, setRotationFactor] = useState(0);
   const [curated, setCurated] = useState(false);
 
-  // Curated best images
-  const bestImages = [
+  const bestImages: GalleryImage[] = [
     { src: "/lovable-uploads/49cc4f99-9030-4bef-8ac0-00597408b6d2.png", title: "Quantum Dimension Alpha" },
     { src: "/lovable-uploads/c82f9bea-ce9a-44ad-b971-f2d53ffc72f7.png", title: "Neural Network Vision" },
     { src: "/lovable-uploads/f0143cf4-be0c-4ab7-a1f4-5d1dc1f2a130.png", title: "Cosmic Entropy" },
@@ -32,39 +35,38 @@ const ExploreGallery = () => {
     { src: "/lovable-uploads/859aa36d-8920-44fe-a461-d2d9a0d48568.png", title: "Synthetic Consciousness" }
   ];
 
-  const allImages = [
-    { src: "/lovable-uploads/43580418-0baf-4983-b05b-1337d21b60cd.png" },
-    { src: "/lovable-uploads/e6ce2159-d844-4def-b3c7-39aa47e8de0b.png" },
-    { src: "/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png" },
-    { src: "/lovable-uploads/5693851a-14d4-45f8-9922-94d7790dd370.png" },
-    { src: "/lovable-uploads/f0143cf4-be0c-4ab7-a1f4-5d1dc1f2a130.png" },
-    { src: "/lovable-uploads/7ea5b8d5-7a81-44f2-8b07-12e54b50a705.png" },
-    { src: "/lovable-uploads/d6774541-916b-41b5-9fef-e3183da18750.png" },
-    { src: "/lovable-uploads/49cc4f99-9030-4bef-8ac0-00597408b6d2.png" },
-    { src: "/lovable-uploads/c82f9bea-ce9a-44ad-b971-f2d53ffc72f7.png" },
-    { src: "/lovable-uploads/c55f370a-7ade-4c7c-af22-98c4d8176529.png" },
-    { src: "/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png" },
-    { src: "/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png" },
-    { src: "/lovable-uploads/68be4ea6-9c69-4d1a-8281-dd4a0cf519f2.png" },
-    { src: "/lovable-uploads/0a34d2bf-6f36-42f9-8f1f-99d687f9fe35.png" },
-    { src: "/lovable-uploads/4fc90ebc-922f-45ed-910b-664c0cae51e3.png" },
-    { src: "/lovable-uploads/55ea3f25-e942-4216-8ebf-930555d21681.png" },
-    { src: "/lovable-uploads/6ab8962f-cb9b-4c09-98d7-55e307c2a186.png" },
-    { src: "/lovable-uploads/859aa36d-8920-44fe-a461-d2d9a0d48568.png" },
-    { src: "/lovable-uploads/d00b1c86-928d-4dfb-9985-e352dcc01e95.png" },
-    { src: "/lovable-uploads/333c6b72-4298-49dc-acb9-f578b4b06784.png" },
-    { src: "/lovable-uploads/ca3e6d73-40c3-4c1d-b6b9-d23896c17c29.png" },
-    { src: "/lovable-uploads/da853ef4-3ec6-4609-a838-faa972d455e7.png" },
-    { src: "/lovable-uploads/fe1bcb19-a6fc-49ad-94ac-da69273261a7.png" },
-    { src: "/lovable-uploads/54de61e9-b777-47cb-bb61-8a3ce48c4045.png" },
-    { src: "/lovable-uploads/931d5d56-b50c-44d2-b01e-6416eeb2bb98.png" },
-    { src: "/lovable-uploads/20bf0f10-2783-44da-8f19-f2f365af1cb7.png" },
-    { src: "/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png" },
-    { src: "/lovable-uploads/5b6abb0a-b304-45e9-bb26-436dcdb02785.png" },
-    { src: "/lovable-uploads/9a6e6906-e56d-43ed-86e1-598f0bbeef3d.png" }
+  const allImages: GalleryImage[] = [
+    { src: "/lovable-uploads/43580418-0baf-4983-b05b-1337d21b60cd.png", title: "Quantum Realm #1" },
+    { src: "/lovable-uploads/e6ce2159-d844-4def-b3c7-39aa47e8de0b.png", title: "Quantum Realm #2" },
+    { src: "/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png", title: "Interdimensional Gateway" },
+    { src: "/lovable-uploads/5693851a-14d4-45f8-9922-94d7790dd370.png", title: "Transhuman Evolution" },
+    { src: "/lovable-uploads/f0143cf4-be0c-4ab7-a1f4-5d1dc1f2a130.png", title: "Cosmic Entropy" },
+    { src: "/lovable-uploads/7ea5b8d5-7a81-44f2-8b07-12e54b50a705.png", title: "Digital Consciousness" },
+    { src: "/lovable-uploads/d6774541-916b-41b5-9fef-e3183da18750.png", title: "Quantum Realm #3" },
+    { src: "/lovable-uploads/49cc4f99-9030-4bef-8ac0-00597408b6d2.png", title: "Quantum Dimension Alpha" },
+    { src: "/lovable-uploads/c82f9bea-ce9a-44ad-b971-f2d53ffc72f7.png", title: "Neural Network Vision" },
+    { src: "/lovable-uploads/c55f370a-7ade-4c7c-af22-98c4d8176529.png", title: "Quantum Realm #4" },
+    { src: "/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png", title: "Temporal Distortion" },
+    { src: "/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png", title: "Cybernetic Dreamscape" },
+    { src: "/lovable-uploads/68be4ea6-9c69-4d1a-8281-dd4a0cf519f2.png", title: "Quantum Realm #5" },
+    { src: "/lovable-uploads/0a34d2bf-6f36-42f9-8f1f-99d687f9fe35.png", title: "Quantum Nexus" },
+    { src: "/lovable-uploads/4fc90ebc-922f-45ed-910b-664c0cae51e3.png", title: "Quantum Realm #6" },
+    { src: "/lovable-uploads/55ea3f25-e942-4216-8ebf-930555d21681.png", title: "Quantum Realm #7" },
+    { src: "/lovable-uploads/6ab8962f-cb9b-4c09-98d7-55e307c2a186.png", title: "Quantum Realm #8" },
+    { src: "/lovable-uploads/859aa36d-8920-44fe-a461-d2d9a0d48568.png", title: "Synthetic Consciousness" },
+    { src: "/lovable-uploads/d00b1c86-928d-4dfb-9985-e352dcc01e95.png", title: "Quantum Realm #9" },
+    { src: "/lovable-uploads/333c6b72-4298-49dc-acb9-f578b4b06784.png", title: "Digital Renaissance" },
+    { src: "/lovable-uploads/ca3e6d73-40c3-4c1d-b6b9-d23896c17c29.png", title: "Quantum Realm #10" },
+    { src: "/lovable-uploads/da853ef4-3ec6-4609-a838-faa972d455e7.png", title: "Quantum Realm #11" },
+    { src: "/lovable-uploads/fe1bcb19-a6fc-49ad-94ac-da69273261a7.png", title: "Parallel Reality" },
+    { src: "/lovable-uploads/54de61e9-b777-47cb-bb61-8a3ce48c4045.png", title: "Quantum Realm #12" },
+    { src: "/lovable-uploads/931d5d56-b50c-44d2-b01e-6416eeb2bb98.png", title: "Quantum Realm #13" },
+    { src: "/lovable-uploads/20bf0f10-2783-44da-8f19-f2f365af1cb7.png", title: "Quantum Realm #14" },
+    { src: "/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png", title: "Quantum Realm #15" },
+    { src: "/lovable-uploads/5b6abb0a-b304-45e9-bb26-436dcdb02785.png", title: "Quantum Realm #16" },
+    { src: "/lovable-uploads/9a6e6906-e56d-43ed-86e1-598f0bbeef3d.png", title: "Quantum Realm #17" }
   ];
 
-  // Background animation effect
   useEffect(() => {
     const interval = setInterval(() => {
       setRotationFactor(prev => (prev + 0.1) % 360);
@@ -87,10 +89,8 @@ const ExploreGallery = () => {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden relative">
-      {/* Animated background */}
       <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-90"></div>
-        {/* Cosmic background elements */}
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
@@ -113,7 +113,6 @@ const ExploreGallery = () => {
           />
         ))}
         
-        {/* Large gradient orbs */}
         <motion.div
           className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-neon-purple/20 to-future-primary/5 blur-3xl"
           style={{ top: '20%', left: '10%' }}
@@ -238,14 +237,14 @@ const ExploreGallery = () => {
               >
                 <ImmersiveImageCard 
                   src={img.src} 
-                  alt={img.title || `Quantum dimension ${index + 1}`}
+                  alt={img.title}
                   onClick={() => openFullscreen(img.src)}
                 />
                 {curated && (
                   <motion.div 
                     className="mt-2 text-center font-space text-white/80 text-sm bg-black/50 backdrop-blur-sm rounded-md py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
                   >
-                    {img.title || `Quantum Dimension ${index + 1}`}
+                    {img.title}
                   </motion.div>
                 )}
               </motion.div>
@@ -271,7 +270,7 @@ const ExploreGallery = () => {
               >
                 <ImmersiveImageCard 
                   src={img.src} 
-                  alt={img.title || `Quantum dimension ${index + 1}`}
+                  alt={img.title}
                   onClick={() => openFullscreen(img.src)}
                 />
                 {curated && (
@@ -281,7 +280,7 @@ const ExploreGallery = () => {
                     whileInView={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {img.title || `Quantum Dimension ${index + 1}`}
+                    {img.title}
                   </motion.div>
                 )}
               </motion.div>
@@ -318,7 +317,7 @@ const ExploreGallery = () => {
                 <div className="aspect-[3/4] w-full">
                   <ImmersiveImageCard 
                     src={img.src} 
-                    alt={img.title || `Quantum dimension ${index + 1}`}
+                    alt={img.title}
                     onClick={() => openFullscreen(img.src)}
                   />
                 </div>
@@ -389,7 +388,7 @@ const ExploreGallery = () => {
                 >
                   <img 
                     src={img.src} 
-                    alt={img.title || `Quantum dimension ${index + 1}`}
+                    alt={img.title}
                     className="w-full h-full object-cover"
                   />
                   {curated && (
@@ -417,7 +416,7 @@ const ExploreGallery = () => {
                         <div className="relative aspect-[3/4] cursor-pointer group" onClick={() => openFullscreen(img.src)}>
                           <img 
                             src={img.src} 
-                            alt={img.title || `Quantum dimension ${index + 1}`}
+                            alt={img.title}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />
                           {curated && (

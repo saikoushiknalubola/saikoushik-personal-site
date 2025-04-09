@@ -37,8 +37,9 @@ const ImmersiveImageCard: React.FC<ImmersiveImageCardProps> = ({
       combinedValue.set(xAbs.get() + yAbs.get());
     };
     
-    const unsubscribeX = x.onChange(updateCombined);
-    const unsubscribeY = y.onChange(updateCombined);
+    // Update to use .on("change") instead of .onChange() as per warning
+    const unsubscribeX = x.on("change", updateCombined);
+    const unsubscribeY = y.on("change", updateCombined);
     
     return () => {
       unsubscribeX();
