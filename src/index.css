@@ -172,3 +172,25 @@
     opacity: 1;
   }
 }
+
+/* Fixed header styles */
+.fixed-header {
+  @apply fixed top-0 left-0 right-0 z-50;
+}
+
+/* More menu styles */
+.more-menu {
+  @apply absolute top-full right-0 mt-1 bg-black/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl overflow-hidden;
+  min-width: 200px;
+  z-index: 100;
+}
+
+.more-menu-item {
+  @apply flex items-center px-4 py-2 text-white hover:bg-white/10 transition-colors;
+}
+
+.header-scrollable {
+  @apply overflow-x-auto thin-scrollbar;
+  -ms-overflow-style: none;
+  max-width: 100%;
+}
