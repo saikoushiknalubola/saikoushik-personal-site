@@ -92,8 +92,8 @@ const ComedyHub = () => {
                 className="relative z-10"
               >
                 <img 
-                  src="/lovable-uploads/333c6b72-4298-49dc-acb9-f578b4b06784.png" 
-                  alt="Einstein with funny face" 
+                  src="/placeholder.svg" 
+                  alt="Einstein with funny expression" 
                   className="rounded-lg shadow-xl w-full"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-yellow-400 text-black p-3 rounded-full shadow-lg">
