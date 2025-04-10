@@ -2,8 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Music, BookOpen, Beaker, Laugh, Film } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 type NavigationProps = {
   activeSection?: string;
@@ -14,8 +20,15 @@ type NavItem = {
   id: string;
   label: string;
   href: string;
-  icon: React.ReactNode;
   isNew?: boolean; // Make isNew optional
+};
+
+// Define type for dropdown items
+type DropdownItem = {
+  id: string;
+  label: string;
+  href: string;
+  isNew?: boolean;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
@@ -65,20 +78,30 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     setIsOpen(false);
   }, [pathname]);
   
-  // Combine all navigation items into a single array
+  // Main navigation items
+  const mainNavItems: NavItem[] = [
+    { id: 'home', label: 'Home', href: '/' },
+    { id: 'about', label: 'About', href: '#about' },
+    { id: 'manifesto', label: 'Manifesto', href: '/manifesto' },
+    { id: 'projects', label: 'Projects', href: '/projects' },
+    { id: 'thoughts', label: 'Thoughts', href: '#thoughts' },
+    { id: 'contact', label: 'Contact', href: '#contact' },
+  ];
+  
+  // More dropdown items
+  const moreDropdownItems: DropdownItem[] = [
+    { id: 'gallery', label: 'Gallery', href: '/gallery' },
+    { id: 'cinema', label: 'Cinema', href: '/cinema' },
+    { id: 'lab', label: 'Digital Lab', href: '/lab' },
+    { id: 'philosophy', label: 'Philosophy', href: '/philosophy' },
+    { id: 'music', label: 'Music', href: '/music' },
+    { id: 'comedy', label: 'Comedy', href: '/comedy', isNew: true },
+  ];
+  
+  // All navigation items combined for mobile view
   const allNavItems: NavItem[] = [
-    { id: 'home', label: 'Home', href: '/', icon: <Sparkles size={18} className="mr-2" /> },
-    { id: 'about', label: 'About', href: '#about', icon: <Sparkles size={18} className="mr-2" /> },
-    { id: 'manifesto', label: 'Manifesto', href: '/manifesto', icon: <Sparkles size={18} className="mr-2" /> },
-    { id: 'projects', label: 'Projects', href: '/projects', icon: <Sparkles size={18} className="mr-2" /> },
-    { id: 'thoughts', label: 'Thoughts', href: '#thoughts', icon: <Sparkles size={18} className="mr-2" /> },
-    { id: 'gallery', label: 'Gallery', href: '/gallery', icon: <Sparkles size={18} className="mr-2" /> },
-    { id: 'cinema', label: 'Cinema', href: '/cinema', icon: <Film size={18} className="mr-2" /> },
-    { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Beaker size={18} className="mr-2" /> },
-    { id: 'philosophy', label: 'Philosophy', href: '/philosophy', icon: <BookOpen size={18} className="mr-2" /> },
-    { id: 'music', label: 'Music', href: '/music', icon: <Music size={18} className="mr-2" /> },
-    { id: 'comedy', label: 'Comedy', href: '/comedy', icon: <Laugh size={18} className="mr-2" />, isNew: true },
-    { id: 'contact', label: 'Contact', href: '#contact', icon: <Sparkles size={18} className="mr-2" /> },
+    ...mainNavItems,
+    ...moreDropdownItems
   ];
   
   const isActive = (id: string) => {
@@ -105,7 +128,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Sparkles size={18} className="text-neon-purple mr-2 animate-pulse-glow" />
               Saikoushik
             </motion.span>
             <motion.span 
@@ -124,21 +146,17 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             />
           </Link>
           
-          <div className="hidden md:flex items-center space-x-1 overflow-x-auto max-w-[70vw] pb-1 header-scrollable">
-            {allNavItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-4">
+            {mainNavItems.map((item) => (
               item.href.startsWith('#') ? (
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-2 py-2 whitespace-nowrap flex items-center ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-3 py-2 ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
-                  {item.icon}
-                  <span>{item.label}</span>
-                  {item.isNew && (
-                    <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                  )}
+                  {item.label}
                   {isActive(item.id) && (
                     <motion.div
                       layoutId="activeSection"
@@ -153,15 +171,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <Link
                   key={item.id}
                   to={item.href}
-                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-2 py-2 whitespace-nowrap flex items-center ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-3 py-2 ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
-                  {item.icon}
-                  <span>{item.label}</span>
-                  {item.isNew && (
-                    <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                  )}
+                  {item.label}
                   {isActive(item.id) && (
                     <motion.div
                       layoutId="activeSection"
@@ -174,6 +188,42 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 </Link>
               )
             ))}
+            
+            {/* More dropdown menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="relative font-raleway font-medium text-white hover:text-neon-purple transition-colors px-3 py-2 flex items-center">
+                More <ChevronDown className="ml-1 h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-black/90 border border-white/10 backdrop-blur-md text-white min-w-[200px]">
+                {moreDropdownItems.map((item) => (
+                  <DropdownMenuItem key={item.id} asChild>
+                    {item.href.startsWith('#') ? (
+                      <a
+                        href={item.href}
+                        className="w-full flex items-center justify-between cursor-pointer hover:bg-white/10 focus:bg-white/10 py-2"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.label}
+                        {item.isNew && (
+                          <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                        )}
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        className="w-full flex items-center justify-between cursor-pointer hover:bg-white/10 focus:bg-white/10 py-2"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.label}
+                        {item.isNew && (
+                          <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                        )}
+                      </Link>
+                    )}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           
           <div className="md:hidden">
@@ -198,7 +248,42 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             className="md:hidden fixed left-0 right-0 top-[76px] bg-black/95 backdrop-blur-md border-t border-white/10 z-50 max-h-[calc(100vh-76px)] overflow-y-auto"
           >
             <div className="flex flex-col p-4">
-              {allNavItems.map((item) => (
+              {mainNavItems.map((item) => (
+                item.href.startsWith('#') ? (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    className={`font-raleway font-medium text-lg py-3 px-4 rounded-lg mb-1 ${
+                      isActive(item.id) 
+                        ? 'text-neon-purple bg-white/5' 
+                        : 'text-white hover:bg-white/5'
+                    } transition-colors`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.id}
+                    to={item.href}
+                    className={`font-raleway font-medium text-lg py-3 px-4 rounded-lg mb-1 ${
+                      isActive(item.id) 
+                        ? 'text-neon-purple bg-white/5' 
+                        : 'text-white hover:bg-white/5'
+                    } transition-colors`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              ))}
+              
+              {/* More section header in mobile menu */}
+              <div className="font-raleway font-medium text-lg text-neon-purple py-2 px-4 mt-2 border-t border-white/10">
+                More
+              </div>
+              
+              {moreDropdownItems.map((item) => (
                 item.href.startsWith('#') ? (
                   <a
                     key={item.id}
@@ -210,10 +295,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                     } transition-colors`}
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="flex items-center">
-                      {item.icon}
-                      {item.label}
-                    </span>
+                    {item.label}
                     {item.isNew && (
                       <span className="text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
                     )}
@@ -229,10 +311,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                     } transition-colors`}
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="flex items-center">
-                      {item.icon}
-                      {item.label}
-                    </span>
+                    {item.label}
                     {item.isNew && (
                       <span className="text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
                     )}
