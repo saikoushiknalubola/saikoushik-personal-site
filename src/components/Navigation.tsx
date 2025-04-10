@@ -9,6 +9,15 @@ type NavigationProps = {
   activeSection?: string;
 };
 
+// Define a proper type for navigation items
+type NavItem = {
+  id: string;
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+  isNew?: boolean; // Make isNew optional
+};
+
 const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
@@ -78,7 +87,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     setMoreMenuOpen(false);
   }, [pathname]);
   
-  const navItems = [
+  const navItems: NavItem[] = [
     { id: 'home', label: 'Home', href: '/', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'about', label: 'About', href: '#about', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'manifesto', label: 'Manifesto', href: '/manifesto', icon: <Sparkles size={18} className="mr-2" /> },
@@ -87,7 +96,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     { id: 'gallery', label: 'Gallery', href: '/gallery', icon: <Sparkles size={18} className="mr-2" /> },
   ];
   
-  const moreNavItems = [
+  const moreNavItems: NavItem[] = [
     { id: 'cinema', label: 'Cinema', href: '/cinema', icon: <Film size={18} className="mr-2" /> },
     { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Beaker size={18} className="mr-2" /> },
     { id: 'philosophy', label: 'Philosophy', href: '/philosophy', icon: <BookOpen size={18} className="mr-2" /> },
