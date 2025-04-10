@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Music, BookOpen, Beaker, Laugh, Film, ChevronDown } from 'lucide-react';
+import { Menu, X, Sparkles, Music, BookOpen, Beaker, Laugh, Film } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
 
 type NavigationProps = {
@@ -20,7 +20,6 @@ type NavItem = {
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const { pathname } = useLocation();
@@ -31,24 +30,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     setIsOpen(!isOpen);
   };
   
-  // Toggle more menu dropdown
-  const toggleMoreMenu = () => {
-    setMoreMenuOpen(!moreMenuOpen);
-  };
-  
-  // Close more menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (!target.closest('.more-menu') && !target.closest('.more-trigger') && moreMenuOpen) {
-        setMoreMenuOpen(false);
-      }
-    };
-    
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [moreMenuOpen]);
-  
   // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
@@ -57,14 +38,12 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
       // Always show navbar at top of page
       if (currentScrollPos < 10) {
         setVisible(true);
-        setMoreMenuOpen(false);
         return;
       }
       
       // Hide navbar on scroll down, show on scroll up
       if (currentScrollPos > prevScrollPos && visible) {
         setVisible(false);
-        setMoreMenuOpen(false);
       } else if (currentScrollPos < prevScrollPos && !visible) {
         setVisible(true);
       }
@@ -81,22 +60,19 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollPos, visible, isOpen]);
   
-  // Close menus when changing routes
+  // Close menu when changing routes
   useEffect(() => {
     setIsOpen(false);
-    setMoreMenuOpen(false);
   }, [pathname]);
   
-  const navItems: NavItem[] = [
+  // Combine all navigation items into a single array
+  const allNavItems: NavItem[] = [
     { id: 'home', label: 'Home', href: '/', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'about', label: 'About', href: '#about', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'manifesto', label: 'Manifesto', href: '/manifesto', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'projects', label: 'Projects', href: '/projects', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'thoughts', label: 'Thoughts', href: '#thoughts', icon: <Sparkles size={18} className="mr-2" /> },
     { id: 'gallery', label: 'Gallery', href: '/gallery', icon: <Sparkles size={18} className="mr-2" /> },
-  ];
-  
-  const moreNavItems: NavItem[] = [
     { id: 'cinema', label: 'Cinema', href: '/cinema', icon: <Film size={18} className="mr-2" /> },
     { id: 'lab', label: 'Digital Lab', href: '/lab', icon: <Beaker size={18} className="mr-2" /> },
     { id: 'philosophy', label: 'Philosophy', href: '/philosophy', icon: <BookOpen size={18} className="mr-2" /> },
@@ -109,14 +85,10 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     if (activeSection === id) return true;
     
     // Check if the current path matches the href for router links
-    if (id !== 'home' && pathname === navItems.find(item => item.id === id)?.href) return true;
-    if (pathname === moreNavItems.find(item => item.id === id)?.href) return true;
+    if (id !== 'home' && pathname === allNavItems.find(item => item.id === id)?.href) return true;
     
     return false;
   };
-  
-  // Check if any item in the more menu is active to highlight the More button
-  const isMoreActive = moreNavItems.some(item => isActive(item.id));
   
   return (
     <header 
@@ -152,17 +124,21 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             />
           </Link>
           
-          <div className="hidden md:flex space-x-4 items-center header-scrollable">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-1 overflow-x-auto max-w-[70vw] pb-1 header-scrollable">
+            {allNavItems.map((item) => (
               item.href.startsWith('#') ? (
                 <a
                   key={item.id}
                   href={item.href}
-                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-3 py-2 ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-2 py-2 whitespace-nowrap flex items-center ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
-                  {item.label}
+                  {item.icon}
+                  <span>{item.label}</span>
+                  {item.isNew && (
+                    <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                  )}
                   {isActive(item.id) && (
                     <motion.div
                       layoutId="activeSection"
@@ -177,11 +153,15 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 <Link
                   key={item.id}
                   to={item.href}
-                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-3 py-2 ${
+                  className={`relative font-raleway font-medium hover:text-neon-purple transition-colors px-2 py-2 whitespace-nowrap flex items-center ${
                     isActive(item.id) ? 'text-neon-purple' : 'text-white'
                   }`}
                 >
-                  {item.label}
+                  {item.icon}
+                  <span>{item.label}</span>
+                  {item.isNew && (
+                    <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                  )}
                   {isActive(item.id) && (
                     <motion.div
                       layoutId="activeSection"
@@ -194,77 +174,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 </Link>
               )
             ))}
-            
-            <div className="relative group">
-              <button 
-                onClick={toggleMoreMenu}
-                className={`relative font-raleway font-medium transition-colors px-3 py-2 flex items-center more-trigger ${
-                  isMoreActive ? 'text-neon-purple' : 'text-white hover:text-neon-purple'
-                }`}
-              >
-                More
-                <ChevronDown 
-                  size={16} 
-                  className={`ml-1 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180' : ''}`} 
-                />
-                
-                {isMoreActive && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-purple"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </button>
-              
-              <AnimatePresence>
-                {moreMenuOpen && (
-                  <motion.div 
-                    className="more-menu"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {moreNavItems.map((item) => (
-                      item.href.startsWith('#') ? (
-                        <motion.a
-                          key={item.id}
-                          href={item.href}
-                          className="more-menu-item"
-                          whileHover={{ x: 5 }}
-                          transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                          {item.icon}
-                          {item.label}
-                          {item.isNew && (
-                            <span className="ml-auto text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                          )}
-                        </motion.a>
-                      ) : (
-                        <motion.div key={item.id}>
-                          <Link
-                            to={item.href}
-                            className={`more-menu-item ${
-                              isActive(item.id) ? 'bg-white/10 text-neon-purple' : ''
-                            }`}
-                            onClick={() => setMoreMenuOpen(false)}
-                          >
-                            {item.icon}
-                            {item.label}
-                            {item.isNew && (
-                              <span className="ml-auto text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                            )}
-                          </Link>
-                        </motion.div>
-                      )
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
           
           <div className="md:hidden">
@@ -289,7 +198,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             className="md:hidden fixed left-0 right-0 top-[76px] bg-black/95 backdrop-blur-md border-t border-white/10 z-50 max-h-[calc(100vh-76px)] overflow-y-auto"
           >
             <div className="flex flex-col p-4">
-              {[...navItems, ...moreNavItems].map((item) => (
+              {allNavItems.map((item) => (
                 item.href.startsWith('#') ? (
                   <a
                     key={item.id}
