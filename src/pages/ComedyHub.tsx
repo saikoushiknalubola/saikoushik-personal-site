@@ -92,9 +92,9 @@ const ComedyHub = () => {
                 className="relative z-10"
               >
                 <img 
-                  src="/placeholder.svg" 
-                  alt="Einstein with funny expression" 
-                  className="rounded-lg shadow-xl w-full"
+                  src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d" 
+                  alt="Vintage comedy microphone with blurred background" 
+                  className="rounded-lg shadow-xl w-full h-[500px] object-cover"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-yellow-400 text-black p-3 rounded-full shadow-lg">
                   <Lightbulb size={24} />
