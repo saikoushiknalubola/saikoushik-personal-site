@@ -695,18 +695,11 @@ const Index = () => {
           </div>
           
           <div className="text-center mb-6">
-            <p className="text-center text-lg font-medium mb-4 text-gradient from-blue-400 to-purple-400">
+            <p className="text-center text-xl font-medium mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent px-4 py-2 rounded-lg shadow-inner backdrop-blur-sm inline-block">
               "The distinction between past, present, and future is only a stubbornly persistent illusion."
             </p>
-            <p className="text-center text-white/60 text-sm">
+            <p className="text-center text-white text-sm font-medium">
               — Albert Einstein
-            </p>
-            
-            <p className="text-center text-lg font-medium mt-4 text-gradient from-purple-400 to-blue-400">
-              "In the grand theater of life, we are both the audience and the actors, writing our stories with every breath."
-            </p>
-            <p className="text-center text-white/60 text-sm">
-              — Maan
             </p>
           </div>
           
