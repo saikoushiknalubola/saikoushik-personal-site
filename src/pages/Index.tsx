@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -159,7 +160,7 @@ const Index = () => {
         id="home" 
         className="min-h-screen flex flex-col justify-center pt-20 px-4 md:px-8 relative overflow-hidden"
       >
-        <div className="absolute inset-0 pointer-events-none retro-future-grid"></div>
+        <div className="absolute inset-0 pointer-events-none enhanced-grid"></div>
         
         <div className="container mx-auto relative z-10">
           <div className="max-w-3xl">
@@ -172,7 +173,7 @@ const Index = () => {
               SAIKOUSHIK NALUBOLA • 2050
             </motion.span>
             <motion.h1 
-              className="text-4xl md:text-6xl font-bold mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -196,12 +197,12 @@ const Index = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.6 }}
             >
-              <FuturisticButton href="#about" size="lg">
+              <FuturisticButton href="#about" size="lg" className="btn-glow">
                 Bend spacetime, scroll down
                 <ArrowDown className="ml-2 animate-bounce-light" size={18} />
               </FuturisticButton>
               
-              <FuturisticButton href="/manifesto" variant="secondary">
+              <FuturisticButton href="/manifesto" variant="secondary" className="btn-glow">
                 Read The Quantum Manifesto
               </FuturisticButton>
             </motion.div>
@@ -230,7 +231,7 @@ const Index = () => {
         
         <div className="absolute bottom-20 right-10 hidden lg:block">
           <motion.div 
-            className="text-5xl"
+            className="text-5xl floating-element"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
@@ -256,7 +257,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll space-y-4">
-              <p>
+              <p className="text-lg">
                 I'm Saikoushik Nalubola, a B.Tech student in Computer Science and Engineering with specialization in AI & Robotics — but that's just the formal part of my story.
               </p>
               <p>
@@ -273,7 +274,7 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="glass-card p-8 animate-on-scroll">
+            <div className="glass-card-glow p-8 animate-on-scroll">
               <h3 className="text-2xl font-bold mb-4">The Quick Files</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
@@ -316,13 +317,13 @@ const Index = () => {
               
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link to="/journey">
-                  <FuturisticButton variant="secondary" size="sm">
+                  <FuturisticButton variant="secondary" size="sm" className="btn-glow">
                     <Clock className="mr-2" size={16} />
                     View Experience Timeline
                   </FuturisticButton>
                 </Link>
                 <Link to="/future">
-                  <FuturisticButton variant="secondary" size="sm">
+                  <FuturisticButton variant="secondary" size="sm" className="btn-glow">
                     Future Vision
                     <ArrowRight className="ml-2" size={16} />
                   </FuturisticButton>
@@ -334,7 +335,7 @@ const Index = () => {
       </section>
 
       {/* Journey Highlights Section */}
-      <section id="journey-highlights" className="py-20 px-4 md:px-8 relative">
+      <section id="journey-highlights" className="enhanced-section">
         <div className="container mx-auto">
           <SectionHeader 
             title="Epic Quantum Adventures" 
@@ -343,9 +344,34 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            {journeyHighlights.map((item, index) => (
+              <motion.div 
+                key={index}
+                className="glass-card-glow p-6 animate-on-scroll"
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-full bg-white/5">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                </div>
+                <div className="mb-4 rounded-lg overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
+                <p className="text-white/80">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+          
           <div className="mt-12 text-center animate-on-scroll">
             <Link to="/journey">
-              <FuturisticButton variant="secondary">
+              <FuturisticButton variant="secondary" className="btn-glow">
                 <Sparkles className="mr-2" size={16} />
                 Explore My Complete Timeline
               </FuturisticButton>
@@ -356,7 +382,7 @@ const Index = () => {
 
       <section 
         id="manifesto" 
-        className="py-20 px-4 md:px-8"
+        className="enhanced-section"
       >
         <div className="container mx-auto">
           <SectionHeader 
@@ -370,7 +396,7 @@ const Index = () => {
             <div className="animate-on-scroll">
               <h3 className="text-2xl font-bold mb-4">My Manifesto</h3>
               <div className="space-y-4">
-                <p>
+                <p className="text-lg">
                   I believe in the power of unconventional thinking to solve conventional problems. The greatest innovations often come from those willing to see beyond established wisdom.
                 </p>
                 <p>
@@ -402,6 +428,7 @@ const Index = () => {
                   quote={quote}
                   author="Saikoushik Nalubola"
                   color={index % 2 === 0 ? "border-neon-purple" : "border-neon-cyan"}
+                  className="enhanced-quote-card"
                 />
               ))}
             </div>
@@ -419,7 +446,7 @@ const Index = () => {
 
       <section 
         id="projects" 
-        className="py-20 px-4 md:px-8 bg-secondary/30 relative"
+        className="enhanced-section bg-secondary/30 relative"
       >
         <div className="container mx-auto">
           <SectionHeader 
@@ -438,13 +465,13 @@ const Index = () => {
                 description={project.description}
                 emoji={project.emoji}
                 tags={project.tags}
-                className="animate-on-scroll"
+                className="animate-on-scroll glass-card-glow"
               />
             ))}
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
-            <FuturisticButton href="/projects" variant="secondary">
+            <FuturisticButton href="/projects" variant="secondary" className="btn-glow">
               Enter The Quantum Laboratory
               <ArrowRight className="ml-2" size={18} />
             </FuturisticButton>
@@ -454,7 +481,7 @@ const Index = () => {
 
       <section 
         id="thoughts" 
-        className="py-20 px-4 md:px-8"
+        className="enhanced-section"
       >
         <div className="container mx-auto">
           <SectionHeader 
@@ -465,27 +492,28 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="space-y-12">
+          <div className="grid md:grid-cols-3 gap-8">
             {thoughts.map((thought, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className="animate-on-scroll"
+                className="glass-card-glow p-6 animate-on-scroll"
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <h3 className="text-2xl font-bold mb-2">{thought.title}</h3>
                 <p className="text-muted-foreground mb-4">{thought.excerpt}</p>
                 <Link 
                   to="/soul"
-                  className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center"
+                  className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center mt-auto"
                 >
                   Read more
                   <ArrowRight className="ml-2" size={16} />
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
-            <FuturisticButton href="/soul" variant="secondary">
+            <FuturisticButton href="/soul" variant="secondary" className="btn-glow">
               Explore The Soul of Creation
               <ArrowRight className="ml-2" size={18} />
             </FuturisticButton>
@@ -495,7 +523,7 @@ const Index = () => {
 
       <section 
         id="gallery" 
-        className="py-20 px-4 md:px-8 bg-secondary/30 relative overflow-hidden"
+        className="enhanced-section bg-secondary/30 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-purple-900/20 mix-blend-overlay"></div>
         <div className="container mx-auto relative z-10">
@@ -510,38 +538,38 @@ const Index = () => {
             <ImmersiveImageCard 
               src="/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png"
               alt="Quantum Computing Initiative"
-              className="aspect-square"
+              className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png"
               alt="Innovation Workshop"
-              className="aspect-square"
+              className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png"
               alt="Google Cloud Platform"
-              className="aspect-square"
+              className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/0a34d2bf-6f36-42f9-8f1f-99d687f9fe35.png"
               alt="Quantum Visualization"
-              className="aspect-square"
+              className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png"
               alt="Future Tech Concepts"
-              className="aspect-square"
+              className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
               src="/lovable-uploads/49cc4f99-9030-4bef-8ac0-00597408b6d2.png"
               alt="Spacetime Dynamics"
-              className="aspect-square"
+              className="aspect-square glass-card-glow"
             />
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
             <Link to="/gallery">
-              <FuturisticButton variant="primary" size="lg">
+              <FuturisticButton variant="primary" size="lg" className="btn-glow">
                 <Sparkles className="mr-2" size={18} />
                 Enter The Quantum Gallery
               </FuturisticButton>
@@ -552,7 +580,7 @@ const Index = () => {
 
       <section 
         id="skills" 
-        className="py-20 px-4 md:px-8 relative overflow-hidden"
+        className="enhanced-section relative overflow-hidden"
       >
         <div className="absolute inset-0 neural-bg opacity-20"></div>
         <div className="container mx-auto relative z-10">
@@ -593,7 +621,7 @@ const Index = () => {
 
       <section 
         id="contact" 
-        className="py-20 px-4 md:px-8 bg-secondary/30"
+        className="enhanced-section bg-secondary/30"
       >
         <div className="container mx-auto">
           <SectionHeader 
@@ -602,7 +630,7 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="max-w-2xl mx-auto glass-card p-8 animate-on-scroll">
+          <div className="max-w-2xl mx-auto glass-card-glow p-8 animate-on-scroll">
             <p className="text-xl mb-8 text-center">
               "In the vastness of the digital cosmos, like ships passing in the night, we seek connections that transcend the ordinary." If you have a vision that defies convention, let's manifest it together.
             </p>
@@ -695,12 +723,14 @@ const Index = () => {
           </div>
           
           <div className="text-center mb-6">
-            <p className="text-center text-xl font-medium mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent px-4 py-2 rounded-lg shadow-inner backdrop-blur-sm inline-block">
-              "The distinction between past, present, and future is only a stubbornly persistent illusion."
-            </p>
-            <p className="text-center text-white text-sm font-medium">
-              — Albert Einstein
-            </p>
+            <div className="einstein-quote inline-block">
+              <p className="einstein-quote-text">
+                "The distinction between past, present, and future is only a stubbornly persistent illusion."
+              </p>
+              <p className="text-center text-white text-sm font-medium mt-2">
+                — Albert Einstein
+              </p>
+            </div>
           </div>
           
           <p className="text-center text-white/60 mt-6">

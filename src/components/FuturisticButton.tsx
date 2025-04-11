@@ -25,8 +25,8 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
   const baseClasses = "relative overflow-hidden font-medium transition-all duration-300 flex items-center justify-center";
   
   const variantClasses = {
-    primary: "bg-neon-purple hover:bg-purple-700 text-white",
-    secondary: "bg-transparent border border-neon-purple text-neon-purple hover:bg-neon-purple/10",
+    primary: "bg-neon-purple hover:bg-purple-700 text-white shadow-[0_4px_15px_rgba(139,92,246,0.3)]",
+    secondary: "bg-transparent border border-neon-purple text-neon-purple hover:bg-neon-purple/10 shadow-[0_4px_15px_rgba(139,92,246,0.15)]",
     ghost: "bg-transparent text-neon-purple hover:bg-white/5"
   };
   
