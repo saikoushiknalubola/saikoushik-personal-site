@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -143,12 +142,6 @@ const Index = () => {
       description: "Part of T-Hub's prestigious mentorship program, connecting with industry leaders and visionaries.",
       icon: <Brain className="text-neon-purple" size={24} />,
       image: "/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png"
-    },
-    {
-      title: "Microsoft Innovation Workshop",
-      description: "Led a breakthrough session at Microsoft's innovation workshop, exploring the frontiers of quantum computing.",
-      icon: <Network className="text-neon-purple" size={24} />,
-      image: "/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png"
     }
   ];
 
@@ -372,7 +365,7 @@ const Index = () => {
           <div className="mt-12 text-center animate-on-scroll">
             <Link to="/journey">
               <FuturisticButton variant="secondary" className="btn-glow">
-                <Sparkles className="mr-2" size={16} />
+                <Sparkles className="mr-2" size={18} />
                 Explore My Complete Timeline
               </FuturisticButton>
             </Link>
