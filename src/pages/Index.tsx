@@ -694,12 +694,15 @@ const Index = () => {
             </div>
           </div>
           
-          <p className="text-center text-lg font-medium mb-4 text-gradient from-blue-400 to-purple-400">
-            "The distinction between past, present, and future is only a stubbornly persistent illusion."
-          </p>
-          <p className="text-center text-white/60 text-sm">
-            — Albert Einstein
-          </p>
+          <div className="text-center mb-6">
+            <p className="text-center text-lg font-medium mb-4 text-gradient from-blue-400 to-purple-400">
+              "The distinction between past, present, and future is only a stubbornly persistent illusion."
+            </p>
+            <p className="text-center text-white/60 text-sm">
+              — Albert Einstein
+            </p>
+          </div>
+          
           <p className="text-center text-white/60 mt-6">
             © {new Date().getFullYear()} Saikoushik Nalubola. All rights reserved in this timeline.
           </p>

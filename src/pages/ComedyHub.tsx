@@ -97,10 +97,10 @@ const ComedyHub = () => {
                 <img 
                   src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d" 
                   alt="Vintage comedy microphone with blurred background" 
-                  className="rounded-lg shadow-xl w-full h-[300px] md:h-[500px] object-cover"
+                  className="rounded-lg shadow-xl w-full h-[280px] md:h-[500px] object-cover"
                 />
-                <div className="absolute -bottom-4 -right-4 bg-yellow-400 text-black p-3 rounded-full shadow-lg">
-                  <Lightbulb size={isMobile ? 18 : 24} />
+                <div className="absolute -bottom-4 -right-4 bg-yellow-400 text-black p-2 md:p-3 rounded-full shadow-lg">
+                  <Lightbulb size={isMobile ? 16 : 24} />
                 </div>
               </motion.div>
               
