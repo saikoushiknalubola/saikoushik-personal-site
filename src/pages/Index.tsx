@@ -130,20 +130,7 @@ const Index = () => {
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
 
-  const journeyHighlights = [
-    {
-      title: "Google Cloud Innovation",
-      description: "Selected for Google Cloud's exclusive innovation program, developing quantum-powered solutions.",
-      icon: <Rocket className="text-neon-purple" size={24} />,
-      image: "/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png"
-    },
-    {
-      title: "T-Hub Mentorship",
-      description: "Part of T-Hub's prestigious mentorship program, connecting with industry leaders and visionaries.",
-      icon: <Brain className="text-neon-purple" size={24} />,
-      image: "/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png"
-    }
-  ];
+  const journeyHighlights = [];
 
   return (
     <div className="min-h-screen">
@@ -328,7 +315,8 @@ const Index = () => {
       </section>
 
       {/* Journey Highlights Section */}
-      <section id="journey-highlights" className="enhanced-section">
+      {/* {journeyHighlights.length > 0 && ( */}
+      {/* <section id="journey-highlights" className="enhanced-section">
         <div className="container mx-auto">
           <SectionHeader 
             title="Epic Quantum Adventures" 
@@ -371,7 +359,7 @@ const Index = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section>)} */}
 
       <section 
         id="manifesto" 
