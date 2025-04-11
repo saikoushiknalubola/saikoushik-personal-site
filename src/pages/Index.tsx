@@ -701,6 +701,13 @@ const Index = () => {
             <p className="text-center text-white/60 text-sm">
               — Albert Einstein
             </p>
+            
+            <p className="text-center text-lg font-medium mt-4 text-gradient from-purple-400 to-blue-400">
+              "In the grand theater of life, we are both the audience and the actors, writing our stories with every breath."
+            </p>
+            <p className="text-center text-white/60 text-sm">
+              — Maan
+            </p>
           </div>
           
           <p className="text-center text-white/60 mt-6">
