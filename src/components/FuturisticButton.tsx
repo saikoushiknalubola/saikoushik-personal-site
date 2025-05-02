@@ -2,15 +2,20 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 interface FuturisticButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'gradient';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   to?: string;
+  icon?: React.ReactNode;
+  animated?: boolean;
+  pulseEffect?: boolean;
+  glowIntensity?: 'low' | 'medium' | 'high';
 }
 
 const FuturisticButton: React.FC<FuturisticButtonProps> = ({
@@ -20,14 +25,19 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
   variant = 'primary',
   size = 'md',
   href,
-  to
+  to,
+  icon,
+  animated = true,
+  pulseEffect = false,
+  glowIntensity = 'medium'
 }) => {
   const baseClasses = "relative overflow-hidden font-medium transition-all duration-300 flex items-center justify-center";
   
   const variantClasses = {
     primary: "bg-neon-purple hover:bg-purple-700 text-white shadow-[0_4px_15px_rgba(139,92,246,0.3)]",
     secondary: "bg-transparent border border-neon-purple text-neon-purple hover:bg-neon-purple/10 shadow-[0_4px_15px_rgba(139,92,246,0.15)]",
-    ghost: "bg-transparent text-neon-purple hover:bg-white/5"
+    ghost: "bg-transparent text-neon-purple hover:bg-white/5",
+    gradient: "bg-gradient-to-r from-neon-purple to-future-primary text-white shadow-[0_4px_15px_rgba(139,92,246,0.3)]"
   };
   
   const sizeClasses = {
@@ -36,8 +46,18 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
     lg: "text-lg px-8 py-4 rounded-md"
   };
   
+  const glowClasses = {
+    low: "hover:shadow-[0_0_10px_rgba(139,92,246,0.3)]",
+    medium: "hover:shadow-[0_0_15px_rgba(139,92,246,0.5)]",
+    high: "hover:shadow-[0_0_25px_rgba(139,92,246,0.7)]"
+  };
+  
   const ButtonContent = () => (
-    <>
+    <motion.div
+      className="flex items-center justify-center w-full h-full"
+      whileHover={animated ? { scale: 1.03 } : {}}
+      whileTap={animated ? { scale: 0.98 } : {}}
+    >
       {/* Glitch effect overlay */}
       <span className="absolute inset-0 w-full h-full bg-white opacity-0 hover:opacity-10 transition-opacity mix-blend-overlay"></span>
       
@@ -51,9 +71,17 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
         </>
       )}
       
+      {/* Pulse effect for special emphasis */}
+      {pulseEffect && variant !== 'ghost' && (
+        <span className="absolute inset-0 bg-neon-purple rounded-md animate-pulse opacity-30"></span>
+      )}
+      
       {/* Button text with subtle text shadow */}
-      <span className="relative z-10 shadow-glow">{children}</span>
-    </>
+      <span className="relative z-10 shadow-glow flex items-center space-x-2">
+        {icon && <span className="mr-2">{icon}</span>}
+        <span>{children}</span>
+      </span>
+    </motion.div>
   );
   
   // Internal router navigation
@@ -65,6 +93,7 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
           baseClasses,
           variantClasses[variant],
           sizeClasses[size],
+          glowClasses[glowIntensity],
           className
         )}
       >
@@ -82,6 +111,7 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
           baseClasses,
           variantClasses[variant],
           sizeClasses[size],
+          glowClasses[glowIntensity],
           className
         )}
         target={href.startsWith('http') ? "_blank" : undefined}
@@ -94,17 +124,20 @@ const FuturisticButton: React.FC<FuturisticButtonProps> = ({
   
   // Regular button
   return (
-    <button
+    <motion.button
       onClick={onClick}
       className={cn(
         baseClasses,
         variantClasses[variant],
         sizeClasses[size],
+        glowClasses[glowIntensity],
         className
       )}
+      whileHover={animated ? { scale: 1.03 } : {}}
+      whileTap={animated ? { scale: 0.98 } : {}}
     >
       <ButtonContent />
-    </button>
+    </motion.button>
   );
 };
 
