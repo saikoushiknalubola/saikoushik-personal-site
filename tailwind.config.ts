@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -70,7 +71,9 @@ export default {
 				apple: {
 					blue: '#147EFB',
 					gray: '#8A8A8A',
-					light: '#F5F5F7'
+					light: '#F5F5F7',
+          			dark: '#1D1D1F',
+          			silver: '#A1A1A6'
 				},
 				future: {
 					primary: '#00F0FF',
@@ -202,7 +205,15 @@ export default {
 					'30%': { transform: 'skew(2deg, 1deg)' },
 					'70%': { transform: 'skew(-2deg, -1deg)' },
 					'100%': { transform: 'skew(0deg, 0deg)' }
-				}
+				},
+        		'apple-breathing': {
+                	'0%, 100%': { boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)' },
+                	'50%': { boxShadow: '0 0 25px rgba(255, 255, 255, 0.5)' }
+              	},
+              	'slide-reveal': {
+                	'0%': { transform: 'scaleX(0)', transformOrigin: 'left' },
+                	'100%': { transform: 'scaleX(1)', transformOrigin: 'left' }
+              	}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -219,7 +230,9 @@ export default {
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'apple-bounce': 'apple-bounce 2s cubic-bezier(0.28, 0.84, 0.42, 1) infinite',
 				'newton-fall': 'newton-fall 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
-				'einstein-warp': 'einstein-warp 3s ease-in-out infinite'
+				'einstein-warp': 'einstein-warp 3s ease-in-out infinite',
+              	'apple-breathing': 'apple-breathing 3s ease-in-out infinite',
+              	'slide-reveal': 'slide-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards'
 			},
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
@@ -233,7 +246,8 @@ export default {
 			textShadow: {
 				'glow': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
 				'future': '0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.5)',
-				'neon': '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff'
+				'neon': '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff',
+              	'apple': '0 0 1px rgba(255, 255, 255, 0.5)'
 			},
 			backdropFilter: {
 				'none': 'none',
@@ -243,7 +257,8 @@ export default {
 				'neon-purple': '0 0 5px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
 				'neon-cyan': '0 0 5px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
 				'futuristic': '0 0 10px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.3)',
-				'apple': '0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)'
+				'apple': '0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)',
+              	'apple-glow': '0 0 15px rgba(255, 255, 255, 0.3)'
 			}
 		}
 	},

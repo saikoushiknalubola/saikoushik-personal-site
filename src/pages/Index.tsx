@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -11,6 +12,10 @@ import FuturisticButton from '@/components/FuturisticButton';
 import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
 import MagicApple from '@/components/MagicApple';
+import ThinkDifferentQuote from '@/components/ThinkDifferentQuote';
+import InnovationTimeline from '@/components/InnovationTimeline';
+import OneMoreThing from '@/components/OneMoreThing';
+import SlideToUnlock from '@/components/SlideToUnlock';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, ExternalLink, Clock, ZapIcon, Sparkles, Rocket, Brain, Network, Lightbulb } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import ImmersiveImageCard from '@/components/ImmersiveImageCard';
@@ -18,6 +23,7 @@ import ImmersiveImageCard from '@/components/ImmersiveImageCard';
 const Index = () => {
   const isMobile = useIsMobile();
   const [activeSection, setActiveSection] = useState('home');
+  const [unlocked, setUnlocked] = useState(false);
   
   useEffect(() => {
     const observerOptions = {
@@ -145,7 +151,7 @@ const Index = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-3xl">
             <motion.span 
-              className="text-future-primary font-space text-sm tracking-wider mb-2 block"
+              className="text-future-primary font-sf text-sm tracking-wider mb-2 block"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
@@ -153,7 +159,7 @@ const Index = () => {
               SAIKOUSHIK NALUBOLA • 2050
             </motion.span>
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-sf font-bold mb-6 tracking-tight"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -164,7 +170,7 @@ const Index = () => {
               </span>
             </motion.h1>
             <motion.div 
-              className="text-xl md:text-2xl font-medium mb-8 h-12"
+              className="text-xl md:text-2xl font-sf font-medium mb-8 h-12"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
@@ -177,12 +183,12 @@ const Index = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.6 }}
             >
-              <FuturisticButton href="#about" size="lg" className="btn-glow">
+              <FuturisticButton href="#about" size="lg" className="font-sf btn-glow">
                 Bend spacetime, scroll down
                 <ArrowDown className="ml-2 animate-bounce-light" size={18} />
               </FuturisticButton>
               
-              <FuturisticButton href="/manifesto" variant="secondary" className="btn-glow">
+              <FuturisticButton href="/manifesto" variant="secondary" className="font-sf btn-glow">
                 Read The Quantum Manifesto
               </FuturisticButton>
             </motion.div>
@@ -209,16 +215,31 @@ const Index = () => {
           </a>
         </motion.div>
         
-        <div className="absolute bottom-20 right-10 hidden lg:block">
+        {/* Centered MagicApple with improved animation */}
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 1 }}
+        >
           <motion.div 
-            className="text-5xl floating-element"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            className="w-40 h-40 flex items-center justify-center"
+            animate={{ 
+              y: [0, -15, 0],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
           >
-            <MagicApple />
+            <div className="transform scale-[3] pointer-events-auto">
+              <MagicApple />
+            </div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       <section 
@@ -237,26 +258,26 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll space-y-4">
-              <p className="text-lg">
+              <p className="text-lg font-sf">
                 I'm Saikoushik Nalubola, a B.Tech student in Computer Science and Engineering with specialization in AI & Robotics — but that's just the formal part of my story.
               </p>
-              <p>
+              <p className="font-sf">
                 What drives me is a relentless need to challenge the status quo. From a young age, I've been the person who asks "Why?" and then follows with "Why not differently?"
               </p>
-              <p>
+              <p className="font-sf">
                 This questioning led me to found <span className="text-neon-purple font-medium">Revitalize Innovations</span>, where we focus on building impactful, unexpected solutions that address real-world problems through technology and innovative thinking.
               </p>
-              <p>
+              <p className="font-sf">
                 Through hackathons, startup competitions, and passionate late-night coding sessions, I've discovered my purpose: to create systems, products, and ideas that empower people and fundamentally change how we approach challenges.
               </p>
-              <p>
+              <p className="font-sf">
                 I'm equal parts dreamer and doer, rebel and builder, philosopher and engineer. I believe technology should serve humanity — not the other way around.
               </p>
             </div>
             
             <div className="glass-card-glow p-8 animate-on-scroll">
-              <h3 className="text-2xl font-bold mb-4">The Quick Files</h3>
-              <ul className="space-y-3">
+              <h3 className="text-2xl font-bold mb-4 font-sf">The Quick Files</h3>
+              <ul className="space-y-3 font-sf">
                 <li className="flex items-start">
                   <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
                   <span>B.Tech student in CSE (AI & Robotics)</span>
@@ -297,13 +318,13 @@ const Index = () => {
               
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link to="/journey">
-                  <FuturisticButton variant="secondary" size="sm" className="btn-glow">
+                  <FuturisticButton variant="secondary" size="sm" className="btn-glow font-sf">
                     <Clock className="mr-2" size={16} />
                     View Experience Timeline
                   </FuturisticButton>
                 </Link>
                 <Link to="/future">
-                  <FuturisticButton variant="secondary" size="sm" className="btn-glow">
+                  <FuturisticButton variant="secondary" size="sm" className="btn-glow font-sf">
                     Future Vision
                     <ArrowRight className="ml-2" size={16} />
                   </FuturisticButton>
@@ -313,53 +334,32 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Journey Highlights Section */}
-      {/* {journeyHighlights.length > 0 && ( */}
-      {/* <section id="journey-highlights" className="enhanced-section">
+      
+      {/* Steve Jobs inspired "Innovation Timeline" section */}
+      <section id="innovation" className="enhanced-section">
         <div className="container mx-auto">
           <SectionHeader 
-            title="Epic Quantum Adventures" 
-            subtitle="Key moments from my multidimensional journey"
-            style="futuristic"
+            title="The Innovation Timeline" 
+            subtitle="Revolutionary moments that define my journey"
+            style="apple"
             className="animate-on-scroll"
           />
           
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {journeyHighlights.map((item, index) => (
-              <motion.div 
-                key={index}
-                className="glass-card-glow p-6 animate-on-scroll"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-full bg-white/5">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold">{item.title}</h3>
-                </div>
-                <div className="mb-4 rounded-lg overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" 
-                  />
-                </div>
-                <p className="text-white/80">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center animate-on-scroll">
-            <Link to="/journey">
-              <FuturisticButton variant="secondary" className="btn-glow">
-                <Sparkles className="mr-2" size={18} />
-                Explore My Complete Timeline
-              </FuturisticButton>
-            </Link>
+          <div className="animate-on-scroll">
+            <InnovationTimeline />
           </div>
         </div>
-      </section>)} */}
+      </section>
+      
+      {/* Added "Think Different" Quote section */}
+      <section id="think-different" className="py-24 px-4 relative overflow-hidden bg-black/40">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="animate-on-scroll">
+            <ThinkDifferentQuote />
+          </div>
+        </div>
+      </section>
 
       <section 
         id="manifesto" 
@@ -375,8 +375,8 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="animate-on-scroll">
-              <h3 className="text-2xl font-bold mb-4">My Manifesto</h3>
-              <div className="space-y-4">
+              <h3 className="text-2xl font-bold mb-4 font-sf">My Manifesto</h3>
+              <div className="space-y-4 font-sf">
                 <p className="text-lg">
                   I believe in the power of unconventional thinking to solve conventional problems. The greatest innovations often come from those willing to see beyond established wisdom.
                 </p>
@@ -395,7 +395,7 @@ const Index = () => {
               </div>
               
               <div className="mt-8">
-                <Link to="/manifesto" className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center font-medium">
+                <Link to="/manifesto" className="text-neon-purple hover:text-purple-400 transition-colors inline-flex items-center font-medium font-sf">
                   Read the full Quantum Manifesto
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
@@ -452,7 +452,7 @@ const Index = () => {
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
-            <FuturisticButton href="/projects" variant="secondary" className="btn-glow">
+            <FuturisticButton href="/projects" variant="secondary" className="btn-glow font-sf">
               Enter The Quantum Laboratory
               <ArrowRight className="ml-2" size={18} />
             </FuturisticButton>
@@ -460,6 +460,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* One More Thing section */}
+      <section id="one-more-thing" className="py-24 px-4">
+        <div className="container mx-auto">
+          <OneMoreThing>
+            <div className="text-center py-8">
+              <h3 className="text-3xl font-sf font-light mb-6">The Quantum OS Project</h3>
+              <p className="text-lg mb-8 max-w-2xl mx-auto font-sf">
+                An experimental operating system that brings relativity theory to user interfaces. Time literally slows down when you're focused, and speeds up when you're not.
+              </p>
+              
+              <div className="flex justify-center">
+                <SlideToUnlock onUnlock={() => setUnlocked(true)} />
+              </div>
+              
+              {unlocked && (
+                <motion.div 
+                  className="mt-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <p className="text-neon-purple font-sf">
+                    Early access granted. Look for an email soon.
+                  </p>
+                </motion.div>
+              )}
+            </div>
+          </OneMoreThing>
+        </div>
+      </section>
+      
       <section 
         id="thoughts" 
         className="enhanced-section"
