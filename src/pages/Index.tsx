@@ -135,8 +135,15 @@ const Index = () => {
     },
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
-
-  const journeyHighlights = [];
+  
+  // New Jobs-inspired quotes
+  const jobsQuotes = [
+    "Innovation distinguishes between a leader and a follower.",
+    "Design is not just what it looks like and feels like. Design is how it works.",
+    "Stay hungry, stay foolish.",
+    "Your time is limited, so don't waste it living someone else's life.",
+    "The people who are crazy enough to think they can change the world are the ones who do."
+  ];
 
   return (
     <div className="min-h-screen">
@@ -213,32 +220,6 @@ const Index = () => {
           <a href="mailto:saikoushik42@gmail.com" className="text-white/70 hover:text-white transition-colors transform hover:scale-110">
             <Mail size={22} />
           </a>
-        </motion.div>
-        
-        {/* Centered MagicApple with improved animation */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 1 }}
-        >
-          <motion.div 
-            className="w-40 h-40 flex items-center justify-center"
-            animate={{ 
-              y: [0, -15, 0],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{ 
-              duration: 3,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-          >
-            <div className="transform scale-[3] pointer-events-auto">
-              <MagicApple />
-            </div>
-          </motion.div>
         </motion.div>
       </section>
 
@@ -347,6 +328,53 @@ const Index = () => {
           
           <div className="animate-on-scroll">
             <InnovationTimeline />
+          </div>
+        </div>
+      </section>
+      
+      {/* Product Showcase - Apple Style */}
+      <section id="product-showcase" className="py-24 bg-gradient-to-b from-black to-black/90 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/54de61e9-b777-47cb-bb61-8a3ce48c4045.png')] bg-center bg-cover opacity-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16 animate-on-scroll">
+            <h2 className="font-sf font-medium text-4xl md:text-5xl tracking-tight mb-4">
+              Beautifully <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Designed</span>
+            </h2>
+            <p className="text-lg md:text-xl font-sf font-light text-white/90 max-w-2xl mx-auto">
+              Every project is crafted with intention, purpose, and an obsessive attention to detail.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 animate-on-scroll">
+            {projects.map((project, idx) => (
+              <motion.div
+                key={idx}
+                className="apple-glass-card p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex justify-center mb-4">
+                  <span className="text-4xl">{project.emoji}</span>
+                </div>
+                <h3 className="font-sf font-medium text-xl mb-2">{project.title}</h3>
+                <p className="font-sf font-light text-white/80 mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {project.tags.map((tag, tagIdx) => (
+                    <span key={tagIdx} className="text-xs px-3 py-1 rounded-full bg-white/10 font-sf">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-16 text-center">
+            <button className="apple-button apple-breathing">
+              Learn More
+            </button>
           </div>
         </div>
       </section>
@@ -460,10 +488,36 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Jobs Quotes Carousel - Apple Style */}
+      <section id="inspiration" className="py-24 px-4 bg-gradient-to-b from-black/80 to-black/90 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12 animate-on-scroll">
+            <h2 className="font-sf font-light text-3xl md:text-4xl tracking-tight mb-4">Words to Live By</h2>
+            <div className="h-0.5 w-20 bg-white/20 mx-auto"></div>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            {jobsQuotes.map((quote, idx) => (
+              <motion.div
+                key={idx}
+                className={`glass-card p-8 mb-6 ${idx % 2 === 0 ? 'mr-8 md:mr-16' : 'ml-8 md:ml-16'}`}
+                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                <p className="font-sf font-light text-xl md:text-2xl text-white/90 italic mb-4">"{quote}"</p>
+                <p className="text-right font-sf text-sm text-white/70">- Steve Jobs</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* One More Thing section */}
       <section id="one-more-thing" className="py-24 px-4">
         <div className="container mx-auto">
-          <OneMoreThing>
+          <OneMoreThing title="And One More Thing...">
             <div className="text-center py-8">
               <h3 className="text-3xl font-sf font-light mb-6">The Quantum OS Project</h3>
               <p className="text-lg mb-8 max-w-2xl mx-auto font-sf">
@@ -471,7 +525,7 @@ const Index = () => {
               </p>
               
               <div className="flex justify-center">
-                <SlideToUnlock onUnlock={() => setUnlocked(true)} />
+                <SlideToUnlock onUnlock={() => setUnlocked(true)} text="slide to join waitlist" />
               </div>
               
               {unlocked && (
@@ -742,6 +796,13 @@ const Index = () => {
               <p className="text-center text-white text-sm font-medium mt-2">
                 — Albert Einstein
               </p>
+            </div>
+          </div>
+          
+          {/* Add MagicApple to the footer */}
+          <div className="flex justify-center my-10">
+            <div className="transform scale-150 apple-breathing">
+              <MagicApple />
             </div>
           </div>
           

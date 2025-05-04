@@ -28,7 +28,7 @@ const OneMoreThing: React.FC<OneMoreThingProps> = ({
               transition={{ duration: 0.5 }}
             >
               <motion.h3 
-                className="text-3xl md:text-4xl font-sf font-light text-white mb-8"
+                className="text-4xl md:text-5xl font-sf font-light text-white mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ 
                   opacity: [0, 1, 1, 0.8, 1],
@@ -43,14 +43,19 @@ const OneMoreThing: React.FC<OneMoreThingProps> = ({
               >
                 {title}
               </motion.h3>
-              <FuturisticButton 
-                onClick={() => setIsRevealed(true)} 
-                className="font-sf tracking-tight"
-                animated
-                pulseEffect
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Reveal
-              </FuturisticButton>
+                <FuturisticButton 
+                  onClick={() => setIsRevealed(true)} 
+                  className="font-sf tracking-tight"
+                  animated
+                  pulseEffect
+                >
+                  Reveal
+                </FuturisticButton>
+              </motion.div>
             </motion.div>
           ) : (
             <motion.div
@@ -63,13 +68,13 @@ const OneMoreThing: React.FC<OneMoreThingProps> = ({
                 damping: 15 
               }}
             >
-              <div className="glass-card p-6 rounded-xl border border-white/10">
+              <div className="apple-glass-card p-8 rounded-3xl border border-white/10">
                 {children}
               </div>
-              <div className="text-center mt-4">
+              <div className="text-center mt-6">
                 <motion.button
                   onClick={() => setIsRevealed(false)}
-                  className="text-sm text-muted-foreground hover:text-white transition-colors font-sf"
+                  className="text-sm text-white/60 hover:text-white transition-colors font-sf"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

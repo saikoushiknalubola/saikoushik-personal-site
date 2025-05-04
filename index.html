@@ -36,7 +36,35 @@
       .breathing-animation {
         animation: breathing 3s ease-in-out infinite;
       }
+      
+      /* Improved page transitions */
+      body {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+      
+      body.loaded {
+        opacity: 1;
+      }
+      
+      /* Hide scrollbar but allow scrolling */
+      body {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+      
+      body::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari and Opera */
+      }
     </style>
+    <script>
+      // Add page loading animation
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          document.body.classList.add('loaded');
+        }, 100);
+      });
+    </script>
   </head>
 
   <body>
