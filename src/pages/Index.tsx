@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -152,54 +151,55 @@ const Index = () => {
         <div className="absolute inset-0 pointer-events-none enhanced-grid"></div>
         
         <div className="container mx-auto relative z-10">
-          {/* MagicApple moved to top section */}
-          <div className="flex justify-center mb-8 scale-125 magic-apple-container">
-            <MagicApple />
-          </div>
-          
-          <div className="max-w-3xl mx-auto">
-            <motion.span 
-              className="text-future-primary font-sf text-sm tracking-wider mb-2 block text-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              SAIKOUSHIK NALUBOLA • 2050
-            </motion.span>
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-sf font-bold mb-6 tracking-tight text-center"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              If <span className="text-neon-purple animate-pulse-glow">Einstein</span> Were a Developer,<br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                Time Would Be Relative to Your Vision
-              </span>
-            </motion.h1>
-            <motion.div 
-              className="text-xl md:text-2xl font-sf font-medium mb-8 h-12 text-center"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-            >
-              <TypedText texts={typingRoles} />
-            </motion.div>
-            <motion.div 
-              className="flex flex-wrap gap-4 justify-center"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-            >
-              <FuturisticButton href="#about" size="lg" className="font-sf btn-glow">
-                Bend spacetime, scroll down
-                <ArrowDown className="ml-2 animate-bounce-light" size={18} />
-              </FuturisticButton>
-              
-              <FuturisticButton href="/manifesto" variant="secondary" className="font-sf btn-glow">
-                Read The Quantum Manifesto
-              </FuturisticButton>
-            </motion.div>
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="col-span-2">
+              <motion.span 
+                className="text-future-primary font-sf text-sm tracking-wider mb-2 block"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                SAIKOUSHIK NALUBOLA • 2050
+              </motion.span>
+              <motion.h1 
+                className="text-4xl md:text-6xl lg:text-7xl font-sf font-bold mb-6 tracking-tight"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                If <span className="text-neon-purple animate-pulse-glow">Einstein</span> Were a Developer,<br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                  Time Would Be Relative to Your Vision
+                </span>
+              </motion.h1>
+              <motion.div 
+                className="text-xl md:text-2xl font-sf font-medium mb-8 h-12"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+              >
+                <TypedText texts={typingRoles} />
+              </motion.div>
+              <motion.div 
+                className="flex flex-wrap gap-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.6 }}
+              >
+                <FuturisticButton href="#about" size="lg" className="font-sf btn-glow">
+                  Bend spacetime, scroll down
+                  <ArrowDown className="ml-2 animate-bounce-light" size={18} />
+                </FuturisticButton>
+                
+                <FuturisticButton href="/manifesto" variant="secondary" className="font-sf btn-glow">
+                  Read The Quantum Manifesto
+                </FuturisticButton>
+              </motion.div>
+            </div>
+            
+            <div className="hidden md:block magic-apple-container">
+              <MagicApple />
+            </div>
           </div>
         </div>
         
