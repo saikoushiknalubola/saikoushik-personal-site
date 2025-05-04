@@ -16,7 +16,7 @@ import ThinkDifferentQuote from '@/components/ThinkDifferentQuote';
 import InnovationTimeline from '@/components/InnovationTimeline';
 import OneMoreThing from '@/components/OneMoreThing';
 import SlideToUnlock from '@/components/SlideToUnlock';
-import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, ExternalLink, Clock, ZapIcon, Sparkles, Rocket, Brain, Network, Lightbulb } from 'lucide-react';
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ZapIcon, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import ImmersiveImageCard from '@/components/ImmersiveImageCard';
 
@@ -58,9 +58,9 @@ const Index = () => {
 
   const typingRoles = [
     "Entrepreneur",
-    "Philosopher",
+    "Physicist",
     "Tech Rebel",
-    "Whistleblower",
+    "Thinker",
     "Visionary",
     "Social Impact Leader",
   ];
@@ -68,8 +68,6 @@ const Index = () => {
   const manifestoQuotes = [
     "Power without ethics is noise.",
     "I build what should exist — not what's expected.",
-    "If you're not uncomfortable, you're not doing anything real.",
-    "Revolutions don't ask for permission.",
     "Dream like an optimist, plan like a realist, execute like a rebel.",
   ];
 
@@ -136,12 +134,10 @@ const Index = () => {
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
   
-  // New Jobs-inspired quotes
+  // Reduced Jobs-inspired quotes (just 3 most impactful)
   const jobsQuotes = [
     "Innovation distinguishes between a leader and a follower.",
     "Design is not just what it looks like and feels like. Design is how it works.",
-    "Stay hungry, stay foolish.",
-    "Your time is limited, so don't waste it living someone else's life.",
     "The people who are crazy enough to think they can change the world are the ones who do."
   ];
 
@@ -156,9 +152,14 @@ const Index = () => {
         <div className="absolute inset-0 pointer-events-none enhanced-grid"></div>
         
         <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl">
+          {/* MagicApple moved to top section */}
+          <div className="flex justify-center mb-8 scale-125 magic-apple-container">
+            <MagicApple />
+          </div>
+          
+          <div className="max-w-3xl mx-auto">
             <motion.span 
-              className="text-future-primary font-sf text-sm tracking-wider mb-2 block"
+              className="text-future-primary font-sf text-sm tracking-wider mb-2 block text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
@@ -166,7 +167,7 @@ const Index = () => {
               SAIKOUSHIK NALUBOLA • 2050
             </motion.span>
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-sf font-bold mb-6 tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-sf font-bold mb-6 tracking-tight text-center"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -177,7 +178,7 @@ const Index = () => {
               </span>
             </motion.h1>
             <motion.div 
-              className="text-xl md:text-2xl font-sf font-medium mb-8 h-12"
+              className="text-xl md:text-2xl font-sf font-medium mb-8 h-12 text-center"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
@@ -185,7 +186,7 @@ const Index = () => {
               <TypedText texts={typingRoles} />
             </motion.div>
             <motion.div 
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 justify-center"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.6 }}
@@ -238,7 +239,7 @@ const Index = () => {
           />
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="animate-on-scroll space-y-4">
+            <div className="animate-on-scroll space-y-4 order-2 md:order-1">
               <p className="text-lg font-sf">
                 I'm Saikoushik Nalubola, a B.Tech student in Computer Science and Engineering with specialization in AI & Robotics — but that's just the formal part of my story.
               </p>
@@ -256,61 +257,74 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="glass-card-glow p-8 animate-on-scroll">
-              <h3 className="text-2xl font-bold mb-4 font-sf">The Quick Files</h3>
-              <ul className="space-y-3 font-sf">
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>B.Tech student in CSE (AI & Robotics)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>Founder of Revitalize Innovations</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>Hackathon enthusiast & pitch competition veteran</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>Whistleblower & social reformer</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>Youth leader working for real-world change</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>Writer of blogs, philosophies & motivational content</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
-                  <span>Passionate about AI, ML, EVs, philosophy & political systems</span>
-                </li>
-              </ul>
-              
-              <div className="mt-8">
-                <LiteraryQuote 
-                  text="Like Gregor Samsa, I awoke one day transformed - no longer a mere student but a creator questioning everything."
-                  author="Personal Journal"
-                  style="kafka"
+            {/* Added user image */}
+            <div className="glass-card-glow p-4 animate-on-scroll order-1 md:order-2 flex justify-center">
+              <motion.div
+                className="relative overflow-hidden rounded-2xl w-full max-w-md"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5 }}
+              >
+                <img 
+                  src="/lovable-uploads/43580418-0baf-4983-b05b-1337d21b60cd.png" 
+                  alt="Saikoushik Nalubola" 
+                  className="w-full h-auto rounded-2xl"
                 />
-              </div>
-              
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link to="/journey">
-                  <FuturisticButton variant="secondary" size="sm" className="btn-glow font-sf">
-                    <Clock className="mr-2" size={16} />
-                    View Experience Timeline
-                  </FuturisticButton>
-                </Link>
-                <Link to="/future">
-                  <FuturisticButton variant="secondary" size="sm" className="btn-glow font-sf">
-                    Future Vision
-                    <ArrowRight className="ml-2" size={16} />
-                  </FuturisticButton>
-                </Link>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                  <div className="p-4 text-white">
+                    <h3 className="font-sf font-medium text-xl">Saikoushik Nalubola</h3>
+                    <p className="font-sf text-white/80 text-sm">Founder, Revitalize Innovations</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+          
+          <div className="mt-8 glass-card-glow p-6 animate-on-scroll">
+            <h3 className="text-2xl font-bold mb-4 font-sf">The Quick Files</h3>
+            <ul className="space-y-3 font-sf">
+              <li className="flex items-start">
+                <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
+                <span>B.Tech student in CSE (AI & Robotics)</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
+                <span>Founder of Revitalize Innovations</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
+                <span>Hackathon enthusiast & pitch competition veteran</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
+                <span>Youth leader working for real-world change</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-neon-purple mr-3 pt-0.5"><ZapIcon size={18} className="min-w-[18px]" /></span>
+                <span>Passionate about AI, ML, EVs, philosophy & political systems</span>
+              </li>
+            </ul>
+
+            <div className="mt-8">
+              <LiteraryQuote 
+                text="Like Gregor Samsa, I awoke one day transformed - no longer a mere student but a creator questioning everything."
+                author="Personal Journal"
+                style="kafka"
+              />
+            </div>
+            
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/journey">
+                <FuturisticButton variant="secondary" size="sm" className="btn-glow font-sf">
+                  <Clock className="mr-2" size={16} />
+                  View Experience Timeline
+                </FuturisticButton>
+              </Link>
+              <Link to="/future">
+                <FuturisticButton variant="secondary" size="sm" className="btn-glow font-sf">
+                  Future Vision
+                  <ArrowRight className="ml-2" size={16} />
+                </FuturisticButton>
+              </Link>
             </div>
           </div>
         </div>
@@ -332,55 +346,10 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Product Showcase - Apple Style */}
-      <section id="product-showcase" className="py-24 bg-gradient-to-b from-black to-black/90 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/54de61e9-b777-47cb-bb61-8a3ce48c4045.png')] bg-center bg-cover opacity-10"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="font-sf font-medium text-4xl md:text-5xl tracking-tight mb-4">
-              Beautifully <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Designed</span>
-            </h2>
-            <p className="text-lg md:text-xl font-sf font-light text-white/90 max-w-2xl mx-auto">
-              Every project is crafted with intention, purpose, and an obsessive attention to detail.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 animate-on-scroll">
-            {projects.map((project, idx) => (
-              <motion.div
-                key={idx}
-                className="apple-glass-card p-6 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex justify-center mb-4">
-                  <span className="text-4xl">{project.emoji}</span>
-                </div>
-                <h3 className="font-sf font-medium text-xl mb-2">{project.title}</h3>
-                <p className="font-sf font-light text-white/80 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {project.tags.map((tag, tagIdx) => (
-                    <span key={tagIdx} className="text-xs px-3 py-1 rounded-full bg-white/10 font-sf">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="mt-16 text-center">
-            <button className="apple-button apple-breathing">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </section>
-      
-      {/* Added "Think Different" Quote section */}
-      <section id="think-different" className="py-24 px-4 relative overflow-hidden bg-black/40">
+      {/* Removed "Beautifully Designed" product showcase section */}
+
+      {/* Reduced "Think Different" Quote section */}
+      <section id="think-different" className="py-16 px-4 relative overflow-hidden bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         <div className="container mx-auto relative z-10">
           <div className="animate-on-scroll">
@@ -413,9 +382,6 @@ const Index = () => {
                 </p>
                 <p>
                   I believe in speaking truth to power. The most important conversations are often the most uncomfortable ones.
-                </p>
-                <p>
-                  I believe in building bridges between technology, philosophy, and social impact. The most powerful solutions are interdisciplinary.
                 </p>
                 <p>
                   Most of all, I believe in action. Ideas without implementation are just dreams. I'm here to build what should exist.
@@ -488,10 +454,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Jobs Quotes Carousel - Apple Style */}
-      <section id="inspiration" className="py-24 px-4 bg-gradient-to-b from-black/80 to-black/90 relative overflow-hidden">
+      {/* Reduced Jobs Quotes Section */}
+      <section id="inspiration" className="py-16 px-4 bg-gradient-to-b from-black/80 to-black/90 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12 animate-on-scroll">
+          <div className="text-center mb-8 animate-on-scroll">
             <h2 className="font-sf font-light text-3xl md:text-4xl tracking-tight mb-4">Words to Live By</h2>
             <div className="h-0.5 w-20 bg-white/20 mx-auto"></div>
           </div>
@@ -500,7 +466,7 @@ const Index = () => {
             {jobsQuotes.map((quote, idx) => (
               <motion.div
                 key={idx}
-                className={`glass-card p-8 mb-6 ${idx % 2 === 0 ? 'mr-8 md:mr-16' : 'ml-8 md:ml-16'}`}
+                className={`glass-card p-6 mb-6 ${idx % 2 === 0 ? 'mr-8 md:mr-16' : 'ml-8 md:ml-16'}`}
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
@@ -796,13 +762,6 @@ const Index = () => {
               <p className="text-center text-white text-sm font-medium mt-2">
                 — Albert Einstein
               </p>
-            </div>
-          </div>
-          
-          {/* Add MagicApple to the footer */}
-          <div className="flex justify-center my-10">
-            <div className="transform scale-150 apple-breathing">
-              <MagicApple />
             </div>
           </div>
           
