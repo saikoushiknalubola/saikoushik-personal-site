@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -197,8 +198,8 @@ const Index = () => {
               </motion.div>
             </div>
             
-            <div className="hidden md:block magic-apple-container">
-              <MagicApple />
+            <div className="hidden md:block">
+              {/* Removed MagicApple from here */}
             </div>
           </div>
         </div>
@@ -751,6 +752,13 @@ const Index = () => {
               <a href="mailto:saikoushik42@gmail.com" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
                 <Mail size={20} className="text-white/80" />
               </a>
+            </div>
+          </div>
+          
+          {/* Added MagicApple here in the footer */}
+          <div className="flex justify-center mb-6">
+            <div className="magic-apple-container">
+              <MagicApple />
             </div>
           </div>
           
