@@ -8,7 +8,7 @@ interface LiteraryQuoteProps {
   author: string;
   work?: string;
   className?: string;
-  style?: 'kafka' | 'dostoevsky' | 'kalam' | 'jobs' | 'guevara';
+  style?: 'kafka' | 'dostoevsky' | 'kalam' | 'jobs' | 'guevara' | 'einstein';
   quote?: string;
   source?: string;
 }
@@ -27,17 +27,23 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
   const sourceText = source || work;
 
   return (
-    <div className={cn(
-      "p-6 rounded-md my-8 shadow-lg", 
-      getStyleClasses(style),
-      className
-    )}>
+    <motion.div 
+      className={cn(
+        "p-6 rounded-md my-8 shadow-lg", 
+        getStyleClasses(style),
+        className
+      )}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
+    >
       <p className="text-lg font-serif italic mb-4">{quoteText}</p>
       <div className="flex flex-col">
         <span className="font-medium">{author}</span>
         {sourceText && <span className="text-sm text-muted-foreground">{sourceText}</span>}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -54,6 +60,8 @@ const getStyleClasses = (style: string = 'kafka') => {
       return "bg-gradient-to-r from-zinc-900 to-zinc-800 border-l-4 border-zinc-400";
     case 'guevara':
       return "bg-gradient-to-r from-slate-900 to-red-950 border-l-4 border-red-600";
+    case 'einstein':
+      return "bg-gradient-to-r from-slate-800 to-blue-900 border-l-4 border-blue-500";
     default:
       return "bg-gradient-to-r from-slate-800 to-slate-900 border-l-4 border-amber-400";
   }

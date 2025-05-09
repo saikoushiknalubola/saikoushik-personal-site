@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -65,9 +64,9 @@ const Index = () => {
     "Social Impact Leader",
   ];
 
+  // Reduced from 3 quotes to 2
   const manifestoQuotes = [
     "Power without ethics is noise.",
-    "I build what should exist — not what's expected.",
     "Dream like an optimist, plan like a realist, execute like a rebel.",
   ];
 
@@ -349,13 +348,39 @@ const Index = () => {
       
       {/* Removed "Beautifully Designed" product showcase section */}
 
-      {/* Reduced "Think Different" Quote section */}
-      <section id="think-different" className="py-16 px-4 relative overflow-hidden bg-black/40">
+      {/* Simplified "Think Different" Quote section - now reduced */}
+      <section id="think-different" className="py-8 px-4 relative overflow-hidden bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        <div className="container mx-auto relative z-10">
-          <div className="animate-on-scroll">
-            <ThinkDifferentQuote />
-          </div>
+        <div className="container mx-auto relative z-10 max-w-4xl">
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Apple rainbow stripe top */}
+            <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mb-4 rounded-full"></div>
+            
+            <motion.p 
+              className="text-xl md:text-2xl font-sf font-light text-white/90 italic"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              Here's to the crazy ones. The misfits. The rebels. The troublemakers.
+            </motion.p>
+            
+            <motion.p 
+              className="mt-8 font-sf text-lg text-white/80"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              Think Different
+            </motion.p>
+            
+            {/* Apple rainbow stripe bottom */}
+            <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mt-4 rounded-full"></div>
+          </motion.div>
         </div>
       </section>
 
@@ -455,8 +480,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Reduced Jobs Quotes Section */}
-      <section id="inspiration" className="py-16 px-4 bg-gradient-to-b from-black/80 to-black/90 relative overflow-hidden">
+      {/* Simplified Jobs Quotes Section - Single quote */}
+      <section id="inspiration" className="py-12 px-4 bg-gradient-to-b from-black/80 to-black/90 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-8 animate-on-scroll">
             <h2 className="font-sf font-light text-3xl md:text-4xl tracking-tight mb-4">Words to Live By</h2>
@@ -464,19 +489,16 @@ const Index = () => {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            {jobsQuotes.map((quote, idx) => (
-              <motion.div
-                key={idx}
-                className={`glass-card p-6 mb-6 ${idx % 2 === 0 ? 'mr-8 md:mr-16' : 'ml-8 md:ml-16'}`}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                <p className="font-sf font-light text-xl md:text-2xl text-white/90 italic mb-4">"{quote}"</p>
-                <p className="text-right font-sf text-sm text-white/70">- Steve Jobs</p>
-              </motion.div>
-            ))}
+            <motion.div
+              className="glass-card p-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <p className="font-sf font-light text-xl md:text-2xl text-white/90 italic mb-4">"{jobsQuotes[0]}"</p>
+              <p className="text-right font-sf text-sm text-white/70">- Steve Jobs</p>
+            </motion.div>
           </div>
         </div>
       </section>
