@@ -2,10 +2,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { format } from 'date-fns';
 
 type TimelineEvent = {
-  date?: string | Date; // Could be a string or Date object
+  date?: string; // Make date optional
   title: string;
   description: string;
   icon?: string;
@@ -28,8 +27,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     <div className="w-full">
       {(title || subtitle) && (
         <div className="text-center mb-12">
-          {title && <h2 className="text-3xl font-playfair font-bold mb-2">{title}</h2>}
-          {subtitle && <p className="text-muted-foreground max-w-2xl mx-auto font-inter">{subtitle}</p>}
+          {title && <h2 className="text-3xl font-bold mb-2">{title}</h2>}
+          {subtitle && <p className="text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
         </div>
       )}
       
@@ -68,13 +67,6 @@ const TimelineItem: React.FC<{
   const desktopClassName = isLeft 
     ? "md:text-right md:mr-[calc(50%+2rem)] md:ml-0" 
     : "md:ml-[calc(50%+2rem)]";
-
-  // Format date if it's a Date object
-  const formattedDate = event.date 
-    ? (event.date instanceof Date 
-        ? format(event.date, "MMM d, yyyy")
-        : event.date)
-    : null;
   
   return (
     <motion.div 
@@ -95,30 +87,30 @@ const TimelineItem: React.FC<{
       ></div>
       
       {/* Content Card */}
-      <div className="glass-card p-6 max-w-md backdrop-blur-xl bg-black/30 border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-lg">
-        {formattedDate && (
-          <div className="text-neon-purple text-sm font-space mb-2">{formattedDate}</div>
+      <div className="glass-card p-6 max-w-md backdrop-blur-xl bg-black/30 border border-white/10">
+        {event.date && (
+          <div className="text-neon-purple text-sm font-space mb-2">{event.date}</div>
         )}
-        <h3 className="text-xl font-playfair font-bold mb-3">{event.title}</h3>
+        <h3 className="text-xl font-bold mb-3">{event.title}</h3>
         
         {event.image && (
           <div className="mb-4 rounded-md overflow-hidden">
             <img 
               src={event.image} 
               alt={event.title} 
-              className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-700"
+              className="w-full h-48 object-cover"
             />
           </div>
         )}
         
-        <p className="text-white/80 font-inter">{event.description}</p>
+        <p className="text-white/80">{event.description}</p>
         
         {event.tags && event.tags.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2">
             {event.tags.map((tag, i) => (
               <span 
                 key={i} 
-                className="bg-white/10 text-white/70 px-2 py-1 rounded text-xs font-inter hover:bg-white/15 transition-colors cursor-default"
+                className="bg-white/10 text-white/70 px-2 py-1 rounded text-xs"
               >
                 {tag}
               </span>
