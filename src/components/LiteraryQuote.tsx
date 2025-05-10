@@ -14,6 +14,13 @@ interface LiteraryQuoteProps {
   animation?: 'fade' | 'scale' | 'slide' | 'none';
 }
 
+// Define animation variants types for better type safety
+interface AnimationVariant {
+  initial?: Record<string, any>;
+  whileInView?: Record<string, any>;
+  transition?: Record<string, any>;
+}
+
 const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({ 
   text, 
   author, 
@@ -28,8 +35,8 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
   const quoteText = quote || text;
   const sourceText = source || work;
 
-  // Motion animation variants
-  const animationVariants = {
+  // Motion animation variants with proper typing
+  const animationVariants: Record<string, AnimationVariant> = {
     fade: {
       initial: { opacity: 0, y: 10 },
       whileInView: { opacity: 1, y: 0 },
@@ -45,10 +52,17 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
       whileInView: { opacity: 1, x: 0 },
       transition: { duration: 0.5 }
     },
-    none: {}
+    none: {} // Empty object for no animation
   };
 
   const selectedAnimation = animationVariants[animation];
+  
+  // Default animation props to use when none is specified or certain properties are missing
+  const defaultAnimationProps = {
+    initial: { opacity: 1 },
+    whileInView: { opacity: 1 },
+    transition: { duration: 0 }
+  };
 
   return (
     <motion.div 
@@ -57,10 +71,10 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
         getStyleClasses(style),
         className
       )}
-      initial={selectedAnimation.initial || { opacity: 0, y: 10 }}
-      whileInView={selectedAnimation.whileInView || { opacity: 1, y: 0 }}
+      initial={selectedAnimation.initial || defaultAnimationProps.initial}
+      whileInView={selectedAnimation.whileInView || defaultAnimationProps.whileInView}
       viewport={{ once: true, margin: "-50px" }}
-      transition={selectedAnimation.transition || { duration: 0.5 }}
+      transition={selectedAnimation.transition || defaultAnimationProps.transition}
     >
       <p className={cn("text-lg font-serif italic mb-4", style === 'einstein' ? "relative pl-5 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-blue-500 before:rounded-full" : "")}>{quoteText}</p>
       <div className="flex flex-col">
