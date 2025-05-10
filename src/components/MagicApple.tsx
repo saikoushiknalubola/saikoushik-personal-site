@@ -169,7 +169,9 @@ const MagicApple: React.FC<MagicAppleProps> = ({
         
         // Remove the ripple after animation completes
         setTimeout(() => {
-          document.body.removeChild(ripple);
+          if (document.body.contains(ripple)) {
+            document.body.removeChild(ripple);
+          }
         }, 2000);
       };
       
@@ -177,38 +179,38 @@ const MagicApple: React.FC<MagicAppleProps> = ({
       
       // Add gravitational effect to page elements
       const elements = document.querySelectorAll('h1, h2, h3, p, img, button, a');
+      const affectedElements: HTMLElement[] = [];
+      
       elements.forEach(element => {
-        const originalTransform = element.getAttribute('style') || '';
-        const originalTransition = window.getComputedStyle(element).transition;
+        const htmlElement = element as HTMLElement;
         
-        element.setAttribute('data-original-style', originalTransform);
-        element.setAttribute('data-original-transition', originalTransition);
+        // Store original values
+        const originalTransform = htmlElement.style.transform || '';
+        const originalTransition = window.getComputedStyle(htmlElement).transition;
+        
+        htmlElement.setAttribute('data-original-transform', originalTransform);
+        htmlElement.setAttribute('data-original-transition', originalTransition);
         
         const randomY = Math.random() * 20 - 10;
         const randomRotate = Math.random() * 5 - 2.5;
         
-        // Cast to HTMLElement to access style property
-        const htmlElement = element as HTMLElement;
         htmlElement.style.transition = 'transform 3s cubic-bezier(0.34, 1.56, 0.64, 1)';
         htmlElement.style.transform = `translateY(${randomY}px) rotate(${randomRotate}deg)`;
+        
+        affectedElements.push(htmlElement);
       });
       
       // Reset elements after gravity effect ends
       return () => {
-        elements.forEach(element => {
-          const originalStyle = element.getAttribute('data-original-style') || '';
+        affectedElements.forEach(element => {
+          const originalTransform = element.getAttribute('data-original-transform') || '';
           const originalTransition = element.getAttribute('data-original-transition') || '';
           
-          // Cast to HTMLElement to access style property
-          const htmlElement = element as HTMLElement;
-          htmlElement.style.transition = originalTransition;
-          htmlElement.style.transform = '';
+          element.style.transition = originalTransition;
+          element.style.transform = originalTransform;
           
-          if (originalStyle) {
-            element.setAttribute('style', originalStyle);
-          } else {
-            element.removeAttribute('style');
-          }
+          element.removeAttribute('data-original-transform');
+          element.removeAttribute('data-original-transition');
         });
       };
     }

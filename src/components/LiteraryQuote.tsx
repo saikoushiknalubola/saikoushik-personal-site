@@ -67,7 +67,7 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
   return (
     <motion.div 
       className={cn(
-        "p-6 rounded-md my-8 shadow-lg", 
+        "p-6 rounded-md my-8 shadow-lg backdrop-blur-sm", 
         getStyleClasses(style),
         className
       )}
@@ -76,10 +76,11 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
       viewport={{ once: true, margin: "-50px" }}
       transition={selectedAnimation.transition || defaultAnimationProps.transition}
     >
-      <p className={cn("text-lg font-serif italic mb-4", style === 'einstein' ? "relative pl-5 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-blue-500 before:rounded-full" : "")}>{quoteText}</p>
+      <p className={cn("text-lg font-playfair italic mb-4", 
+        style === 'einstein' ? "relative pl-5 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-blue-500 before:rounded-full" : "")}>{quoteText}</p>
       <div className="flex flex-col">
-        <span className={cn("font-medium", style === 'einstein' ? "text-blue-400" : "")}>{author}</span>
-        {sourceText && <span className="text-sm text-muted-foreground">{sourceText}</span>}
+        <span className={cn("font-medium font-inter", style === 'einstein' ? "text-blue-400" : "")}>{author}</span>
+        {sourceText && <span className="text-sm text-muted-foreground font-inter">{sourceText}</span>}
       </div>
     </motion.div>
   );
@@ -89,19 +90,19 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
 const getStyleClasses = (style: string = 'kafka') => {
   switch(style) {
     case 'kafka':
-      return "bg-gradient-to-r from-slate-800 to-slate-900 border-l-4 border-amber-400";
+      return "bg-gradient-to-r from-slate-800/90 to-slate-900/90 border-l-4 border-amber-400";
     case 'dostoevsky':
-      return "bg-gradient-to-r from-slate-900 to-indigo-950 border-l-4 border-red-700";
+      return "bg-gradient-to-r from-slate-900/90 to-indigo-950/90 border-l-4 border-red-700";
     case 'kalam':
-      return "bg-gradient-to-r from-slate-800 to-blue-900 border-l-4 border-orange-500";
+      return "bg-gradient-to-r from-slate-800/90 to-blue-900/90 border-l-4 border-orange-500";
     case 'jobs':
-      return "bg-gradient-to-r from-zinc-900 to-zinc-800 border-l-4 border-zinc-400";
+      return "bg-gradient-to-r from-zinc-900/90 to-zinc-800/90 border-l-4 border-zinc-400";
     case 'guevara':
-      return "bg-gradient-to-r from-slate-900 to-red-950 border-l-4 border-red-600";
+      return "bg-gradient-to-r from-slate-900/90 to-red-950/90 border-l-4 border-red-600";
     case 'einstein':
-      return "bg-gradient-to-r from-slate-800 to-blue-900 border-l-4 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]";
+      return "bg-gradient-to-r from-slate-800/90 to-blue-900/90 border-l-4 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]";
     default:
-      return "bg-gradient-to-r from-slate-800 to-slate-900 border-l-4 border-amber-400";
+      return "bg-gradient-to-r from-slate-800/90 to-slate-900/90 border-l-4 border-amber-400";
   }
 };
 
