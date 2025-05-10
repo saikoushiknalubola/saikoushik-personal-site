@@ -49,6 +49,9 @@ const ThoughtExperiment: React.FC<ThoughtExperimentProps> = ({
     }
   ];
 
+  // Get the current step's icon component
+  const ActiveIcon = steps[activeStep].icon;
+
   return (
     <div className={cn("my-12 p-6 rounded-xl glass-card-glow relative overflow-hidden", className)}>
       {/* Background spacetime fabric */}
@@ -84,43 +87,46 @@ const ThoughtExperiment: React.FC<ThoughtExperimentProps> = ({
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          {steps.map((step, idx) => (
-            <motion.button
-              key={idx}
-              className={cn(
-                "p-4 rounded-lg transition-all relative overflow-hidden",
-                activeStep === idx ? step.bgColor : "bg-black/20 hover:bg-black/30"
-              )}
-              onClick={() => setActiveStep(idx)}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="flex flex-col items-center justify-center">
-                <step.icon 
-                  className={cn("w-8 h-8 mb-3", activeStep === idx ? step.color : "text-white/60")} 
-                />
-                <span className={cn("font-medium", activeStep === idx ? step.color : "text-white/80")}>
-                  {step.title}
-                </span>
-              </div>
-              
-              {activeStep === idx && (
-                <motion.div 
-                  className="absolute bottom-0 left-0 right-0 h-1"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.5 }}
-                  style={{
-                    backgroundColor: step.color.replace('text-', 'bg-').split('-')[1],
-                    transformOrigin: 'left'
-                  }}
-                />
-              )}
-            </motion.button>
-          ))}
+          {steps.map((step, idx) => {
+            const StepIcon = step.icon;
+            return (
+              <motion.button
+                key={idx}
+                className={cn(
+                  "p-4 rounded-lg transition-all relative overflow-hidden",
+                  activeStep === idx ? step.bgColor : "bg-black/20 hover:bg-black/30"
+                )}
+                onClick={() => setActiveStep(idx)}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex flex-col items-center justify-center">
+                  <StepIcon 
+                    className={cn("w-8 h-8 mb-3", activeStep === idx ? step.color : "text-white/60")} 
+                  />
+                  <span className={cn("font-medium", activeStep === idx ? step.color : "text-white/80")}>
+                    {step.title}
+                  </span>
+                </div>
+                
+                {activeStep === idx && (
+                  <motion.div 
+                    className="absolute bottom-0 left-0 right-0 h-1"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                      backgroundColor: step.color.replace('text-', 'bg-').split('-')[1],
+                      transformOrigin: 'left'
+                    }}
+                  />
+                )}
+              </motion.button>
+            );
+          })}
         </div>
 
         <motion.div 
@@ -133,7 +139,7 @@ const ThoughtExperiment: React.FC<ThoughtExperimentProps> = ({
         >
           <div className="flex items-center mb-4">
             <div className={cn("p-3 rounded-full mr-3", steps[activeStep].bgColor)}>
-              <steps[activeStep].icon className={steps[activeStep].color} size={24} />
+              <ActiveIcon className={steps[activeStep].color} size={24} />
             </div>
             <h4 className={cn("text-xl font-medium", steps[activeStep].color)}>
               {steps[activeStep].title}
