@@ -11,6 +11,7 @@ interface LiteraryQuoteProps {
   style?: 'kafka' | 'dostoevsky' | 'kalam' | 'jobs' | 'guevara' | 'einstein';
   quote?: string;
   source?: string;
+  animation?: 'fade' | 'scale' | 'slide' | 'none';
 }
 
 const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({ 
@@ -20,11 +21,34 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
   className,
   style = 'kafka',
   quote,
-  source
+  source,
+  animation = 'fade'
 }) => {
   // Use either quote or text, and either source or work
   const quoteText = quote || text;
   const sourceText = source || work;
+
+  // Motion animation variants
+  const animationVariants = {
+    fade: {
+      initial: { opacity: 0, y: 10 },
+      whileInView: { opacity: 1, y: 0 },
+      transition: { duration: 0.5 }
+    },
+    scale: {
+      initial: { opacity: 0, scale: 0.9 },
+      whileInView: { opacity: 1, scale: 1 },
+      transition: { duration: 0.5 }
+    },
+    slide: {
+      initial: { opacity: 0, x: -20 },
+      whileInView: { opacity: 1, x: 0 },
+      transition: { duration: 0.5 }
+    },
+    none: {}
+  };
+
+  const selectedAnimation = animationVariants[animation];
 
   return (
     <motion.div 
@@ -33,14 +57,14 @@ const LiteraryQuote: React.FC<LiteraryQuoteProps> = ({
         getStyleClasses(style),
         className
       )}
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={selectedAnimation.initial || { opacity: 0, y: 10 }}
+      whileInView={selectedAnimation.whileInView || { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
+      transition={selectedAnimation.transition || { duration: 0.5 }}
     >
-      <p className="text-lg font-serif italic mb-4">{quoteText}</p>
+      <p className={cn("text-lg font-serif italic mb-4", style === 'einstein' ? "relative pl-5 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-blue-500 before:rounded-full" : "")}>{quoteText}</p>
       <div className="flex flex-col">
-        <span className="font-medium">{author}</span>
+        <span className={cn("font-medium", style === 'einstein' ? "text-blue-400" : "")}>{author}</span>
         {sourceText && <span className="text-sm text-muted-foreground">{sourceText}</span>}
       </div>
     </motion.div>
@@ -61,7 +85,7 @@ const getStyleClasses = (style: string = 'kafka') => {
     case 'guevara':
       return "bg-gradient-to-r from-slate-900 to-red-950 border-l-4 border-red-600";
     case 'einstein':
-      return "bg-gradient-to-r from-slate-800 to-blue-900 border-l-4 border-blue-500";
+      return "bg-gradient-to-r from-slate-800 to-blue-900 border-l-4 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]";
     default:
       return "bg-gradient-to-r from-slate-800 to-slate-900 border-l-4 border-amber-400";
   }

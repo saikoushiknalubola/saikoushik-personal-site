@@ -18,6 +18,9 @@ import SlideToUnlock from '@/components/SlideToUnlock';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ZapIcon, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import ImmersiveImageCard from '@/components/ImmersiveImageCard';
+import ThoughtExperiment from '@/components/ThoughtExperiment';
+import PhysicsEquation from '@/components/PhysicsEquation';
+import CompassStory from '@/components/CompassStory';
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -64,7 +67,7 @@ const Index = () => {
     "Social Impact Leader",
   ];
 
-  // Reduced from 3 quotes to 2
+  // Reduced to 2 manifesto quotes
   const manifestoQuotes = [
     "Power without ethics is noise.",
     "Dream like an optimist, plan like a realist, execute like a rebel.",
@@ -133,11 +136,26 @@ const Index = () => {
     synthesis: "The future is both deterministic and uncertain - we must create technology that respects the causal flow of time while embracing quantum possibilities."
   };
   
-  // Reduced Jobs-inspired quotes (just 3 most impactful)
-  const jobsQuotes = [
-    "Innovation distinguishes between a leader and a follower.",
-    "Design is not just what it looks like and feels like. Design is how it works.",
-    "The people who are crazy enough to think they can change the world are the ones who do."
+  // Using just one impactful Jobs quote
+  const jobsQuote = "Innovation distinguishes between a leader and a follower.";
+
+  // Einstein quotes
+  const einsteinQuotes = [
+    {
+      quote: "I have no special talents, I am only passionately curious.",
+      source: "Letter to Carl Seelig, 1952"
+    },
+    {
+      quote: "The important thing is to not stop questioning. Curiosity has its own reason for existing.",
+      source: "LIFE magazine, 1955"
+    }
+  ];
+
+  // Selected best images for the gallery
+  const selectedImages = [
+    "/lovable-uploads/f0143cf4-be0c-4ab7-a1f4-5d1dc1f2a130.png",
+    "/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png",
+    "/lovable-uploads/7ea5b8d5-7a81-44f2-8b07-12e54b50a705.png"
   ];
 
   return (
@@ -198,7 +216,7 @@ const Index = () => {
             </div>
             
             <div className="hidden md:block">
-              {/* Removed MagicApple from here */}
+              <PhysicsEquation />
             </div>
           </div>
         </div>
@@ -306,9 +324,10 @@ const Index = () => {
 
             <div className="mt-8">
               <LiteraryQuote 
-                text="Like Gregor Samsa, I awoke one day transformed - no longer a mere student but a creator questioning everything."
-                author="Personal Journal"
-                style="kafka"
+                text="A foolish faith in authority is the worst enemy of truth. Without the ability to develop powerful independence of mind, one cannot challenge established beliefs."
+                author="Albert Einstein"
+                style="einstein"
+                animation="slide"
               />
             </div>
             
@@ -330,6 +349,13 @@ const Index = () => {
         </div>
       </section>
       
+      {/* Einstein's Compass Story Section */}
+      <section id="compass-story" className="py-16 px-4 md:px-8 bg-black/50 relative overflow-hidden">
+        <div className="container mx-auto relative z-10">
+          <CompassStory className="animate-on-scroll" />
+        </div>
+      </section>
+      
       {/* Steve Jobs inspired "Innovation Timeline" section */}
       <section id="innovation" className="enhanced-section">
         <div className="container mx-auto">
@@ -346,41 +372,26 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Removed "Beautifully Designed" product showcase section */}
-
-      {/* Simplified "Think Different" Quote section - now reduced */}
+      {/* Simplified "Think Different" Quote section */}
       <section id="think-different" className="py-8 px-4 relative overflow-hidden bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         <div className="container mx-auto relative z-10 max-w-4xl">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Apple rainbow stripe top */}
-            <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mb-4 rounded-full"></div>
-            
-            <motion.p 
-              className="text-xl md:text-2xl font-sf font-light text-white/90 italic"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              Here's to the crazy ones. The misfits. The rebels. The troublemakers.
-            </motion.p>
-            
-            <motion.p 
-              className="mt-8 font-sf text-lg text-white/80"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              Think Different
-            </motion.p>
-            
-            {/* Apple rainbow stripe bottom */}
-            <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mt-4 rounded-full"></div>
-          </motion.div>
+          <ThinkDifferentQuote />
+        </div>
+      </section>
+
+      {/* Einstein's Thought Experiment Section */}
+      <section id="thought-experiment" className="py-16 px-4 md:px-8 relative overflow-hidden">
+        <div className="container mx-auto relative z-10">
+          <SectionHeader 
+            title="Einstein's Thought Experiments" 
+            subtitle="Applying curiosity and nonconformist thinking to solve modern problems"
+            style="futuristic"
+            className="animate-on-scroll"
+          />
+          <div className="animate-on-scroll">
+            <ThoughtExperiment />
+          </div>
         </div>
       </section>
 
@@ -432,6 +443,15 @@ const Index = () => {
                   className="enhanced-quote-card"
                 />
               ))}
+              
+              {/* Added Einstein quote */}
+              <LiteraryQuote
+                quote="The important thing is to not stop questioning. Curiosity has its own reason for existing."
+                author="Albert Einstein"
+                source="LIFE magazine, 1955"
+                style="einstein"
+                className="mt-8"
+              />
             </div>
           </div>
           
@@ -496,7 +516,7 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <p className="font-sf font-light text-xl md:text-2xl text-white/90 italic mb-4">"{jobsQuotes[0]}"</p>
+              <p className="font-sf font-light text-xl md:text-2xl text-white/90 italic mb-4">"{jobsQuote}"</p>
               <p className="text-right font-sf text-sm text-white/70">- Steve Jobs</p>
             </motion.div>
           </div>
@@ -589,35 +609,21 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 animate-on-scroll">
+          {/* Updated with selected best images */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 animate-on-scroll">
             <ImmersiveImageCard 
-              src="/lovable-uploads/0e5f08c1-a594-4014-8c44-bda687324f62.png"
-              alt="Quantum Computing Initiative"
+              src={selectedImages[0]}
+              alt="Cosmic Entropy"
               className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
-              src="/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png"
-              alt="Innovation Workshop"
+              src={selectedImages[1]}
+              alt="Temporal Distortion"
               className="aspect-square glass-card-glow"
             />
             <ImmersiveImageCard 
-              src="/lovable-uploads/6bea4682-b2ac-4a5d-ab80-dc7f3da6449e.png"
-              alt="Google Cloud Platform"
-              className="aspect-square glass-card-glow"
-            />
-            <ImmersiveImageCard 
-              src="/lovable-uploads/0a34d2bf-6f36-42f9-8f1f-99d687f9fe35.png"
-              alt="Quantum Visualization"
-              className="aspect-square glass-card-glow"
-            />
-            <ImmersiveImageCard 
-              src="/lovable-uploads/41e76e68-4249-4679-82aa-dc08a14636ea.png"
-              alt="Future Tech Concepts"
-              className="aspect-square glass-card-glow"
-            />
-            <ImmersiveImageCard 
-              src="/lovable-uploads/49cc4f99-9030-4bef-8ac0-00597408b6d2.png"
-              alt="Spacetime Dynamics"
+              src={selectedImages[2]}
+              alt="Digital Consciousness"
               className="aspect-square glass-card-glow"
             />
           </div>

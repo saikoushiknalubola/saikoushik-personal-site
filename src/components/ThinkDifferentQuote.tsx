@@ -5,9 +5,12 @@ import { cn } from '@/lib/utils';
 
 interface QuoteProps {
   className?: string;
+  expandable?: boolean;
 }
 
-const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className }) => {
+const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = false }) => {
+  const [expanded, setExpanded] = React.useState(false);
+
   return (
     <div className={cn("my-16 max-w-4xl mx-auto px-4", className)}>
       <motion.div 
@@ -34,6 +37,17 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className }) => {
             >
               Here's to the crazy ones. The misfits. The rebels. The troublemakers.
             </motion.p>
+
+            {expandable && expanded && (
+              <motion.p
+                className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                transition={{ duration: 0.5 }}
+              >
+                The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo.
+              </motion.p>
+            )}
           </motion.div>
 
           <motion.p 
@@ -44,6 +58,17 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className }) => {
           >
             Think Different
           </motion.p>
+
+          {expandable && (
+            <motion.button
+              className="mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+              onClick={() => setExpanded(!expanded)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {expanded ? "Show Less" : "Show More"}
+            </motion.button>
+          )}
         </div>
         
         {/* Apple rainbow stripe bottom */}
