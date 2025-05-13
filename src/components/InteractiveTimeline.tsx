@@ -2,6 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
+import { AspectRatio } from './ui/aspect-ratio';
+import { cn } from '@/lib/utils';
 
 type TimelineEvent = {
   date?: string; // Make date optional
@@ -27,8 +29,8 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({
     <div className="w-full">
       {(title || subtitle) && (
         <div className="text-center mb-12">
-          {title && <h2 className="text-3xl font-bold mb-2">{title}</h2>}
-          {subtitle && <p className="text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
+          {title && <h2 className="text-3xl font-bold mb-2 font-playfair">{title}</h2>}
+          {subtitle && <p className="text-muted-foreground max-w-2xl mx-auto font-inter">{subtitle}</p>}
         </div>
       )}
       
@@ -71,46 +73,48 @@ const TimelineItem: React.FC<{
   return (
     <motion.div 
       ref={ref}
-      className={`relative ${mobileClassName} ${desktopClassName}`}
+      className={cn("relative", mobileClassName, desktopClassName)}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
     >
       {/* Dot */}
       <div 
-        className={`absolute top-0 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-4 h-4 rounded-full bg-neon-purple`}
+        className="absolute top-0 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-4 h-4 rounded-full bg-neon-purple"
       ></div>
       
       {/* Dot Pulse Animation */}
       <div 
-        className={`absolute top-0 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-4 h-4 rounded-full bg-neon-purple/50 animate-ping`}
+        className="absolute top-0 left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-4 h-4 rounded-full bg-neon-purple/50 animate-ping"
       ></div>
       
       {/* Content Card */}
       <div className="glass-card p-6 max-w-md backdrop-blur-xl bg-black/30 border border-white/10">
         {event.date && (
-          <div className="text-neon-purple text-sm font-space mb-2">{event.date}</div>
+          <div className="text-neon-purple text-sm font-space mb-2 font-medium tracking-wide">{event.date}</div>
         )}
-        <h3 className="text-xl font-bold mb-3">{event.title}</h3>
+        <h3 className="text-xl font-bold mb-3 font-playfair">{event.title}</h3>
         
         {event.image && (
           <div className="mb-4 rounded-md overflow-hidden">
-            <img 
-              src={event.image} 
-              alt={event.title} 
-              className="w-full h-48 object-cover"
-            />
+            <AspectRatio ratio={16/9}>
+              <img 
+                src={event.image} 
+                alt={event.title} 
+                className="w-full h-full object-cover rounded-md transition-transform hover:scale-105 duration-700"
+              />
+            </AspectRatio>
           </div>
         )}
         
-        <p className="text-white/80">{event.description}</p>
+        <p className="text-white/80 font-inter leading-relaxed">{event.description}</p>
         
         {event.tags && event.tags.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2">
             {event.tags.map((tag, i) => (
               <span 
                 key={i} 
-                className="bg-white/10 text-white/70 px-2 py-1 rounded text-xs"
+                className="bg-white/10 text-white/70 px-2 py-1 rounded text-xs font-inter"
               >
                 {tag}
               </span>
@@ -120,12 +124,12 @@ const TimelineItem: React.FC<{
         
         {/* Cinematic corner elements */}
         <div className="absolute top-0 right-0 w-10 h-10 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 right-0 w-[1px] h-5 bg-gradient-to-b from-transparent to-neon-purple/30"></div>
-          <div className="absolute top-0 right-0 h-[1px] w-5 bg-gradient-to-l from-transparent to-neon-purple/30"></div>
+          <div className="absolute top-0 right-0 w-[1px] h-5 bg-gradient-to-b from-transparent to-neon-purple/50"></div>
+          <div className="absolute top-0 right-0 h-[1px] w-5 bg-gradient-to-l from-transparent to-neon-purple/50"></div>
         </div>
         <div className="absolute bottom-0 left-0 w-10 h-10 pointer-events-none overflow-hidden">
-          <div className="absolute bottom-0 left-0 w-[1px] h-5 bg-gradient-to-t from-transparent to-neon-purple/30"></div>
-          <div className="absolute bottom-0 left-0 h-[1px] w-5 bg-gradient-to-r from-transparent to-neon-purple/30"></div>
+          <div className="absolute bottom-0 left-0 w-[1px] h-5 bg-gradient-to-t from-transparent to-neon-purple/50"></div>
+          <div className="absolute bottom-0 left-0 h-[1px] w-5 bg-gradient-to-r from-transparent to-neon-purple/50"></div>
         </div>
       </div>
     </motion.div>
