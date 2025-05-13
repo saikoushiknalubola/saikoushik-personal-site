@@ -194,6 +194,18 @@ export default {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-15px)' }
 				},
+				'apple-breathing': {
+                	'0%, 100%': { boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)' },
+                	'50%': { boxShadow: '0 0 25px rgba(255, 255, 255, 0.5)' }
+              	},
+				'apple-glow': {
+					'0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+					'50%': { opacity: '0.8', transform: 'scale(1.2)' }
+				},
+				'apple-pulse': {
+					'0%, 100%': { boxShadow: '0 0 5px rgba(139, 92, 246, 0.3)' },
+					'50%': { boxShadow: '0 0 25px rgba(139, 92, 246, 0.7)' }
+				},
 				'newton-fall': {
 					'0%': { transform: 'translateY(-100%)', opacity: '0' },
 					'70%': { transform: 'translateY(5%)', opacity: '1' },
@@ -206,11 +218,7 @@ export default {
 					'70%': { transform: 'skew(-2deg, -1deg)' },
 					'100%': { transform: 'skew(0deg, 0deg)' }
 				},
-        		'apple-breathing': {
-                	'0%, 100%': { boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)' },
-                	'50%': { boxShadow: '0 0 25px rgba(255, 255, 255, 0.5)' }
-              	},
-              	'slide-reveal': {
+                'slide-reveal': {
                 	'0%': { transform: 'scaleX(0)', transformOrigin: 'left' },
                 	'100%': { transform: 'scaleX(1)', transformOrigin: 'left' }
               	}
@@ -229,10 +237,12 @@ export default {
 				'rotate-slow': 'rotate-slow 20s linear infinite',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'apple-bounce': 'apple-bounce 2s cubic-bezier(0.28, 0.84, 0.42, 1) infinite',
+				'apple-breathing': 'apple-breathing 3s ease-in-out infinite',
+				'apple-glow': 'apple-glow 3s ease-in-out infinite',
+				'apple-pulse': 'apple-pulse 3s ease-in-out infinite',
 				'newton-fall': 'newton-fall 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
 				'einstein-warp': 'einstein-warp 3s ease-in-out infinite',
-              	'apple-breathing': 'apple-breathing 3s ease-in-out infinite',
-              	'slide-reveal': 'slide-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                'slide-reveal': 'slide-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards'
 			},
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
@@ -241,7 +251,8 @@ export default {
 				sf: ['"SF Pro Display"', 'Inter', 'sans-serif'],
 				poppins: ['Poppins', 'sans-serif'],
 				outfit: ['Outfit', 'sans-serif'],
-				raleway: ['Raleway', 'sans-serif']
+				raleway: ['Raleway', 'sans-serif'],
+				playfair: ['"Playfair Display"', 'serif']
 			},
 			textShadow: {
 				'glow': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
