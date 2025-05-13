@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -241,8 +242,6 @@ const Index = () => {
           </a>
         </motion.div>
       </section>
-
-      
       
       <section 
         id="about" 
@@ -732,4 +731,42 @@ const Index = () => {
         <div className="absolute inset-0 opacity-30 pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="grid-pattern" x="0" y="0" width="1
+              <pattern id="grid-pattern" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+          </svg>
+        </div>
+        <div className="container mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-8 md:mb-0 text-center md:text-left">
+              <h2 className="font-sf font-bold text-2xl mb-2">Saikoushik Nalubola</h2>
+              <p className="text-white/70 font-sf">Building bridges between imagination and reality</p>
+            </div>
+            <div className="flex space-x-6">
+              <a href="https://github.com/saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
+                <Github size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/saikoushiknalubola/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
+                <Linkedin size={20} />
+              </a>
+              <a href="https://x.com/saikoushik_42" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
+                <Twitter size={20} />
+              </a>
+              <a href="mailto:saikoushik42@gmail.com" className="text-white/70 hover:text-white transition-colors">
+                <Mail size={20} />
+              </a>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-white/10 text-center text-white/50 text-sm font-sf">
+            <p>© {new Date().getFullYear()} Saikoushik Nalubola. All rights reserved.</p>
+            <p className="mt-2">Quantum tech for a brighter future. Built with React, TailwindCSS, and genuine curiosity.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;
