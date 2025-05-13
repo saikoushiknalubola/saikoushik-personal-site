@@ -58,7 +58,8 @@ const config: Config = {
           foreground: 'hsl(var(--card-foreground))'
         },
         'neon-purple': '#9b87f5',
-        'neon-cyan': '#38e5fd'
+        'neon-cyan': '#38e5fd',
+        'future-primary': '#9c5cff' // Adding the future-primary color directly
       },
       borderRadius: {
         lg: 'var(--radius)',
