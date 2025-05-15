@@ -1,14 +1,11 @@
-User-agent: Googlebot
-Allow: /
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Allow all crawlers
 User-agent: *
 Allow: /
+
+# Block specific bots if needed
+# User-agent: BadBot
+# Disallow: /
+
+# Sitemap location
+# Sitemap: https://example.com/sitemap.xml
