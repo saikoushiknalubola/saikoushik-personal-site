@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -13,6 +12,7 @@ import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
 import MagicApple from '@/components/MagicApple';
 import ThinkDifferentQuote from '@/components/ThinkDifferentQuote';
+import InnovationTimeline from '@/components/InnovationTimeline';
 import OneMoreThing from '@/components/OneMoreThing';
 import SlideToUnlock from '@/components/SlideToUnlock';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ZapIcon, Sparkles } from 'lucide-react';
@@ -162,7 +162,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation activeSection={activeSection} />
 
-      {/* Hero Section */}
       <section 
         id="home" 
         className="min-h-screen flex flex-col justify-center pt-20 px-4 md:px-8 relative overflow-hidden"
@@ -242,7 +241,7 @@ const Index = () => {
           </a>
         </motion.div>
       </section>
-      
+
       <section 
         id="about" 
         className="py-20 px-4 md:px-8 bg-black/30 relative overflow-hidden"
@@ -357,7 +356,23 @@ const Index = () => {
         </div>
       </section>
       
-      {/* "Think Different" Quote section */}
+      {/* Steve Jobs inspired "Innovation Timeline" section */}
+      <section id="innovation" className="enhanced-section">
+        <div className="container mx-auto">
+          <SectionHeader 
+            title="The Innovation Timeline" 
+            subtitle="Revolutionary moments that define my journey"
+            style="apple"
+            className="animate-on-scroll"
+          />
+          
+          <div className="animate-on-scroll">
+            <InnovationTimeline />
+          </div>
+        </div>
+      </section>
+      
+      {/* Simplified "Think Different" Quote section */}
       <section id="think-different" className="py-8 px-4 relative overflow-hidden bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         <div className="container mx-auto relative z-10 max-w-4xl">
@@ -732,37 +747,63 @@ const Index = () => {
           <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="grid-pattern" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+                <path d="M10 0H0V10" stroke="rgba(255,255,255,0.1)" fill="none" strokeWidth="0.5"/>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#grid-pattern)" />
           </svg>
         </div>
+        
         <div className="container mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-8 md:mb-0 text-center md:text-left">
-              <h2 className="font-sf font-bold text-2xl mb-2">Saikoushik Nalubola</h2>
-              <p className="text-white/70 font-sf">Building bridges between imagination and reality</p>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+            <div className="mb-6 md:mb-0">
+              <Link to="/" className="font-space text-xl font-bold">
+                <span className="text-white">Saikoushik</span>
+                <span className="text-neon-purple">Nalubola</span>
+              </Link>
+              <p className="text-white/60 mt-2">Quantum Visionary • 2050</p>
             </div>
-            <div className="flex space-x-6">
-              <a href="https://github.com/saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
-                <Github size={20} />
+            
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href="https://github.com/saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Github size={20} className="text-white/80" />
               </a>
-              <a href="https://www.linkedin.com/in/saikoushiknalubola/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
-                <Linkedin size={20} />
+              <a href="https://www.linkedin.com/in/saikoushiknalubola/" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Linkedin size={20} className="text-white/80" />
               </a>
-              <a href="https://x.com/saikoushik_42" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
-                <Twitter size={20} />
+              <a href="https://x.com/saikoushik_42" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Twitter size={20} className="text-white/80" />
               </a>
-              <a href="mailto:saikoushik42@gmail.com" className="text-white/70 hover:text-white transition-colors">
-                <Mail size={20} />
+              <a href="https://medium.com/@saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <span className="text-white/80 font-bold">M</span>
+              </a>
+              <a href="mailto:saikoushik42@gmail.com" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
+                <Mail size={20} className="text-white/80" />
               </a>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-white/10 text-center text-white/50 text-sm font-sf">
-            <p>© {new Date().getFullYear()} Saikoushik Nalubola. All rights reserved.</p>
-            <p className="mt-2">Quantum tech for a brighter future. Built with React, TailwindCSS, and genuine curiosity.</p>
+          
+          {/* Added MagicApple here in the footer */}
+          <div className="flex justify-center mb-6">
+            <div className="magic-apple-container">
+              <MagicApple />
+            </div>
           </div>
+          
+          <div className="text-center mb-6">
+            <div className="einstein-quote inline-block">
+              <p className="einstein-quote-text">
+                "The distinction between past, present, and future is only a stubbornly persistent illusion."
+              </p>
+              <p className="text-center text-white text-sm font-medium mt-2">
+                — Albert Einstein
+              </p>
+            </div>
+          </div>
+          
+          <p className="text-center text-white/60 mt-6">
+            © {new Date().getFullYear()} Saikoushik Nalubola. All rights reserved in this timeline.
+          </p>
         </div>
       </footer>
     </div>

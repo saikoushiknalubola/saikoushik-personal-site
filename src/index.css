@@ -765,7 +765,7 @@
 }
 
 .gradient-text-hover:hover {
-  @apply bg-gradient-to-r from-neon-purple to-neon-purple bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-neon-purple to-future-primary bg-clip-text text-transparent;
 }
 
 /* Background noise texture */

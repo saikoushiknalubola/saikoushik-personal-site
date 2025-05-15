@@ -3,95 +3,74 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <title>Quantum Portfolio</title>
+    <title>Saikoushik Nalubola | Builder • Rebel • Visionary</title>
+    <meta name="description" content="Building What Should Exist, Not What's Expected. Join Saikoushik Nalubola on a journey of innovation, rebellion, and social impact." />
+    <meta name="author" content="Saikoushik Nalubola" />
+
+    <meta property="og:title" content="Saikoushik Nalubola | Builder • Rebel • Visionary" />
+    <meta property="og:description" content="Building What Should Exist, Not What's Expected. Join Saikoushik Nalubola on a journey of innovation, rebellion, and social impact." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" />
+    
+    <!-- SF Pro Display font (Apple-style font) -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display" />
+    
     <style>
-      /* Ensure we have smooth scrolling */
-      html {
-        scroll-behavior: smooth;
+      /* Breathing animation for Apple-inspired elements */
+      @keyframes breathing {
+        0%, 100% {
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+        }
       }
       
-      /* Global CSS for enhanced grid and glass effects */
-      .enhanced-grid {
-        background-image: 
-          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        background-size: 30px 30px;
+      .breathing-animation {
+        animation: breathing 3s ease-in-out infinite;
       }
       
-      .enhanced-section {
-        @apply py-20 px-4 md:px-8 relative overflow-hidden;
+      /* Improved page transitions */
+      body {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
       }
       
-      .glass-card {
-        @apply rounded-xl border border-white/10 overflow-hidden relative backdrop-blur-sm;
-        background: rgba(0, 0, 0, 0.2);
+      body.loaded {
+        opacity: 1;
       }
       
-      .glass-card-glow {
-        @apply rounded-xl border border-white/10 overflow-hidden relative backdrop-blur-sm;
-        background: rgba(0, 0, 0, 0.2);
-        box-shadow: 0 4px 30px rgba(139, 92, 246, 0.1);
+      /* Hide scrollbar but allow scrolling */
+      body {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
       }
       
-      .btn-glow {
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .btn-glow::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-          to bottom right, 
-          rgba(255, 255, 255, 0) 0%, 
-          rgba(255, 255, 255, 0.1) 50%, 
-          rgba(255, 255, 255, 0) 100%
-        );
-        transform: rotate(45deg);
-        animation: shimmer 3s infinite;
-      }
-      
-      @keyframes shimmer {
-        0% { transform: translateX(-100%) rotate(45deg); }
-        100% { transform: translateX(100%) rotate(45deg); }
-      }
-      
-      .neural-bg {
-        background-image: radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 33%),
-                          radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 33%);
-      }
-      
-      /* Scrollbar styling */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.2);
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background: rgba(139, 92, 246, 0.3);
-        border-radius: 4px;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: rgba(139, 92, 246, 0.5);
+      body::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari and Opera */
       }
     </style>
+    <script>
+      // Add page loading animation
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          document.body.classList.add('loaded');
+        }, 100);
+      });
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
