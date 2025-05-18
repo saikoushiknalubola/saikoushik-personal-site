@@ -8,7 +8,7 @@ interface QuoteProps {
   expandable?: boolean;
 }
 
-const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = false }) => {
+const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = true }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
@@ -39,14 +39,34 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = fal
             </motion.p>
 
             {expandable && expanded && (
-              <motion.p
-                className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                transition={{ duration: 0.5 }}
-              >
-                The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo.
-              </motion.p>
+              <>
+                <motion.p
+                  className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  transition={{ duration: 0.5 }}
+                >
+                  The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo.
+                </motion.p>
+                
+                <motion.p
+                  className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  You can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them. Because they change things.
+                </motion.p>
+                
+                <motion.p
+                  className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  They push the human race forward. While some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.
+                </motion.p>
+              </>
             )}
           </motion.div>
 

@@ -12,7 +12,6 @@ import LiteraryQuote from '@/components/LiteraryQuote';
 import PhilosophicalParadox from '@/components/PhilosophicalParadox';
 import MagicApple from '@/components/MagicApple';
 import ThinkDifferentQuote from '@/components/ThinkDifferentQuote';
-import InnovationTimeline from '@/components/InnovationTimeline';
 import OneMoreThing from '@/components/OneMoreThing';
 import SlideToUnlock from '@/components/SlideToUnlock';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ZapIcon, Sparkles } from 'lucide-react';
@@ -21,6 +20,7 @@ import ImmersiveImageCard from '@/components/ImmersiveImageCard';
 import ThoughtExperiment from '@/components/ThoughtExperiment';
 import PhysicsEquation from '@/components/PhysicsEquation';
 import CompassStory from '@/components/CompassStory';
+import InnovatorJourney from '@/components/InnovatorJourney';
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -356,18 +356,18 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Steve Jobs inspired "Innovation Timeline" section */}
-      <section id="innovation" className="enhanced-section">
-        <div className="container mx-auto">
+      {/* New Innovator Journey Section (Replacing Innovation Timeline) */}
+      <section id="innovator-journey" className="py-20 px-4 md:px-8 bg-black/40 relative overflow-hidden">
+        <div className="container mx-auto relative z-10">
           <SectionHeader 
-            title="The Innovation Timeline" 
-            subtitle="Revolutionary moments that define my journey"
+            title="The Genius Philosophy" 
+            subtitle="Where Einstein's scientific brilliance meets Jobs' innovative vision"
             style="apple"
             className="animate-on-scroll"
           />
           
           <div className="animate-on-scroll">
-            <InnovationTimeline />
+            <InnovatorJourney />
           </div>
         </div>
       </section>
