@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Mail } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
 import {
   DropdownMenu,
@@ -154,14 +155,14 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
   
   return (
     <motion.header 
-      className={`fixed-header bg-black/60 backdrop-blur-xl py-4 px-6 border-b border-white/5`}
+      className="fixed-header bg-black/60 backdrop-blur-xl py-3 md:py-4 px-3 md:px-6 border-b border-white/5 w-full left-0 top-0 z-50"
       initial="visible"
       animate={visible ? "visible" : "hidden"}
       variants={navVariants}
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Link to="/" className="font-raleway text-xl font-bold group relative">
+          <Link to="/" className="font-raleway text-lg md:text-xl font-bold group relative">
             <motion.span 
               className="text-white inline-flex items-center"
               initial={{ opacity: 0 }}
@@ -239,7 +240,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
               <DropdownMenuTrigger className="relative font-poppins font-medium text-white hover:text-neon-purple transition-colors px-3 py-2 flex items-center">
                 More <ChevronDown className="ml-1 h-4 w-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-black/90 border border-white/10 backdrop-blur-xl text-white min-w-[220px] rounded-xl shadow-lg">
+              <DropdownMenuContent className="bg-black/90 border border-white/10 backdrop-blur-xl text-white min-w-[220px] rounded-xl shadow-lg z-50">
                 {moreDropdownItems.map((item) => (
                   <DropdownMenuItem key={item.id} asChild className="focus:bg-neon-purple/20">
                     {item.href.startsWith('#') ? (
@@ -300,7 +301,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-            className="md:hidden fixed left-0 right-0 top-[76px] bg-black/95 backdrop-blur-xl border-t border-white/10 z-50 max-h-[calc(100vh-76px)] overflow-y-auto"
+            className="md:hidden fixed left-0 right-0 top-[62px] bg-black/95 backdrop-blur-xl border-t border-white/10 z-50 max-h-[calc(100vh-62px)] overflow-y-auto"
           >
             <div className="flex flex-col p-4">
               {mainNavItems.map((item, index) => {
@@ -427,7 +428,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 );
               })}
               
-              {/* Social links in mobile menu - only keeping Globe icon */}
+              {/* Social links in mobile menu */}
               <motion.div 
                 className="border-t border-white/10 mt-4 pt-4 flex justify-center gap-4"
                 initial={{ opacity: 0 }}
@@ -441,6 +442,14 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Globe size={20} />
+                </motion.a>
+                <motion.a 
+                  href="mailto:saikoushik42@gmail.com"
+                  className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Mail size={20} />
                 </motion.a>
               </motion.div>
             </div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface QuoteProps {
   className?: string;
@@ -10,9 +11,10 @@ interface QuoteProps {
 
 const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = true }) => {
   const [expanded, setExpanded] = React.useState(false);
+  const isMobile = useIsMobile();
 
   return (
-    <div className={cn("my-16 max-w-4xl mx-auto px-4", className)}>
+    <div className={cn("my-8 md:my-16 max-w-4xl mx-auto px-3 md:px-4", className)}>
       <motion.div 
         className="relative"
         initial={{ opacity: 0 }}
@@ -20,18 +22,18 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
         transition={{ duration: 0.8 }}
       >
         {/* Apple rainbow stripe top */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mb-8 rounded-full"></div>
+        <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mb-4 md:mb-8 rounded-full"></div>
         
         <div className="text-center">
           <motion.div 
-            className="space-y-4"
+            className="space-y-3 md:space-y-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
             {/* First line only */}
             <motion.p 
-              className="text-xl md:text-2xl font-sf font-light text-white/90 italic"
+              className="text-lg md:text-2xl font-sf font-light text-white/90 italic"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -41,7 +43,7 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
             {expandable && expanded && (
               <>
                 <motion.p
-                  className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                  className="text-lg md:text-2xl font-sf font-light text-white/80 italic"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   transition={{ duration: 0.5 }}
@@ -50,7 +52,7 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
                 </motion.p>
                 
                 <motion.p
-                  className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                  className="text-lg md:text-2xl font-sf font-light text-white/80 italic"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -59,7 +61,7 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
                 </motion.p>
                 
                 <motion.p
-                  className="text-xl md:text-2xl font-sf font-light text-white/80 italic"
+                  className="text-lg md:text-2xl font-sf font-light text-white/80 italic"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   transition={{ duration: 0.5, delay: 0.4 }}
@@ -71,7 +73,7 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
           </motion.div>
 
           <motion.p 
-            className="mt-8 font-sf text-lg text-white/80"
+            className="mt-4 md:mt-8 font-sf text-base md:text-lg text-white/80"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -81,7 +83,7 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
 
           {expandable && (
             <motion.button
-              className="mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+              className="mt-3 md:mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors"
               onClick={() => setExpanded(!expanded)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
@@ -92,7 +94,7 @@ const ThinkDifferentQuote: React.FC<QuoteProps> = ({ className, expandable = tru
         </div>
         
         {/* Apple rainbow stripe bottom */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mt-8 rounded-full"></div>
+        <div className="h-1.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 mt-4 md:mt-8 rounded-full"></div>
       </motion.div>
     </div>
   );

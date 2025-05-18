@@ -12,15 +12,16 @@ export const BREAKPOINTS = {
 type DeviceSize = 'mobile' | 'tablet' | 'laptop' | 'desktop'
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+  const [isMobile, setIsMobile] = React.useState<boolean>(() => {
+    // Default to true for server-side rendering
+    if (typeof window === 'undefined') return true;
+    return window.innerWidth < BREAKPOINTS.tablet;
+  });
 
   React.useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < BREAKPOINTS.tablet)
     }
-    
-    // Set initial value
-    handleResize()
     
     // Add event listener for window resize
     window.addEventListener("resize", handleResize)
@@ -29,35 +30,50 @@ export function useIsMobile() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  return !!isMobile
+  return isMobile;
 }
 
 export function useDeviceSize() {
-  const [deviceSize, setDeviceSize] = React.useState<DeviceSize>('desktop')
+  const [deviceSize, setDeviceSize] = React.useState<DeviceSize>(() => {
+    // Default for SSR
+    if (typeof window === 'undefined') return 'mobile';
+    
+    const width = window.innerWidth;
+    if (width < BREAKPOINTS.mobile) return 'mobile';
+    if (width < BREAKPOINTS.tablet) return 'tablet';
+    if (width < BREAKPOINTS.laptop) return 'laptop';
+    return 'desktop';
+  });
 
   React.useEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth
+      const width = window.innerWidth;
       
       if (width < BREAKPOINTS.mobile) {
-        setDeviceSize('mobile')
+        setDeviceSize('mobile');
       } else if (width < BREAKPOINTS.tablet) {
-        setDeviceSize('tablet')
+        setDeviceSize('tablet');
       } else if (width < BREAKPOINTS.laptop) {
-        setDeviceSize('laptop')
+        setDeviceSize('laptop');
       } else {
-        setDeviceSize('desktop')
+        setDeviceSize('desktop');
       }
     }
     
-    // Set initial value
-    handleResize()
+    // Add event listener for window resize with debounce
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleResize, 100);
+    };
     
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize)
+    window.addEventListener("resize", debouncedResize);
     
     // Clean up
-    return () => window.removeEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", debouncedResize);
+      clearTimeout(timeoutId);
+    }
   }, [])
 
   return {

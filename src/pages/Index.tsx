@@ -691,12 +691,37 @@ const Index = () => {
             className="animate-on-scroll"
           />
           
-          <div className="max-w-2xl mx-auto glass-card-glow p-8 animate-on-scroll">
-            <p className="text-xl mb-8 text-center">
+          <div className="max-w-2xl mx-auto glass-card-glow p-6 md:p-8 animate-on-scroll">
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-center">
               "In the vastness of the digital cosmos, like ships passing in the night, we seek connections that transcend the ordinary." If you have a vision that defies convention, let's manifest it together.
             </p>
             
-            <div className="flex justify-center space-x-8 mt-6">
+            {/* Email contact card - new addition */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 md:p-6 mb-8 border border-white/10 flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
+              <div className="flex items-center">
+                <div className="bg-neon-purple/20 p-3 rounded-full mr-4">
+                  <Mail size={24} className="text-neon-purple" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-lg">Email Me</h3>
+                  <a 
+                    href="mailto:saikoushik42@gmail.com"
+                    className="text-white/80 hover:text-white hover:underline transition-colors"
+                  >
+                    saikoushik42@gmail.com
+                  </a>
+                </div>
+              </div>
+              <a 
+                href="mailto:saikoushik42@gmail.com"
+                className="bg-neon-purple/90 hover:bg-neon-purple text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium flex items-center"
+              >
+                <Mail size={16} className="mr-2" />
+                Send Email
+              </a>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-6">
               <a 
                 href="https://github.com/saikoushiknalubola" 
                 target="_blank" 
@@ -732,7 +757,7 @@ const Index = () => {
               </a>
             </div>
             
-            <div className="mt-12 text-center">
+            <div className="mt-10 md:mt-12 text-center">
               <p className="text-lg font-medium italic">
                 "Do not go gentle into that good night. Rage, rage against the dying of the light."
               </p>
@@ -742,7 +767,7 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="py-12 px-4 md:px-8 border-t border-white/10 relative overflow-hidden bg-black/50">
+      <footer className="py-8 md:py-12 px-4 md:px-8 border-t border-white/10 relative overflow-hidden bg-black/50">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -764,21 +789,21 @@ const Index = () => {
               <p className="text-white/60 mt-2">Quantum Visionary • 2050</p>
             </div>
             
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-3 md:gap-4 justify-center">
               <a href="https://github.com/saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
-                <Github size={20} className="text-white/80" />
+                <Github size={18} className="text-white/80" />
               </a>
               <a href="https://www.linkedin.com/in/saikoushiknalubola/" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
-                <Linkedin size={20} className="text-white/80" />
+                <Linkedin size={18} className="text-white/80" />
               </a>
               <a href="https://x.com/saikoushik_42" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
-                <Twitter size={20} className="text-white/80" />
+                <Twitter size={18} className="text-white/80" />
               </a>
               <a href="https://medium.com/@saikoushiknalubola" target="_blank" rel="noopener noreferrer" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
                 <span className="text-white/80 font-bold">M</span>
               </a>
               <a href="mailto:saikoushik42@gmail.com" className="bg-white/5 hover:bg-white/10 p-3 rounded-full transition-colors">
-                <Mail size={20} className="text-white/80" />
+                <Mail size={18} className="text-white/80" />
               </a>
             </div>
           </div>
@@ -804,6 +829,17 @@ const Index = () => {
           <p className="text-center text-white/60 mt-6">
             © {new Date().getFullYear()} Saikoushik Nalubola. All rights reserved in this timeline.
           </p>
+          
+          {/* Contact info in footer */}
+          <div className="flex justify-center mt-4">
+            <a 
+              href="mailto:saikoushik42@gmail.com"
+              className="text-white/60 hover:text-white/90 transition-colors text-sm flex items-center"
+            >
+              <Mail size={14} className="mr-1" />
+              saikoushik42@gmail.com
+            </a>
+          </div>
         </div>
       </footer>
     </div>
