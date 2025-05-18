@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe, Bell, User, Search } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
 import {
   DropdownMenu,
@@ -180,7 +179,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
               Nalubola
             </motion.span>
             <motion.span 
-              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-purple to-future-primary"
+              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-purple to-neon-purple"
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
               transition={{ duration: 0.7, delay: 0.3 }}
@@ -188,7 +187,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
           </Link>
           
           {/* Progress indicator */}
-          <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-neon-purple to-future-primary" style={{ width: `${scrollProgress}%` }}></div>
+          <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-neon-purple to-neon-purple" style={{ width: `${scrollProgress}%` }}></div>
           
           <div className="hidden md:flex items-center space-x-4">
             {mainNavItems.map((item) => {
@@ -270,31 +269,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            
-            {/* Icon section */}
-            <div className="flex items-center space-x-1 ml-4">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
-              >
-                <Search size={18} />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
-              >
-                <Bell size={18} />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
-              >
-                <User size={18} />
-              </motion.button>
-            </div>
           </div>
           
           <div className="md:hidden">
@@ -453,7 +427,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 );
               })}
               
-              {/* Social links in mobile menu */}
+              {/* Social links in mobile menu - only keeping Globe icon */}
               <motion.div 
                 className="border-t border-white/10 mt-4 pt-4 flex justify-center gap-4"
                 initial={{ opacity: 0 }}
@@ -467,22 +441,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Globe size={20} />
-                </motion.a>
-                <motion.a
-                  href="#" 
-                  className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Bell size={20} />
-                </motion.a>
-                <motion.a 
-                  href="#"
-                  className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <User size={20} />
                 </motion.a>
               </motion.div>
             </div>

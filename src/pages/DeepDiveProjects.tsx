@@ -5,6 +5,7 @@ import SectionHeader from '@/components/SectionHeader';
 import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ExperienceTimeline from '@/components/ExperienceTimeline';
+import InteractiveTimeline from '@/components/InteractiveTimeline';
 
 const DeepDiveProjects = () => {
   // Animation on scroll effect
@@ -113,6 +114,41 @@ const DeepDiveProjects = () => {
     }
   ];
 
+  const timelineEvents = [
+    {
+      date: "2019",
+      title: "Genesis of Quantum Insight",
+      description: "The initial conception of a revolutionary theory combining quantum mechanics and user experience design principles.",
+      tags: ["Quantum", "Design", "Theory"]
+    },
+    {
+      date: "2020",
+      title: "Gravity OS Prototype",
+      description: "Development of the first prototype of the Gravity-responsive operating system, changing how we interact with devices.",
+      image: "/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png",
+      tags: ["OS", "Innovation", "Prototype"]
+    },
+    {
+      date: "2021",
+      title: "Time Capsule Achievement",
+      description: "Honored for pioneering work in temporal data compression and visualization techniques.",
+      tags: ["Award", "Research", "Data"]
+    },
+    {
+      date: "2022",
+      title: "Spacetime Platform Launch",
+      description: "The successful deployment of the Spacetime communication platform, connecting users across different temporal frameworks.",
+      image: "/lovable-uploads/4fc90ebc-922f-45ed-910b-664c0cae51e3.png",
+      tags: ["Platform", "Communication", "Launch"]
+    },
+    {
+      date: "2023",
+      title: "Quantum Present Developments",
+      description: "Current innovations in quantum computing and artificial intelligence, pushing boundaries of what's possible.",
+      tags: ["Quantum", "AI", "Current"]
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -165,6 +201,22 @@ const DeepDiveProjects = () => {
           />
           
           <ExperienceTimeline items={projects} />
+        </div>
+      </section>
+
+      {/* Interactive Timeline */}
+      <section className="py-20 px-4 md:px-8">
+        <div className="container mx-auto">
+          <SectionHeader 
+            title="Conceptual Journey" 
+            subtitle="Traversing through time and space of creative manifestation"
+            style="kafka"
+            className="animate-on-scroll"
+          />
+          
+          <div className="mt-16">
+            <InteractiveTimeline events={timelineEvents} />
+          </div>
         </div>
       </section>
 
