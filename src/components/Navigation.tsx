@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Mail, ExternalLink } from 'lucide-react';
 import { useDeviceSize } from '@/hooks/use-mobile';
 import {
   DropdownMenu,
@@ -23,12 +23,14 @@ type NavItem = {
   isNew?: boolean; // Make isNew optional
 };
 
-// Define type for dropdown items
+// Define type for dropdown items with additional context
 type DropdownItem = {
   id: string;
   label: string;
+  description?: string; // Add description field
   href: string;
   isNew?: boolean;
+  isExternal?: boolean; // For external links
 };
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
@@ -106,14 +108,45 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
     { id: 'contact', label: 'Contact', href: '#contact' },
   ];
   
-  // More dropdown items
+  // Enhanced More dropdown items with descriptions
   const moreDropdownItems: DropdownItem[] = [
-    { id: 'gallery', label: 'Gallery', href: '/gallery' },
-    { id: 'cinema', label: 'Cinema', href: '/cinema' },
-    { id: 'lab', label: 'Digital Lab', href: '/lab' },
-    { id: 'philosophy', label: 'Philosophy', href: '/philosophy' },
-    { id: 'music', label: 'Music', href: '/music' },
-    { id: 'comedy', label: 'Comedy', href: '/comedy', isNew: true },
+    { 
+      id: 'gallery', 
+      label: 'Gallery', 
+      description: 'Visual exploration of creative works and inspiration',
+      href: '/gallery' 
+    },
+    { 
+      id: 'cinema', 
+      label: 'Cinema', 
+      description: 'Film analysis and cinematic inspiration',
+      href: '/cinema' 
+    },
+    { 
+      id: 'lab', 
+      label: 'Digital Lab', 
+      description: 'Experimental projects and technical explorations',
+      href: '/lab' 
+    },
+    { 
+      id: 'philosophy', 
+      label: 'Philosophy', 
+      description: 'Deep thoughts on life, technology and creativity',
+      href: '/philosophy' 
+    },
+    { 
+      id: 'music', 
+      label: 'Music', 
+      description: 'Musical influences and sound explorations',
+      href: '/music' 
+    },
+    { 
+      id: 'comedy', 
+      label: 'Comedy', 
+      description: 'Humor and creative fun experiments',
+      href: '/comedy', 
+      isNew: true 
+    },
   ];
   
   // All navigation items combined for mobile view
@@ -235,35 +268,51 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
               );
             })}
             
-            {/* More dropdown menu */}
+            {/* Enhanced More dropdown menu */}
             <DropdownMenu>
               <DropdownMenuTrigger className="relative font-poppins font-medium text-white hover:text-neon-purple transition-colors px-3 py-2 flex items-center">
                 More <ChevronDown className="ml-1 h-4 w-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-black/90 border border-white/10 backdrop-blur-xl text-white min-w-[220px] rounded-xl shadow-lg z-50">
+              <DropdownMenuContent className="bg-black/90 border border-white/10 backdrop-blur-xl text-white min-w-[280px] rounded-xl shadow-lg z-50">
                 {moreDropdownItems.map((item) => (
                   <DropdownMenuItem key={item.id} asChild className="focus:bg-neon-purple/20">
                     {item.href.startsWith('#') ? (
                       <a
                         href={item.href}
-                        className="w-full flex items-center justify-between cursor-pointer hover:bg-white/10 px-4 py-3 rounded-md transition-colors"
+                        className="w-full cursor-pointer hover:bg-white/10 px-4 py-3 rounded-md transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
-                        {item.label}
-                        {item.isNew && (
-                          <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                        )}
+                        <div className="flex flex-col">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">{item.label}</span>
+                            {item.isNew && (
+                              <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                            )}
+                            {item.isExternal && <ExternalLink className="ml-1 h-3 w-3" />}
+                          </div>
+                          {item.description && (
+                            <span className="text-xs text-white/70 mt-1">{item.description}</span>
+                          )}
+                        </div>
                       </a>
                     ) : (
                       <Link
                         to={item.href}
-                        className="w-full flex items-center justify-between cursor-pointer hover:bg-white/10 px-4 py-3 rounded-md transition-colors"
+                        className="w-full cursor-pointer hover:bg-white/10 px-4 py-3 rounded-md transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
-                        {item.label}
-                        {item.isNew && (
-                          <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                        )}
+                        <div className="flex flex-col">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">{item.label}</span>
+                            {item.isNew && (
+                              <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                            )}
+                            {item.isExternal && <ExternalLink className="ml-1 h-3 w-3" />}
+                          </div>
+                          {item.description && (
+                            <span className="text-xs text-white/70 mt-1">{item.description}</span>
+                          )}
+                        </div>
                       </Link>
                     )}
                   </DropdownMenuItem>
@@ -359,16 +408,17 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 );
               })}
               
-              {/* More section header in mobile menu */}
+              {/* Enhanced More section header in mobile menu */}
               <motion.div 
                 className="font-poppins font-medium text-lg text-neon-purple py-2 px-4 mt-2 border-t border-white/10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: mainNavItems.length * 0.05 }}
               >
-                More
+                More Sections
               </motion.div>
               
+              {/* Enhanced mobile More items with descriptions */}
               {moreDropdownItems.map((item, index) => {
                 const active = isActive(item.id);
                 
@@ -376,10 +426,10 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                   <motion.a
                     key={item.id}
                     href={item.href}
-                    className={`font-poppins font-medium text-lg flex items-center justify-between py-3 px-4 rounded-lg mb-1 ${
+                    className={`font-poppins mb-3 py-3 px-4 rounded-lg ${
                       active 
-                        ? 'text-neon-purple bg-white/5' 
-                        : 'text-white hover:bg-white/5'
+                        ? 'bg-white/5' 
+                        : 'hover:bg-white/5'
                     } transition-colors relative overflow-hidden`}
                     onClick={() => setIsOpen(false)}
                     initial={{ opacity: 0, y: 20 }}
@@ -388,10 +438,19 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {item.label}
-                    {item.isNew && (
-                      <span className="text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                    )}
+                    <div className="flex flex-col">
+                      <div className="flex items-center justify-between">
+                        <span className={`font-medium text-lg ${active ? 'text-neon-purple' : 'text-white'}`}>
+                          {item.label}
+                        </span>
+                        {item.isNew && (
+                          <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                        )}
+                      </div>
+                      {item.description && (
+                        <span className="text-sm text-white/70 mt-1">{item.description}</span>
+                      )}
+                    </div>
                     {active && (
                       <motion.span 
                         className="absolute left-0 top-1/2 h-1/2 w-1 bg-neon-purple rounded-full transform -translate-y-1/2"
@@ -407,17 +466,26 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                   >
                     <Link
                       to={item.href}
-                      className={`font-poppins font-medium text-lg flex items-center justify-between py-3 px-4 rounded-lg mb-1 ${
+                      className={`font-poppins mb-3 py-3 px-4 rounded-lg ${
                         active 
-                          ? 'text-neon-purple bg-white/5' 
-                          : 'text-white hover:bg-white/5'
+                          ? 'bg-white/5' 
+                          : 'hover:bg-white/5'
                       } transition-colors relative overflow-hidden block`}
                       onClick={() => setIsOpen(false)}
                     >
-                      {item.label}
-                      {item.isNew && (
-                        <span className="text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
-                      )}
+                      <div className="flex flex-col">
+                        <div className="flex items-center justify-between">
+                          <span className={`font-medium text-lg ${active ? 'text-neon-purple' : 'text-white'}`}>
+                            {item.label}
+                          </span>
+                          {item.isNew && (
+                            <span className="ml-1 text-xs bg-yellow-500/80 text-black px-1.5 py-0.5 rounded-full">New!</span>
+                          )}
+                        </div>
+                        {item.description && (
+                          <span className="text-sm text-white/70 mt-1">{item.description}</span>
+                        )}
+                      </div>
                       {active && (
                         <motion.span 
                           className="absolute left-0 top-1/2 h-1/2 w-1 bg-neon-purple rounded-full transform -translate-y-1/2"
@@ -428,29 +496,33 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection = 'home' }) => {
                 );
               })}
               
-              {/* Social links in mobile menu */}
+              {/* Enhanced Social links in mobile menu */}
               <motion.div 
-                className="border-t border-white/10 mt-4 pt-4 flex justify-center gap-4"
+                className="border-t border-white/10 mt-4 pt-4 flex flex-col items-center gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: (mainNavItems.length + moreDropdownItems.length) * 0.05 }}
               >
-                <motion.a 
-                  href="#"
-                  className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Globe size={20} />
-                </motion.a>
-                <motion.a 
-                  href="mailto:saikoushik42@gmail.com"
-                  className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail size={20} />
-                </motion.a>
+                <div className="text-center text-sm text-white/70 mb-2">Get in touch</div>
+                <div className="flex gap-4 justify-center">
+                  <motion.a 
+                    href="#"
+                    className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Globe size={20} />
+                  </motion.a>
+                  <motion.a 
+                    href="mailto:saikoushik42@gmail.com"
+                    className="bg-white/5 hover:bg-white/10 text-white/80 hover:text-white p-3 rounded-full transition-colors flex items-center gap-2"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Mail size={20} />
+                    <span className="text-sm">saikoushik42@gmail.com</span>
+                  </motion.a>
+                </div>
               </motion.div>
             </div>
           </motion.div>
