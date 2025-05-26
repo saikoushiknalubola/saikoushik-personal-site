@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -13,7 +12,13 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '1rem',
+				sm: '1.5rem',
+				lg: '2rem',
+				xl: '3rem',
+				'2xl': '4rem',
+			},
 			screens: {
 				'2xl': '1400px'
 			}
@@ -81,12 +86,50 @@ export default {
 					accent: '#FF3864',
 					dark: '#0A0A1A',
 					light: '#E0F7FF'
+				},
+				slate: {
+					50: '#f8fafc',
+					100: '#f1f5f9',
+					200: '#e2e8f0',
+					300: '#cbd5e1',
+					400: '#94a3b8',
+					500: '#64748b',
+					600: '#475569',
+					700: '#334155',
+					800: '#1e293b',
+					900: '#0f172a',
+					950: '#020617',
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem',
+				'128': '32rem',
+			},
+			fontSize: {
+				'2xs': ['0.625rem', { lineHeight: '0.75rem' }],
+				'xs': ['0.75rem', { lineHeight: '1rem' }],
+				'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+				'base': ['1rem', { lineHeight: '1.5rem' }],
+				'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+				'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+				'2xl': ['1.5rem', { lineHeight: '2rem' }],
+				'3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+				'5xl': ['3rem', { lineHeight: '1' }],
+				'6xl': ['3.75rem', { lineHeight: '1' }],
+				'7xl': ['4.5rem', { lineHeight: '1' }],
+				'8xl': ['6rem', { lineHeight: '1' }],
+				'9xl': ['8rem', { lineHeight: '1' }],
+			},
+			screens: {
+				'xs': '475px',
+				'3xl': '1600px',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -235,7 +278,7 @@ export default {
               	'slide-reveal': 'slide-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards'
 			},
 			fontFamily: {
-				inter: ['Inter', 'sans-serif'],
+				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				space: ['Space Mono', 'monospace'],
 				sf: ['"SF Pro Display"', 'Inter', 'sans-serif'],
@@ -258,7 +301,9 @@ export default {
 				'neon-cyan': '0 0 5px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
 				'futuristic': '0 0 10px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.3)',
 				'apple': '0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)',
-              	'apple-glow': '0 0 15px rgba(255, 255, 255, 0.3)'
+              	'apple-glow': '0 0 15px rgba(255, 255, 255, 0.3)',
+				'glass': '0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
+				'glass-hover': '0 8px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.08) inset'
 			}
 		}
 	},

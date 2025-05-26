@@ -5,7 +5,9 @@ import SectionHeader from '@/components/SectionHeader';
 import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ExperienceTimeline from '@/components/ExperienceTimeline';
-import InteractiveTimeline from '@/components/InteractiveTimeline';
+import SkillsGrid from '@/components/SkillsGrid';
+import ImpactMetrics from '@/components/ImpactMetrics';
+import TechStackVisualizer from '@/components/TechStackVisualizer';
 
 const DeepDiveProjects = () => {
   // Animation on scroll effect
@@ -114,204 +116,176 @@ const DeepDiveProjects = () => {
     }
   ];
 
-  const timelineEvents = [
-    {
-      date: "2019",
-      title: "Genesis of Quantum Insight",
-      description: "The initial conception of a revolutionary theory combining quantum mechanics and user experience design principles.",
-      tags: ["Quantum", "Design", "Theory"]
-    },
-    {
-      date: "2020",
-      title: "Gravity OS Prototype",
-      description: "Development of the first prototype of the Gravity-responsive operating system, changing how we interact with devices.",
-      image: "/lovable-uploads/14b4370d-d103-473a-a273-98168020f91b.png",
-      tags: ["OS", "Innovation", "Prototype"]
-    },
-    {
-      date: "2021",
-      title: "Time Capsule Achievement",
-      description: "Honored for pioneering work in temporal data compression and visualization techniques.",
-      tags: ["Award", "Research", "Data"]
-    },
-    {
-      date: "2022",
-      title: "Spacetime Platform Launch",
-      description: "The successful deployment of the Spacetime communication platform, connecting users across different temporal frameworks.",
-      image: "/lovable-uploads/4fc90ebc-922f-45ed-910b-664c0cae51e3.png",
-      tags: ["Platform", "Communication", "Launch"]
-    },
-    {
-      date: "2023",
-      title: "Quantum Present Developments",
-      description: "Current innovations in quantum computing and artificial intelligence, pushing boundaries of what's possible.",
-      tags: ["Quantum", "AI", "Current"]
-    }
-  ];
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-[50vh] flex flex-col justify-center pt-20 px-4 md:px-8 bg-gradient-to-b from-black to-background">
+      <section className="min-h-[50vh] flex flex-col justify-center pt-20 px-4 md:px-8 bg-gradient-to-b from-black/50 to-transparent">
         <div className="container mx-auto">
-          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-white transition-colors mb-8">
-            <ArrowLeft className="mr-2" size={16} />
+          <Link to="/" className="inline-flex items-center text-slate-400 hover:text-white transition-colors mb-6 sm:mb-8 text-sm sm:text-base">
+            <ArrowLeft className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
             Back to Home
           </Link>
           
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 animate-on-scroll">
-            The <span className="text-neon-purple">Laboratory</span>
+          <h1 className="font-inter font-bold text-3xl sm:text-5xl md:text-7xl mb-4 sm:mb-6 animate-on-scroll leading-tight">
+            The <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">Laboratory</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl animate-on-scroll">
+          <p className="font-inter text-lg sm:text-xl md:text-2xl text-slate-300 max-w-3xl animate-on-scroll leading-relaxed">
             In the vastness of imagination, reality is just a suggestion. These projects are the manifestation of dreams in the physical realm.
           </p>
         </div>
       </section>
 
-      {/* Introduction */}
-      <section className="py-20 px-4 md:px-8">
+      {/* Impact Metrics Section */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 md:px-8">
         <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto animate-on-scroll">
-            <p className="text-lg mb-6">
-              Like whispers in the dark, ideas transform into tangible creations here. Each project represents not just technical achievement, but a philosophical journey through the labyrinth of human innovation.
-            </p>
-            
-            <p className="text-lg mb-6">
-              "Time is not linear, it's a relativity of existence." From AI systems that democratize legal knowledge to technologies that address environmental challenges, these projects unfold across dimensions, bending reality to serve humanity.
-            </p>
-            
-            <p className="text-lg mb-10">
-              "Do not go gentle into that good night." Explore the technical details, philosophical underpinnings, and real-world impact of each initiative that rages against the dying of the light.
-            </p>
-          </div>
+          <SectionHeader 
+            title="Impact & Innovation" 
+            subtitle="Quantifying the reach and influence of technological solutions"
+            style="futuristic"
+            className="animate-on-scroll mb-8 sm:mb-12"
+          />
+          
+          <ImpactMetrics />
+        </div>
+      </section>
+
+      {/* Skills & Technologies Section */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 md:px-8 bg-gradient-to-r from-slate-900/50 to-purple-900/10">
+        <div className="container mx-auto">
+          <SectionHeader 
+            title="Technical Expertise" 
+            subtitle="A comprehensive overview of skills and proficiencies across the technology spectrum"
+            style="futuristic"
+            className="animate-on-scroll mb-8 sm:mb-12"
+          />
+          
+          <SkillsGrid />
+        </div>
+      </section>
+
+      {/* Technology Stack Visualization */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 md:px-8">
+        <div className="container mx-auto">
+          <SectionHeader 
+            title="Technology Arsenal" 
+            subtitle="The tools and frameworks that power innovation and bring ideas to life"
+            style="kafka"
+            className="animate-on-scroll mb-8 sm:mb-12"
+          />
+          
+          <TechStackVisualizer />
         </div>
       </section>
 
       {/* Projects Timeline */}
-      <section className="py-20 px-4 md:px-8 bg-secondary/30">
+      <section className="py-12 sm:py-16 md:py-20 px-4 md:px-8 bg-gradient-to-r from-purple-900/10 to-slate-900/50">
         <div className="container mx-auto">
           <SectionHeader 
             title="Project Timeline" 
             subtitle="A non-linear journey through the corridors of innovation and experiments"
             style="futuristic"
-            className="animate-on-scroll"
+            className="animate-on-scroll mb-8 sm:mb-12"
           />
           
           <ExperienceTimeline items={projects} />
         </div>
       </section>
 
-      {/* Interactive Timeline */}
-      <section className="py-20 px-4 md:px-8">
-        <div className="container mx-auto">
-          <SectionHeader 
-            title="Conceptual Journey" 
-            subtitle="Traversing through time and space of creative manifestation"
-            style="kafka"
-            className="animate-on-scroll"
-          />
-          
-          <div className="mt-16">
-            <InteractiveTimeline events={timelineEvents} />
-          </div>
-        </div>
-      </section>
-
       {/* Technical Showcase */}
-      <section className="py-20 px-4 md:px-8">
+      <section className="py-12 sm:py-16 md:py-20 px-4 md:px-8">
         <div className="container mx-auto">
           <SectionHeader 
             title="Technical Showcase" 
             subtitle="Deep dives into the architecture and implementation of selected projects"
             style="kafka"
-            className="animate-on-scroll"
+            className="animate-on-scroll mb-8 sm:mb-12"
           />
           
-          <div className="grid md:grid-cols-2 gap-12 animate-on-scroll">
-            <div className="glass-card p-8">
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-xl font-bold">Nyaayasaathi Architecture</h3>
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 animate-on-scroll">
+            <div className="glass-card p-6 sm:p-8 hover:scale-105 transition-all duration-300">
+              <div className="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+                <h3 className="font-inter font-bold text-lg sm:text-xl text-white">Nyaayasaathi Architecture</h3>
                 <div className="flex space-x-2">
-                  <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-                    <Github size={20} />
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <Github className="w-5 h-5" />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-                    <ExternalLink size={20} />
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <ExternalLink className="w-5 h-5" />
                   </a>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-medium mb-2">NLP Pipeline</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-inter font-semibold mb-2 text-blue-400">NLP Pipeline</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     "In the labyrinth of language, meaning hides in the shadows." Our custom-built NLP pipeline unravels legal queries with the precision of a surgeon's scalpel.
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">Knowledge Graph</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-inter font-semibold mb-2 text-green-400">Knowledge Graph</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     "The truth is not a straight line but a web of interconnections." Our graph-based representation of legal concepts creates a multidimensional space for accurate information retrieval.
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">Accessibility Layer</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-inter font-semibold mb-2 text-purple-400">Accessibility Layer</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     "Technology that cannot reach the masses is not technology at all, but privilege disguised as innovation." Multi-language support and low-bandwidth optimizations ensure universal access.
                   </p>
                 </div>
               </div>
               
               <div className="mt-6 flex justify-end">
-                <Link to="#" className="text-sm text-neon-purple hover:text-purple-400 transition-colors">
+                <Link to="#" className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
                   View technical documentation →
                 </Link>
               </div>
             </div>
             
-            <div className="glass-card p-8">
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-xl font-bold">Revithalize EV System</h3>
+            <div className="glass-card p-6 sm:p-8 hover:scale-105 transition-all duration-300">
+              <div className="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+                <h3 className="font-inter font-bold text-lg sm:text-xl text-white">Revithalize EV System</h3>
                 <div className="flex space-x-2">
-                  <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-                    <Github size={20} />
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <Github className="w-5 h-5" />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-                    <ExternalLink size={20} />
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <ExternalLink className="w-5 h-5" />
                   </a>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-medium mb-2">Modular Design</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-inter font-semibold mb-2 text-orange-400">Modular Design</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     "Like dreams within dreams, our components nest within each other." Adaptable modules transform conventional vehicles into visions of the future through the wormhole of innovation.
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">Energy Management System</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-inter font-semibold mb-2 text-cyan-400">Energy Management System</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     "Love is the one thing that transcends time and space." Our intelligent power distribution systems create an invisible bond between energy sources and consumption needs.
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">Integration Framework</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <h4 className="font-inter font-semibold mb-2 text-yellow-400">Integration Framework</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     "The past and future exist simultaneously in the present." Our software system merges legacy vehicle electronics with cutting-edge diagnostics in a temporal convergence.
                   </p>
                 </div>
               </div>
               
               <div className="mt-6 flex justify-end">
-                <Link to="#" className="text-sm text-neon-purple hover:text-purple-400 transition-colors">
+                <Link to="#" className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium">
                   View technical specifications →
                 </Link>
               </div>
@@ -321,50 +295,52 @@ const DeepDiveProjects = () => {
       </section>
 
       {/* Philosophical Approach */}
-      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-background to-black">
+      <section className="py-12 sm:py-16 md:py-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-black/50">
         <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto glass-card p-8 border border-white/10 animate-on-scroll">
-            <h2 className="text-2xl font-bold mb-6">The Philosophical Paradox of Technology</h2>
+          <div className="max-w-4xl mx-auto glass-card p-6 sm:p-8 border border-white/10 animate-on-scroll">
+            <h2 className="font-inter font-bold text-xl sm:text-2xl mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              The Philosophical Paradox of Technology
+            </h2>
             
-            <p className="mb-4">
+            <p className="mb-4 text-slate-300 leading-relaxed text-sm sm:text-base">
               "Technology without purpose is merely gadgetry. Purpose without morality is merely efficiency in service of nothing." Each project emerges from the darkness of possibility into the light of reality, guided by a clear philosophical intention:
             </p>
             
             <ul className="space-y-4 mb-6">
               <li className="flex">
-                <span className="text-neon-purple mr-3">1.</span>
+                <span className="text-blue-400 mr-3 font-bold">1.</span>
                 <div>
-                  <strong className="block mb-1">The Paradox of Knowledge</strong>
-                  <p className="text-muted-foreground">"In the raw truth of life, knowledge is both salvation and burden." We make specialized knowledge accessible to those who need it most, stripping away the veneer of exclusivity.</p>
+                  <strong className="block mb-1 font-inter font-semibold text-white">The Paradox of Knowledge</strong>
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">"In the raw truth of life, knowledge is both salvation and burden." We make specialized knowledge accessible to those who need it most, stripping away the veneer of exclusivity.</p>
                 </div>
               </li>
               
               <li className="flex">
-                <span className="text-neon-purple mr-3">2.</span>
+                <span className="text-purple-400 mr-3 font-bold">2.</span>
                 <div>
-                  <strong className="block mb-1">The Duality of Innovation</strong>
-                  <p className="text-muted-foreground">"To create is to destroy what came before." Our systems align technological progress with environmental wellbeing, acknowledging that true advancement must honor its foundations.</p>
+                  <strong className="block mb-1 font-inter font-semibold text-white">The Duality of Innovation</strong>
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">"To create is to destroy what came before." Our systems align technological progress with environmental wellbeing, acknowledging that true advancement must honor its foundations.</p>
                 </div>
               </li>
               
               <li className="flex">
-                <span className="text-neon-purple mr-3">3.</span>
+                <span className="text-cyan-400 mr-3 font-bold">3.</span>
                 <div>
-                  <strong className="block mb-1">The Illusion of Intelligence</strong>
-                  <p className="text-muted-foreground">"AI is the mirror reflecting our best and worst selves." We ensure artificial intelligence amplifies human capability without replacing the irreplaceable human spirit.</p>
+                  <strong className="block mb-1 font-inter font-semibold text-white">The Illusion of Intelligence</strong>
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">"AI is the mirror reflecting our best and worst selves." We ensure artificial intelligence amplifies human capability without replacing the irreplaceable human spirit.</p>
                 </div>
               </li>
               
               <li className="flex">
-                <span className="text-neon-purple mr-3">4.</span>
+                <span className="text-green-400 mr-3 font-bold">4.</span>
                 <div>
-                  <strong className="block mb-1">The Liberation Equation</strong>
-                  <p className="text-muted-foreground">"True power lies not in control but in release." Our tools empower individuals rather than creating dependencies, measuring success by the freedom they create.</p>
+                  <strong className="block mb-1 font-inter font-semibold text-white">The Liberation Equation</strong>
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">"True power lies not in control but in release." Our tools empower individuals rather than creating dependencies, measuring success by the freedom they create.</p>
                 </div>
               </li>
             </ul>
             
-            <p>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               "Like a tesseract folding dimensions, technology must fold the paradoxes of human existence—our need for both freedom and structure, our desire for both connection and privacy, our capacity for both creation and destruction. The raw truth is that technology is neither good nor evil; it is a manifestation of our collective intent."
             </p>
           </div>
@@ -372,12 +348,12 @@ const DeepDiveProjects = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 md:px-8 border-t border-muted">
+      <footer className="py-8 sm:py-12 px-4 md:px-8 border-t border-slate-700">
         <div className="container mx-auto">
-          <p className="text-center text-lg font-medium mb-4">
+          <p className="text-center font-inter text-base sm:text-lg font-medium mb-4 text-white">
             "In a time of deceit, telling the truth is a revolutionary act. In a world of imitation, creating reality is divine."
           </p>
-          <p className="text-center text-muted-foreground">
+          <p className="text-center text-slate-400 text-sm sm:text-base">
             © Nalubola Saikoushik. All rights reserved across all dimensions.
           </p>
         </div>
