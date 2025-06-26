@@ -1,43 +1,39 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Zap, Award, Lightbulb, TrendingUp } from 'lucide-react';
+import { Users, Zap, Award, Lightbulb } from 'lucide-react';
 
 const ImpactMetrics = () => {
   const [isVisible, setIsVisible] = useState(false);
   
   const metrics = [
     { 
-      icon: <Users className="w-8 h-8" />, 
+      icon: <Users className="w-6 h-6 sm:w-8 sm:h-8" />, 
       value: 50000, 
-      label: 'Lives Impacted', 
+      label: 'Users Impacted', 
       suffix: '+',
-      color: 'from-blue-400 to-cyan-400',
-      description: 'Through innovative solutions'
+      color: 'from-blue-400 to-cyan-400'
     },
     { 
-      icon: <Zap className="w-8 h-8" />, 
-      value: 25, 
-      label: 'Projects Launched', 
+      icon: <Zap className="w-6 h-6 sm:w-8 sm:h-8" />, 
+      value: 15, 
+      label: 'Projects Completed', 
       suffix: '+',
-      color: 'from-yellow-400 to-orange-400',
-      description: 'From concept to reality'
+      color: 'from-yellow-400 to-orange-400'
     },
     { 
-      icon: <Award className="w-8 h-8" />, 
-      value: 8, 
-      label: 'Recognition Awards', 
+      icon: <Award className="w-6 h-6 sm:w-8 sm:h-8" />, 
+      value: 5, 
+      label: 'Awards & Recognition', 
       suffix: '',
-      color: 'from-purple-400 to-pink-400',
-      description: 'Industry acknowledgments'
+      color: 'from-purple-400 to-pink-400'
     },
     { 
-      icon: <TrendingUp className="w-8 h-8" />, 
-      value: 300, 
-      label: 'Growth Rate', 
+      icon: <Lightbulb className="w-6 h-6 sm:w-8 sm:h-8" />, 
+      value: 85, 
+      label: 'Innovation Score', 
       suffix: '%',
-      color: 'from-green-400 to-teal-400',
-      description: 'Year over year impact'
+      color: 'from-green-400 to-teal-400'
     }
   ];
 
@@ -53,8 +49,7 @@ const ImpactMetrics = () => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        setCount(Math.floor(easeOutQuart * end));
+        setCount(Math.floor(progress * end));
         
         if (progress < 1) {
           requestAnimationFrame(animate);
@@ -69,7 +64,7 @@ const ImpactMetrics = () => {
 
   return (
     <motion.div 
-      className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+      className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -78,32 +73,19 @@ const ImpactMetrics = () => {
       {metrics.map((metric, index) => (
         <motion.div
           key={metric.label}
-          className="group relative glass-card p-6 text-center hover:scale-105 transition-all duration-500 overflow-hidden"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="glass-card p-4 sm:p-6 text-center hover:scale-105 transition-all duration-300"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: index * 0.15 }}
-          whileHover={{ y: -8 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          {/* Background glow effect */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${metric.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-xl`} />
-          
-          <div className="relative z-10">
-            <motion.div 
-              className={`inline-flex p-4 rounded-full bg-gradient-to-r ${metric.color} mb-4 shadow-lg`}
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-            >
-              {metric.icon}
-            </motion.div>
-            
-            <div className="font-sf font-bold text-2xl lg:text-3xl text-white mb-2">
-              <CountUpAnimation end={metric.value} suffix={metric.suffix} />
-            </div>
-            
-            <p className="text-sm font-sf font-semibold text-white mb-1">{metric.label}</p>
-            <p className="text-xs text-white/60 font-sf">{metric.description}</p>
+          <div className={`inline-flex p-3 sm:p-4 rounded-full bg-gradient-to-r ${metric.color} mb-3 sm:mb-4`}>
+            {metric.icon}
           </div>
+          <div className="font-inter font-bold text-xl sm:text-2xl lg:text-3xl text-white mb-2">
+            <CountUpAnimation end={metric.value} suffix={metric.suffix} />
+          </div>
+          <p className="text-xs sm:text-sm text-white/70 font-medium">{metric.label}</p>
         </motion.div>
       ))}
     </motion.div>
