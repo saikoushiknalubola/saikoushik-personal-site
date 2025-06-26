@@ -1,59 +1,39 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Zap, Award, Lightbulb, Coffee, Code } from 'lucide-react';
+import { Users, Zap, Award, Lightbulb } from 'lucide-react';
 
 const ImpactMetrics = () => {
   const [isVisible, setIsVisible] = useState(false);
   
   const metrics = [
     { 
-      icon: <Users className="w-5 h-5 md:w-6 md:h-6" />, 
+      icon: <Users className="w-6 h-6 sm:w-8 sm:h-8" />, 
       value: 50000, 
-      label: 'Lives Impacted', 
+      label: 'Users Impacted', 
       suffix: '+',
-      color: 'from-blue-400 to-cyan-400',
-      humor: "That's more people than attend most concerts!"
+      color: 'from-blue-400 to-cyan-400'
     },
     { 
-      icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />, 
-      value: 25, 
-      label: 'Projects Shipped', 
+      icon: <Zap className="w-6 h-6 sm:w-8 sm:h-8" />, 
+      value: 15, 
+      label: 'Projects Completed', 
       suffix: '+',
-      color: 'from-yellow-400 to-orange-400',
-      humor: "Each one crafted with love and caffeine"
+      color: 'from-yellow-400 to-orange-400'
     },
     { 
-      icon: <Award className="w-5 h-5 md:w-6 md:h-6" />, 
-      value: 8, 
-      label: 'Awards Won', 
+      icon: <Award className="w-6 h-6 sm:w-8 sm:h-8" />, 
+      value: 5, 
+      label: 'Awards & Recognition', 
       suffix: '',
-      color: 'from-purple-400 to-pink-400',
-      humor: "Shiny objects that validate my existence"
+      color: 'from-purple-400 to-pink-400'
     },
     { 
-      icon: <Coffee className="w-5 h-5 md:w-6 md:h-6" />, 
-      value: 2847, 
-      label: 'Cups of Coffee', 
-      suffix: '+',
-      color: 'from-amber-400 to-orange-500',
-      humor: "The real fuel behind innovation ☕"
-    },
-    { 
-      icon: <Code className="w-5 h-5 md:w-6 md:h-6" />, 
-      value: 100000, 
-      label: 'Lines of Code', 
-      suffix: '+',
-      color: 'from-green-400 to-teal-400',
-      humor: "Most of them actually work!"
-    },
-    { 
-      icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, 
-      value: 99, 
+      icon: <Lightbulb className="w-6 h-6 sm:w-8 sm:h-8" />, 
+      value: 85, 
       label: 'Innovation Score', 
       suffix: '%',
-      color: 'from-yellow-300 to-yellow-500',
-      humor: "1% short of genius (working on it)"
+      color: 'from-green-400 to-teal-400'
     }
   ];
 
@@ -84,7 +64,7 @@ const ImpactMetrics = () => {
 
   return (
     <motion.div 
-      className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+      className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -93,37 +73,19 @@ const ImpactMetrics = () => {
       {metrics.map((metric, index) => (
         <motion.div
           key={metric.label}
-          className="glass-card p-4 md:p-6 text-center hover:scale-105 transition-all duration-300 group"
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          className="glass-card p-4 sm:p-6 text-center hover:scale-105 transition-all duration-300"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
-          whileHover={{ y: -5 }}
         >
-          <motion.div 
-            className={`inline-flex p-3 md:p-4 rounded-full bg-gradient-to-r ${metric.color} mb-3 md:mb-4 shadow-lg`}
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className={`inline-flex p-3 sm:p-4 rounded-full bg-gradient-to-r ${metric.color} mb-3 sm:mb-4`}>
             {metric.icon}
-          </motion.div>
-          
-          <div className="font-sf font-bold text-xl md:text-2xl lg:text-3xl text-white mb-2">
+          </div>
+          <div className="font-inter font-bold text-xl sm:text-2xl lg:text-3xl text-white mb-2">
             <CountUpAnimation end={metric.value} suffix={metric.suffix} />
           </div>
-          
-          <p className="font-sf text-xs md:text-sm text-white/70 font-medium mb-2">
-            {metric.label}
-          </p>
-          
-          <motion.p 
-            className="font-sf text-xs text-purple-300/70 italic"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: (index * 0.1) + 0.6 }}
-          >
-            {metric.humor}
-          </motion.p>
+          <p className="text-xs sm:text-sm text-white/70 font-medium">{metric.label}</p>
         </motion.div>
       ))}
     </motion.div>

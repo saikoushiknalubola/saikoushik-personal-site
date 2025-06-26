@@ -14,13 +14,7 @@ import MagicApple from '@/components/MagicApple';
 import ThinkDifferentQuote from '@/components/ThinkDifferentQuote';
 import OneMoreThing from '@/components/OneMoreThing';
 import SlideToUnlock from '@/components/SlideToUnlock';
-import HumorousQuote from '@/components/HumorousQuote';
-import EnhancedSkillsGrid from '@/components/EnhancedSkillsGrid';
-import TechStackVisualizer from '@/components/TechStackVisualizer';
-import ImpactMetrics from '@/components/ImpactMetrics';
-import FormulaPlayground from '@/components/FormulaPlayground';
-import PremiumButton from '@/components/PremiumButton';
-import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ZapIcon, Sparkles, Rocket, Brain } from 'lucide-react';
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter, Clock, ZapIcon, Sparkles } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import ImmersiveImageCard from '@/components/ImmersiveImageCard';
 import ThoughtExperiment from '@/components/ThoughtExperiment';
@@ -46,6 +40,7 @@ const Index = () => {
           entry.target.classList.add('animate-fade-in');
           observer.unobserve(entry.target);
           
+          // Update active section for nav highlight
           const id = entry.target.id;
           if (id) {
             setActiveSection(id);
@@ -64,12 +59,12 @@ const Index = () => {
   }, []);
 
   const typingRoles = [
-    "Quantum Entrepreneur",
-    "Einstein's Protégé",
-    "Code Alchemist",
-    "Future Architect",
-    "Reality Distorter",
-    "Innovation Catalyst",
+    "Entrepreneur",
+    "Physicist",
+    "Tech Rebel",
+    "Thinker",
+    "Visionary",
+    "Social Impact Leader",
   ];
 
   // Reduced to 2 manifesto quotes
@@ -81,25 +76,25 @@ const Index = () => {
   const projects = [
     {
       title: "Quantum Garuda OS",
-      description: "Privacy-focused Android OS with quantum encryption that gives users complete control over their digital souls.",
+      description: "An Android-based privacy-focused operating system with quantum encryption designed to give users complete control over their data.",
       emoji: "🦅",
       tags: ["Quantum Privacy", "Android", "OS Development"]
     },
     {
       title: "Newton's Gravity Purification Drone",
-      description: "Solar-powered autonomous drones that purify water using gravitational flow principles. Because even Newton would approve.",
+      description: "Autonomous drone technology inspired by gravitational principles that purifies water in remote areas using solar energy.",
       emoji: "🌞",
       tags: ["Renewable Energy", "Autonomous Systems", "Water Purification"]
     },
     {
       title: "E = mc² Electric Conversion",
-      description: "Converting vehicles to electric using Einstein's energy principles. Mass times light speed squared never felt so practical.",
+      description: "Revolutionary project to convert traditional vehicles to electric, applying Einstein's energy principles to efficient power systems.",
       emoji: "⚡",
       tags: ["Electric Vehicles", "Sustainable Transport", "Energy Conversion"]
     },
     {
       title: "Spacetime Revitalize Innovations",
-      description: "My startup that bends the fabric of business reality. We solve impossible problems with possible solutions.",
+      description: "Founder of a startup focused on building impactful solutions that bend the fabric of business reality as we know it.",
       emoji: "🚀",
       tags: ["Reality Distortion", "Innovation", "Social Impact"]
     }
@@ -177,26 +172,26 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="col-span-2">
               <motion.span 
-                className="text-purple-400 font-sf text-sm tracking-wider mb-2 block"
+                className="text-future-primary font-sf text-sm tracking-wider mb-2 block"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
               >
-                SAIKOUSHIK NALUBOLA • QUANTUM TIMELINE 2024
+                SAIKOUSHIK NALUBOLA • 2050
               </motion.span>
               <motion.h1 
-                className="text-3xl md:text-5xl lg:text-6xl font-sf font-bold mb-6 tracking-tight leading-tight"
+                className="text-4xl md:text-6xl lg:text-7xl font-sf font-bold mb-6 tracking-tight"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                If <span className="text-purple-400 animate-pulse-glow">Einstein</span> & <span className="text-blue-400">Jobs</span> Had a Baby,<br /> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
-                  It Would Code Like Me
+                If <span className="text-neon-purple animate-pulse-glow">Einstein</span> Were a Developer,<br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                  Time Would Be Relative to Your Vision
                 </span>
               </motion.h1>
               <motion.div 
-                className="text-lg md:text-xl font-sf font-medium mb-8 h-12"
+                className="text-xl md:text-2xl font-sf font-medium mb-8 h-12"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
@@ -209,23 +204,14 @@ const Index = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
               >
-                <PremiumButton 
-                  href="#about" 
-                  variant="apple" 
-                  size="lg"
-                  icon={ArrowDown}
-                >
+                <FuturisticButton href="#about" size="lg" className="font-sf btn-glow">
                   Bend spacetime, scroll down
-                </PremiumButton>
+                  <ArrowDown className="ml-2 animate-bounce-light" size={18} />
+                </FuturisticButton>
                 
-                <PremiumButton 
-                  href="/manifesto" 
-                  variant="glass" 
-                  size="lg"
-                  icon={Brain}
-                >
+                <FuturisticButton href="/manifesto" variant="secondary" className="font-sf btn-glow">
                   Read The Quantum Manifesto
-                </PremiumButton>
+                </FuturisticButton>
               </motion.div>
             </div>
             
@@ -258,7 +244,7 @@ const Index = () => {
 
       <section 
         id="about" 
-        className="py-16 md:py-20 px-4 md:px-8 bg-black/30 relative overflow-hidden"
+        className="py-20 px-4 md:px-8 bg-black/30 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 mix-blend-overlay"></div>
         <div className="container mx-auto relative z-10">
@@ -337,10 +323,11 @@ const Index = () => {
             </ul>
 
             <div className="mt-8">
-              <HumorousQuote
-                quote="I have no special talents, I am only passionately curious."
+              <LiteraryQuote 
+                text="A foolish faith in authority is the worst enemy of truth. Without the ability to develop powerful independence of mind, one cannot challenge established beliefs."
                 author="Albert Einstein"
-                humor="Translation: I Google things really, really well."
+                style="einstein"
+                animation="slide"
               />
             </div>
             
@@ -410,7 +397,7 @@ const Index = () => {
 
       <section 
         id="manifesto" 
-        className="py-16 md:py-20 px-4 md:px-8"
+        className="enhanced-section"
       >
         <div className="container mx-auto">
           <SectionHeader 
@@ -480,7 +467,7 @@ const Index = () => {
 
       <section 
         id="projects" 
-        className="py-16 md:py-20 px-4 md:px-8 bg-secondary/30 relative"
+        className="enhanced-section bg-secondary/30 relative"
       >
         <div className="container mx-auto">
           <SectionHeader 
@@ -505,71 +492,15 @@ const Index = () => {
           </div>
           
           <div className="mt-12 text-center animate-on-scroll">
-            <PremiumButton 
-              href="/projects" 
-              variant="primary" 
-              size="lg"
-              icon={Rocket}
-            >
+            <FuturisticButton href="/projects" variant="secondary" className="btn-glow font-sf">
               Enter The Quantum Laboratory
-            </PremiumButton>
+              <ArrowRight className="ml-2" size={18} />
+            </FuturisticButton>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Skills Section */}
-      <section 
-        id="skills" 
-        className="py-16 md:py-20 px-4 md:px-8 relative overflow-hidden"
-      >
-        <div className="absolute inset-0 neural-bg opacity-20"></div>
-        <div className="container mx-auto relative z-10">
-          <SectionHeader 
-            title="Quantum Skills & Superpowers" 
-            subtitle="Capabilities that transcend conventional space and time (and debugging)"
-            style="apple"
-            theoryReference="einstein"
-            className="animate-on-scroll"
-          />
-          
-          <div className="animate-on-scroll">
-            <EnhancedSkillsGrid />
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <section id="tech-stack" className="py-16 md:py-20 px-4 md:px-8 bg-black/40">
-        <div className="container mx-auto">
-          <SectionHeader 
-            title="My Digital Arsenal" 
-            subtitle="Technologies I use to bend reality and ship products"
-            style="futuristic"
-            className="animate-on-scroll"
-          />
-          
-          <div className="animate-on-scroll">
-            <TechStackVisualizer />
-          </div>
-        </div>
-      </section>
-
-      {/* Impact Metrics Section */}
-      <section id="impact" className="py-16 md:py-20 px-4 md:px-8">
-        <div className="container mx-auto">
-          <SectionHeader 
-            title="By The Numbers" 
-            subtitle="Quantifying the impact (because data doesn't lie, unlike my estimated deadlines)"
-            style="rebel"
-            className="animate-on-scroll"
-          />
-          
-          <div className="animate-on-scroll">
-            <ImpactMetrics />
-          </div>
-        </div>
-      </section>
-
+      {/* Simplified Jobs Quotes Section - Single quote */}
       <section id="inspiration" className="py-12 px-4 bg-gradient-to-b from-black/80 to-black/90 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-8 animate-on-scroll">
@@ -577,42 +508,29 @@ const Index = () => {
             <div className="h-0.5 w-20 bg-white/20 mx-auto"></div>
           </div>
           
-          <div className="max-w-4xl mx-auto space-y-8">
-            <HumorousQuote
-              quote="Innovation distinguishes between a leader and a follower."
-              author="Steve Jobs"
-              humor="And caffeine distinguishes between functional and non-functional developers."
-            />
-            
-            <HumorousQuote
-              quote="The important thing is to not stop questioning. Curiosity has its own reason for existing."
-              author="Albert Einstein"
-              humor="My parents wish Einstein had mentioned something about not questioning bedtime as a kid."
-            />
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              className="glass-card p-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <p className="font-sf font-light text-xl md:text-2xl text-white/90 italic mb-4">"{jobsQuote}"</p>
+              <p className="text-right font-sf text-sm text-white/70">- Steve Jobs</p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* New Formula Playground Section */}
-      <section id="formulas" className="py-16 md:py-20 px-4 md:px-8 bg-black/60 relative overflow-hidden">
-        <div className="container mx-auto relative z-10">
-          <div className="animate-on-scroll">
-            <FormulaPlayground />
-          </div>
-        </div>
-      </section>
-
-      <section 
-        id="one-more-thing" 
-        className="py-20 md:py-24 px-4"
-      >
+      {/* One More Thing section */}
+      <section id="one-more-thing" className="py-24 px-4">
         <div className="container mx-auto">
           <OneMoreThing title="And One More Thing...">
             <div className="text-center py-8">
               <h3 className="text-3xl font-sf font-light mb-6">The Quantum OS Project</h3>
               <p className="text-lg mb-8 max-w-2xl mx-auto font-sf">
-                An experimental operating system where time literally slows down when you're focused, and speeds up when you're procrastinating. 
-                <span className="italic text-purple-300"> Physics meets productivity!</span>
+                An experimental operating system that brings relativity theory to user interfaces. Time literally slows down when you're focused, and speeds up when you're not.
               </p>
               
               <div className="flex justify-center">
@@ -626,8 +544,8 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
-                  <p className="text-purple-400 font-sf">
-                    Early access granted. Look for an email from the future.
+                  <p className="text-neon-purple font-sf">
+                    Early access granted. Look for an email soon.
                   </p>
                 </motion.div>
               )}
@@ -717,6 +635,47 @@ const Index = () => {
                 Enter The Quantum Gallery
               </FuturisticButton>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section 
+        id="skills" 
+        className="enhanced-section relative overflow-hidden"
+      >
+        <div className="absolute inset-0 neural-bg opacity-20"></div>
+        <div className="container mx-auto relative z-10">
+          <SectionHeader 
+            title="Relativistic Skills & Expertise" 
+            subtitle="Capabilities that transcend conventional space and time"
+            style="apple"
+            theoryReference="einstein"
+            className="animate-on-scroll"
+          />
+          
+          <div className="grid md:grid-cols-2 gap-8 animate-on-scroll">
+            <div>
+              {skills.slice(0, 3).map((skill, index) => (
+                <SkillBar 
+                  key={index}
+                  name={skill.name}
+                  percentage={skill.percentage}
+                  emoji={skill.emoji}
+                  style={skill.style}
+                />
+              ))}
+            </div>
+            <div>
+              {skills.slice(3).map((skill, index) => (
+                <SkillBar 
+                  key={index}
+                  name={skill.name}
+                  percentage={skill.percentage}
+                  emoji={skill.emoji}
+                  style={skill.style}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
